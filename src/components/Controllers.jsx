@@ -68,12 +68,16 @@ const useStyles = makeStyles({
 
 const Controllers = ({
     playing,
-    handleMusic,
+    handlePlaying,
     progress,
     volumeHandler,
     value,
     muteHandler,
-    muted
+    muted,
+    next,
+    previous,
+    currentTime,
+    duration
 }) => {
     const classes = useStyles();
     return (
@@ -81,28 +85,30 @@ const Controllers = ({
             <div className={classes.name}>The offspring</div>
             <div className={classes.control}>
                 <div>
-                    <IconButton className={classes.playButton}>
+                    <IconButton className={classes.playButton} onClick={() => next()}>
                         <SkipPreviousIcon fontSize="medium" />
                     </IconButton>
-                    <IconButton className={classes.playButton} onClick={() => handleMusic()}>
+                    <IconButton className={classes.playButton} onClick={() => handlePlaying()}>
                         {playing ? (
                             <PauseCircleOutlineIcon fontSize="large" />
                         ) : (
                             <PlayCircleOutlineIcon fontSize="large" />
                         )}
                     </IconButton>
-                    <IconButton className={classes.playButton}>
+                    <IconButton className={classes.playButton} onClick={() => previous()}>
                         <SkipNextIcon fontSize="medium" />
                     </IconButton>
                 </div>
                 <div className={classes.progressContainer}>
-                    <Typography variant="caption">00:00</Typography>
+                    <Typography variant="caption">{currentTime()}</Typography>
                     <LinearProgress
                         value={progress}
                         variant="determinate"
                         className={classes.progressBar}
                     />
-                    <Typography variant="caption">00:00</Typography>
+                    <Typography variant="caption">
+                        {progress === 0 ? '00:00' : duration()}
+                    </Typography>
                 </div>
             </div>
             <div className={classes.volume}>
