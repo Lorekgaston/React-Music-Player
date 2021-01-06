@@ -34,8 +34,8 @@ const useStyles = makeStyles({
         flexGrow: 1
     },
     playButton: {
-        marginLeft: '10px',
-        marginRight: '10px',
+        marginLeft: '5px',
+        marginRight: '5px',
         color: grey[300]
     },
     volume: {
@@ -56,13 +56,13 @@ const useStyles = makeStyles({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        paddingBottom: '10px'
+        paddingBottom: '15px'
     },
     progressBar: {
         width: '80%',
         flexGrow: 1,
-        marginRight: '3px',
-        marginLeft: '3px'
+        marginRight: '8px',
+        marginLeft: '8px'
     }
 });
 

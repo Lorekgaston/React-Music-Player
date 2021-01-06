@@ -50,7 +50,7 @@ const VolumeController = ({ value, volumeHandler, muteHandler, muted }) => {
     return (
         <>
             <IconButton onClick={() => muteHandler()}>
-                {!muted && value != 0 ? (
+                {!muted && value !== 0 ? (
                     value <= 35 && value >= 1 ? (
                         <VolumeMuteIcon />
                     ) : value <= 75 && value >= 36 ? (

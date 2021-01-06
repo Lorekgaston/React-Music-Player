@@ -1,11 +1,19 @@
 import * as React from 'react';
-import './App.css';
+import axios from 'axios';
 import Controllers from './components/Controllers';
+import Playlist from './components/PlayList';
 import song1 from './songs/The Offspring - The Kids Arent Alright.mp3';
 import song2 from './songs/The Offspring - Youre Gonna Go Far, Kid.mp3';
 
 const audio = new Audio(song1);
-const songs = [song1, song2];
+const songs = [
+    { song1: song1, title: 'The Kids Arent Alright', artist: 'The Offspring' },
+    {
+        song2: song2,
+        tittle: 'Youre Gonna Go Far',
+        artist: 'The Offspring'
+    }
+];
 
 function App() {
     const [songPlaying, setSongPlaying] = React.useState(false);
@@ -119,9 +127,9 @@ function App() {
         }
         return `${minutes}:${seconds}`;
     };
-
     return (
         <div className="App">
+            <Playlist />
             <Controllers
                 playing={songPlaying}
                 progress={progress}
