@@ -1,9 +1,13 @@
 import * as React from 'react';
 import axios from 'axios';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import Controllers from './components/Controllers';
 import Playlist from './components/PlayList';
 import Header from './components/Header';
 import { getAuthToken } from './Auth';
+import useFetchCategories from './hooks/useFetchCategories';
+import CategoriesList from './components/Categories/CategoriesList';
+import CategoryPage from './components/CategoryPage/CategoryPage';
 
 const audio = new Audio();
 
@@ -15,9 +19,6 @@ function App() {
     const [progress, setProgress] = React.useState(0);
     const [token, setToken] = React.useState(null);
     const [user, setUser] = React.useState('');
-    const [isLoadin, setIsloading] = React.useState(false);
-    const [error, seterror] = React.useState(false);
-    const [playlist, setPlaylist] = React.useState([]);
     const [tracksUrl, setTrackUrl] = React.useState([]);
 
     const firstRender = React.useRef(true);
@@ -35,47 +36,15 @@ function App() {
             setUser(res.data.email);
         };
         if (_token) {
-            // window.location.hash = '';
+            //window.location.hash = '';
             setToken(_token);
             getUserInfo();
         }
     }, []);
-    React.useEffect(() => {
-        const getUserPlaylist = async () => {
-            setIsloading(true);
-            try {
-                const res = await axios(`https://api.spotify.com/v1/me/playlists`, {
-                    headers: {
-                        Authorization: 'Bearer ' + token
-                    }
-                });
-                if (res) {
-                    const secondRes = await axios(
-                        'https://api.spotify.com/v1/playlists/37i9dQZEVXcF247tqMiGPo/tracks',
-                        {
-                            headers: {
-                                Authorization: 'Bearer ' + token
-                            }
-                        }
-                    );
-                    const urlList = secondRes.data.items.map(tracks => {
-                        return tracks.track.preview_url;
-                    });
-                    setPlaylist(secondRes.data.items);
-                    setTrackUrl(urlList);
-                } else {
-                    seterror(true);
-                }
-                setIsloading(false);
-            } catch (err) {
-                seterror(true);
-                console.log(err);
-                setIsloading(false);
-            }
-        };
 
-        getUserPlaylist();
-    }, [token]);
+    const { catergories, isLoading, error, errorMessage } = useFetchCategories(
+        'https://api.spotify.com/v1/browse/categories'
+    );
 
     React.useEffect(() => {
         const handleAudio = () => {
@@ -184,33 +153,45 @@ function App() {
         audio.play();
         setSongPlaying(true);
     };
+    const logOut = () => {
+        window.location.hash = '';
+        setToken(null);
+    };
+    console.log(catergories);
     return (
         <div className="App">
-            <Header token={token} user={user} />
+            <Header token={token} user={user} logOut={logOut} />
             {!token ? (
-                <>
-                    <h1>Please Log In</h1>
-                </>
+                <h1>Please Log In</h1>
             ) : (
-                <>
-                    <Playlist playList={playlist} loading={isLoadin} error={error} play={setSong} />
-                    <Controllers
-                        playing={songPlaying}
-                        progress={progress}
-                        handlePlaying={musicHandler}
-                        volumeHandler={handleVolume}
-                        muteHandler={handleMuteVolume}
-                        next={nextSong}
-                        previous={prevSong}
-                        muted={isMuted}
-                        value={volume}
-                        currentTime={renderCurrentTime}
-                        duration={renderDuration}
-                    />
-                </>
+                <Switch>
+                    <>
+                        <Route exact path="/">
+                            <CategoriesList categories={catergories} loading={isLoading} />
+                            <Controllers
+                                playing={songPlaying}
+                                progress={progress}
+                                handlePlaying={musicHandler}
+                                volumeHandler={handleVolume}
+                                muteHandler={handleMuteVolume}
+                                next={nextSong}
+                                previous={prevSong}
+                                muted={isMuted}
+                                value={volume}
+                                currentTime={renderCurrentTime}
+                                duration={renderDuration}
+                            />
+                        </Route>
+                        <Route exact path="/categoryPage/:id">
+                            <CategoryPage token={token} />
+                        </Route>
+                    </>
+                </Switch>
             )}
         </div>
     );
 }
 
 export default App;
+
+// <Playlist playList={playlist} loading={isLoadin} error={error} play={setSong} />

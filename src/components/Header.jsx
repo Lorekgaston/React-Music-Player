@@ -23,11 +23,8 @@ const useStyles = makeStyles({
     }
 });
 
-const Header = ({ token, user }) => {
+const Header = ({ token, user, logOut }) => {
     const classes = useStyles();
-    // const [token, setToken] = React.useState('');
-    const logOut = () => (window.location.hash = '');
-
     return (
         <div className={classes.root}>
             <AppBar className={classes.appBar} position="static">

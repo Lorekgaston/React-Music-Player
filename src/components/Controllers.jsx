@@ -11,7 +11,7 @@ import VolumeController from './VolumeController';
 
 const useStyles = makeStyles({
     root: {
-        position: 'absolute',
+        position: 'fixed',
         left: 0,
         bottom: 0,
         width: '100%',
