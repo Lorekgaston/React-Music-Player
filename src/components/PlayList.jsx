@@ -1,6 +1,5 @@
 import * as React from 'react';
-import axios from 'axios';
-import { useParams, useLocation, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';

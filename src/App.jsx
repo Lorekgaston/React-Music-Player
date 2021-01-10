@@ -8,6 +8,7 @@ import { getAuthToken } from './Auth';
 import useFetchCategories from './hooks/useFetchCategories';
 import CategoriesList from './components/Categories/CategoriesList';
 import CategoryPage from './components/CategoryPage/CategoryPage';
+import Login from './components/Login/Login';
 
 const audio = new Audio();
 
@@ -163,17 +164,18 @@ function App() {
     };
     const logOut = () => {
         window.location.hash = '';
-        // setToken(null);
-        history.push('/');
+        setToken(null);
+        history.push('/login');
     };
+
     return (
         <div className="App">
-            <Header token={token} user={user} logOut={logOut} />
             {!token ? (
-                <h1>Please Log In</h1>
+                <Login />
             ) : (
                 <Switch>
                     <>
+                        <Header token={token} user={user} logOut={logOut} />
                         <Route exact path="/">
                             <CategoriesList categories={catergories} loading={isLoading} />
                         </Route>
