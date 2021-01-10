@@ -14,7 +14,7 @@ const scopes = [
 ];
 export const redirect_url = `https://accounts.spotify.com/authorize?client_id=${client_id}&redirect_uri=${URI}&scope=${scopes.join(
     '%20'
-)}&response_type=token`;
+)}&response_type=token&show_dialog=true`;
 
 export const getAuthToken = () => {
     return window.location.hash

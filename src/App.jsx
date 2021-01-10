@@ -1,6 +1,6 @@
 import * as React from 'react';
 import axios from 'axios';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import Controllers from './components/Controllers';
 import Playlist from './components/PlayList';
 import Header from './components/Header';
@@ -12,6 +12,7 @@ import CategoryPage from './components/CategoryPage/CategoryPage';
 const audio = new Audio();
 
 function App() {
+    const history = useHistory();
     const [songPlaying, setSongPlaying] = React.useState(false);
     const [isMuted, setIsMuted] = React.useState(false);
     const [volume, setVolume] = React.useState(50);
@@ -35,11 +36,9 @@ function App() {
             });
             setUser(res.data.email);
         };
-        if (_token) {
-            //window.location.hash = '';
-            setToken(_token);
-            getUserInfo();
-        }
+        window.location.hash = '';
+        setToken(_token);
+        getUserInfo();
     }, []);
 
     const { catergories, isLoading, error, errorMessage } = useFetchCategories(
@@ -148,14 +147,18 @@ function App() {
         }
         return `${minutes}:${seconds}`;
     };
-    const setSong = index => {
-        audio.src = tracksUrl[index];
-        audio.play();
-        setSongPlaying(true);
+    const setSong = (index, trackList) => {
+        setTrackUrl(trackList);
+        if (tracksUrl) {
+            audio.src = tracksUrl[index];
+            audio.play();
+            setSongPlaying(true);
+        }
     };
     const logOut = () => {
         window.location.hash = '';
         setToken(null);
+        history.push('/');
     };
     console.log(catergories);
     return (
@@ -168,23 +171,26 @@ function App() {
                     <>
                         <Route exact path="/">
                             <CategoriesList categories={catergories} loading={isLoading} />
-                            <Controllers
-                                playing={songPlaying}
-                                progress={progress}
-                                handlePlaying={musicHandler}
-                                volumeHandler={handleVolume}
-                                muteHandler={handleMuteVolume}
-                                next={nextSong}
-                                previous={prevSong}
-                                muted={isMuted}
-                                value={volume}
-                                currentTime={renderCurrentTime}
-                                duration={renderDuration}
-                            />
                         </Route>
                         <Route exact path="/categoryPage/:id">
                             <CategoryPage token={token} />
                         </Route>
+                        <Route exact path="/playlist/:id">
+                            <Playlist toke={token} play={setSong} />
+                        </Route>
+                        <Controllers
+                            playing={songPlaying}
+                            progress={progress}
+                            handlePlaying={musicHandler}
+                            volumeHandler={handleVolume}
+                            muteHandler={handleMuteVolume}
+                            next={nextSong}
+                            previous={prevSong}
+                            muted={isMuted}
+                            value={volume}
+                            currentTime={renderCurrentTime}
+                            duration={renderDuration}
+                        />
                     </>
                 </Switch>
             )}
@@ -194,4 +200,4 @@ function App() {
 
 export default App;
 
-// <Playlist playList={playlist} loading={isLoadin} error={error} play={setSong} />
+//

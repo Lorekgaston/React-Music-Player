@@ -46,7 +46,9 @@ const CategoryPage = ({ token }) => {
             ) : (
                 data?.length > 0 &&
                 data?.map((playlist, idx) => (
-                    <div key={playlist.id + idx} onClick={() => history.push(`/playlist/${id}`)}>
+                    <div
+                        key={playlist.id + idx}
+                        onClick={() => history.push(`/playlist/${playlist.id}`)}>
                         <h1>{playlist.name}</h1>
                     </div>
                 ))

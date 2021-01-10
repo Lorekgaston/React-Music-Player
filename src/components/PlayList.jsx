@@ -1,4 +1,6 @@
-import React from 'react';
+import * as React from 'react';
+import axios from 'axios';
+import { useParams, useLocation, useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -13,15 +15,16 @@ import Favorite from '@material-ui/icons/Favorite';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import { Paper, Typography } from '@material-ui/core';
 import { convetTominutes } from '../utils/handleTime';
+import useFetch from '../hooks/useFetch';
 
 const useStyles = makeStyles({
     root: {
         width: '100%',
         height: 'auto',
-        maxHeight: 750,
+        maxHeight: 780,
         overflowY: 'scroll',
         maxWidth: 1356,
-        margin: '50px auto',
+        margin: '25px auto',
         backgroundColor: '#202020',
         color: grey[200]
     },
@@ -44,47 +47,63 @@ const useStyles = makeStyles({
     }
 });
 
-const PlayList = ({ playList, loading, error, play }) => {
+const PlayList = ({ token, play }) => {
+    const { pathname } = useLocation();
+    const history = useHistory();
+    const { id } = useParams();
     const classes = useStyles();
-    console.log(playList);
+
+    const { data, isLoading } = useFetch(
+        `https://api.spotify.com/v1/playlists/${id}/tracks?offset=0&limit=30`
+    );
+    const tracks = data?.data.items;
+    const urlList = tracks?.map(song => {
+        const {
+            track: { preview_url }
+        } = song;
+        return preview_url;
+    });
+    console.log(urlList);
+
     return (
         <Paper className={classes.root}>
-            {loading ? (
+            {isLoading ? (
                 <h1>Loaging...</h1>
             ) : (
                 <List>
-                    {playList.map((song, idx) => {
-                        const {
-                            track: { name, duration_ms }
-                        } = song;
-                        const labelId = `checkbox-list-label-${song}`;
+                    {tracks?.length > 0 &&
+                        tracks?.map((song, idx) => {
+                            const {
+                                track: { name, duration_ms }
+                            } = song;
+                            const labelId = `checkbox-list-label-${song}`;
 
-                        return (
-                            <ListItem
-                                className={classes.listItem}
-                                key={song + idx}
-                                role={undefined}>
-                                <ListItemIcon>
-                                    <IconButton onClick={() => play(idx)}>
-                                        <PlayArrowIcon className={classes.play} />
-                                    </IconButton>
-                                </ListItemIcon>
-                                <ListItemText id={labelId} primary={name} />
+                            return (
+                                <ListItem
+                                    className={classes.listItem}
+                                    key={song + idx}
+                                    role={undefined}>
+                                    <ListItemIcon>
+                                        <IconButton onClick={() => play(idx, urlList)}>
+                                            <PlayArrowIcon className={classes.play} />
+                                        </IconButton>
+                                    </ListItemIcon>
+                                    <ListItemText id={labelId} primary={name} />
 
-                                <FormControlLabel
-                                    control={
-                                        <Checkbox
-                                            className={classes.favorite}
-                                            icon={<FavoriteBorder />}
-                                            checkedIcon={<Favorite />}
-                                            name="checkedH"
-                                        />
-                                    }
-                                />
-                                <Typography>{convetTominutes(duration_ms)}</Typography>
-                            </ListItem>
-                        );
-                    })}
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                className={classes.favorite}
+                                                icon={<FavoriteBorder />}
+                                                checkedIcon={<Favorite />}
+                                                name="checkedH"
+                                            />
+                                        }
+                                    />
+                                    <Typography>{convetTominutes(duration_ms)}</Typography>
+                                </ListItem>
+                            );
+                        })}
                 </List>
             )}
         </Paper>
