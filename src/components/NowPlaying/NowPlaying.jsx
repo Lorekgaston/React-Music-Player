@@ -7,7 +7,6 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import { grey } from '@material-ui/core/colors';
-import useFetch from '../../hooks/useFetch';
 
 const useStyles = makeStyles({
     root: {
@@ -25,6 +24,7 @@ const useStyles = makeStyles({
     secondary: {
         color: grey[500],
         cursor: 'pointer',
+        marginRight: 5,
         '&:hover': {
             textDecoration: 'underline'
         }

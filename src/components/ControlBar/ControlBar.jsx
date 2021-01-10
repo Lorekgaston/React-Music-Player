@@ -1,10 +1,10 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { grey } from '@material-ui/core/colors';
-import VolumeController from './VolumeController';
-import Progress from './Progress/Progress';
-import ControlButtons from './ControlButtons/ControlButtons';
-import NowPlaying from './NowPlaying/NowPlaying';
+import VolumeController from '../VolumeController';
+import Progress from '../Progress/Progress';
+import ControlButtons from '../ControlButtons/ControlButtons';
+import NowPlaying from '../NowPlaying/NowPlaying';
 
 const useStyles = makeStyles({
     root: {
@@ -54,7 +54,7 @@ const useStyles = makeStyles({
     }
 });
 
-const Controllers = ({
+const ControlBar = ({
     playing,
     handlePlaying,
     progress,
@@ -99,4 +99,4 @@ const Controllers = ({
     );
 };
 
-export default Controllers;
+export default ControlBar;

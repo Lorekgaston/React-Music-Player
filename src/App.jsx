@@ -1,7 +1,7 @@
 import * as React from 'react';
 import axios from 'axios';
 import { Route, Switch, useHistory } from 'react-router-dom';
-import Controllers from './components/Controllers';
+import ControlBar from './components/ControlBar/ControlBar';
 import Playlist from './components/PlayList';
 import Header from './components/Header';
 import { getAuthToken } from './Auth';
@@ -183,7 +183,7 @@ function App() {
                         <Route exact path="/playlist/:id">
                             <Playlist play={setSong} />
                         </Route>
-                        <Controllers
+                        <ControlBar
                             playing={songPlaying}
                             progress={progress}
                             handlePlaying={musicHandler}
