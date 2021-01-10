@@ -21,6 +21,7 @@ function App() {
     const [token, setToken] = React.useState(null);
     const [user, setUser] = React.useState('');
     const [tracksUrl, setTrackUrl] = React.useState([]);
+    const [currentTrack, setCurrentTrack] = React.useState(null);
 
     const firstRender = React.useRef(true);
     const prevVolumeRef = React.useRef();
@@ -34,11 +35,15 @@ function App() {
                     Authorization: 'Bearer ' + _token
                 }
             });
-            setUser(res.data.email);
+            if (res) {
+                setUser(res.data.email);
+            }
         };
-        window.location.hash = '';
-        setToken(_token);
-        getUserInfo();
+        if (auth) {
+            window.location.hash = '';
+            setToken(_token);
+            getUserInfo();
+        }
     }, []);
 
     const { catergories, isLoading, error, errorMessage } = useFetchCategories(
@@ -67,7 +72,7 @@ function App() {
         return () => {
             clearInterval(timer);
         };
-    }, []);
+    }, [songPlaying]);
 
     React.useEffect(() => {
         const changeSong = () => {
@@ -147,8 +152,9 @@ function App() {
         }
         return `${minutes}:${seconds}`;
     };
-    const setSong = (index, trackList) => {
+    const setSong = (index, trackList, track) => {
         setTrackUrl(trackList);
+        setCurrentTrack(track);
         if (tracksUrl) {
             audio.src = tracksUrl[index];
             audio.play();
@@ -157,10 +163,9 @@ function App() {
     };
     const logOut = () => {
         window.location.hash = '';
-        setToken(null);
+        // setToken(null);
         history.push('/');
     };
-    console.log(catergories);
     return (
         <div className="App">
             <Header token={token} user={user} logOut={logOut} />
@@ -176,7 +181,7 @@ function App() {
                             <CategoryPage token={token} />
                         </Route>
                         <Route exact path="/playlist/:id">
-                            <Playlist toke={token} play={setSong} />
+                            <Playlist play={setSong} />
                         </Route>
                         <Controllers
                             playing={songPlaying}
@@ -190,6 +195,7 @@ function App() {
                             value={volume}
                             currentTime={renderCurrentTime}
                             duration={renderDuration}
+                            currentTrack={currentTrack}
                         />
                     </>
                 </Switch>

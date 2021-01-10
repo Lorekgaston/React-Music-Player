@@ -47,12 +47,9 @@ const useStyles = makeStyles({
     }
 });
 
-const PlayList = ({ token, play }) => {
-    const { pathname } = useLocation();
-    const history = useHistory();
+const PlayList = ({ play }) => {
     const { id } = useParams();
     const classes = useStyles();
-
     const { data, isLoading } = useFetch(
         `https://api.spotify.com/v1/playlists/${id}/tracks?offset=0&limit=30`
     );
@@ -63,7 +60,6 @@ const PlayList = ({ token, play }) => {
         } = song;
         return preview_url;
     });
-    console.log(urlList);
 
     return (
         <Paper className={classes.root}>
@@ -74,6 +70,7 @@ const PlayList = ({ token, play }) => {
                     {tracks?.length > 0 &&
                         tracks?.map((song, idx) => {
                             const {
+                                track,
                                 track: { name, duration_ms }
                             } = song;
                             const labelId = `checkbox-list-label-${song}`;
@@ -84,7 +81,7 @@ const PlayList = ({ token, play }) => {
                                     key={song + idx}
                                     role={undefined}>
                                     <ListItemIcon>
-                                        <IconButton onClick={() => play(idx, urlList)}>
+                                        <IconButton onClick={() => play(idx, urlList, track)}>
                                             <PlayArrowIcon className={classes.play} />
                                         </IconButton>
                                     </ListItemIcon>

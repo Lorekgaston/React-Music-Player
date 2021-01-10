@@ -1,13 +1,10 @@
 import React from 'react';
-import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
-import PauseCircleOutlineIcon from '@material-ui/icons/PauseCircleOutline';
-import SkipNextIcon from '@material-ui/icons/SkipNext';
-import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
-import LinearProgress from '@material-ui/core/LinearProgress';
-import { IconButton, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { grey } from '@material-ui/core/colors';
 import VolumeController from './VolumeController';
+import Progress from './Progress/Progress';
+import ControlButtons from './ControlButtons/ControlButtons';
+import NowPlaying from './NowPlaying/NowPlaying';
 
 const useStyles = makeStyles({
     root: {
@@ -15,6 +12,7 @@ const useStyles = makeStyles({
         left: 0,
         bottom: 0,
         width: '100%',
+        height: 90,
         backgroundColor: '#282828',
         color: grey[300],
         display: 'flex',
@@ -33,17 +31,13 @@ const useStyles = makeStyles({
         alignItems: 'center',
         flexGrow: 1
     },
-    playButton: {
-        marginLeft: '5px',
-        marginRight: '5px',
-        color: grey[300]
-    },
     volume: {
         width: '40%',
         display: 'flex',
         justifyContent: 'flex-end',
         alignItems: 'center',
-        flexGrow: 1
+        flexGrow: 1,
+        padding: '8px 16px'
     },
     slider: {
         width: '100px',
@@ -57,12 +51,6 @@ const useStyles = makeStyles({
         justifyContent: 'center',
         alignItems: 'center',
         paddingBottom: '15px'
-    },
-    progressBar: {
-        width: '80%',
-        flexGrow: 1,
-        marginRight: '8px',
-        marginLeft: '8px'
     }
 });
 
@@ -77,38 +65,26 @@ const Controllers = ({
     next,
     previous,
     currentTime,
-    duration
+    duration,
+    currentTrack
 }) => {
     const classes = useStyles();
     return (
         <div className={classes.root}>
-            <div className={classes.name}>The offspring</div>
+            <div className={classes.name}>
+                <NowPlaying currentTrack={currentTrack} />
+            </div>
             <div className={classes.control}>
                 <div>
-                    <IconButton className={classes.playButton} onClick={() => next()}>
-                        <SkipPreviousIcon fontSize="medium" />
-                    </IconButton>
-                    <IconButton className={classes.playButton} onClick={() => handlePlaying()}>
-                        {playing ? (
-                            <PauseCircleOutlineIcon fontSize="large" />
-                        ) : (
-                            <PlayCircleOutlineIcon fontSize="large" />
-                        )}
-                    </IconButton>
-                    <IconButton className={classes.playButton} onClick={() => previous()}>
-                        <SkipNextIcon fontSize="medium" />
-                    </IconButton>
+                    <ControlButtons
+                        playing={playing}
+                        handlePlaying={handlePlaying}
+                        next={next}
+                        previous={previous}
+                    />
                 </div>
                 <div className={classes.progressContainer}>
-                    <Typography variant="caption">{currentTime()}</Typography>
-                    <LinearProgress
-                        value={progress}
-                        variant="determinate"
-                        className={classes.progressBar}
-                    />
-                    <Typography variant="caption">
-                        {progress === 0 ? '00:00' : duration()}
-                    </Typography>
+                    <Progress currentTime={currentTime} duration={duration} progress={progress} />
                 </div>
             </div>
             <div className={classes.volume}>
