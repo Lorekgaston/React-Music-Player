@@ -2,7 +2,7 @@ import * as React from 'react';
 import axios from 'axios';
 import { Route, Switch, useHistory } from 'react-router-dom';
 import ControlBar from './components/ControlBar/ControlBar';
-import Playlist from './components/PlayList';
+import Playlist from './components/PlayList/PlayList';
 import Header from './components/Header';
 import { getAuthToken } from './Auth';
 import useFetchCategories from './hooks/useFetchCategories';
@@ -23,6 +23,7 @@ function App() {
     const [user, setUser] = React.useState('');
     const [tracksUrl, setTrackUrl] = React.useState([]);
     const [currentTrack, setCurrentTrack] = React.useState(null);
+    const [songs, setSongs] = React.useState([]);
 
     const firstRender = React.useRef(true);
     const prevVolumeRef = React.useRef();
@@ -47,7 +48,7 @@ function App() {
         }
     }, []);
 
-    const { catergories, isLoading, error, errorMessage } = useFetchCategories(
+    const { catergories, isLoading } = useFetchCategories(
         'https://api.spotify.com/v1/browse/categories'
     );
 
@@ -60,6 +61,20 @@ function App() {
         };
     }, [songPlaying]);
 
+    React.useEffect(() => {
+        const changeSong = () => {
+            setCurrentTrack(songs[index]);
+            audio.src = tracksUrl[index];
+            audio.play();
+            setSongPlaying(true);
+        };
+        if (firstRender.current) {
+            firstRender.current = false;
+            return;
+        }
+
+        changeSong();
+    }, [index, songs, tracksUrl]);
     React.useEffect(() => {
         const timer = setInterval(() => {
             setProgress(oldProgress => {
@@ -74,19 +89,6 @@ function App() {
             clearInterval(timer);
         };
     }, [songPlaying]);
-
-    React.useEffect(() => {
-        const changeSong = () => {
-            audio.src = tracksUrl[index];
-            audio.play();
-            setSongPlaying(true);
-        };
-        if (firstRender.current) {
-            firstRender.current = false;
-            return;
-        }
-        changeSong();
-    }, [index]);
 
     React.useEffect(() => {
         const changeVolume = () => {
@@ -155,19 +157,15 @@ function App() {
     };
     const setSong = (index, trackList, track) => {
         setTrackUrl(trackList);
-        setCurrentTrack(track);
-        if (tracksUrl) {
-            audio.src = tracksUrl[index];
-            audio.play();
-            setSongPlaying(true);
-        }
+        setSongs(track);
+        setIndex(index);
     };
     const logOut = () => {
         window.location.hash = '';
         setToken(null);
         history.push('/login');
     };
-
+    console.log(songs);
     return (
         <div className="App">
             {!token ? (
@@ -207,5 +205,3 @@ function App() {
 }
 
 export default App;
-
-//

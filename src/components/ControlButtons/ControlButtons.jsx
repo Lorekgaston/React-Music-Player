@@ -19,7 +19,7 @@ const ControlButtons = ({ playing, handlePlaying, next, previous }) => {
     const classes = useStyles();
     return (
         <>
-            <IconButton className={classes.button} onClick={() => next()}>
+            <IconButton className={classes.button} onClick={() => previous()}>
                 <SkipPreviousIcon fontSize="medium" />
             </IconButton>
             <IconButton className={classes.button} onClick={() => handlePlaying()}>
@@ -29,7 +29,7 @@ const ControlButtons = ({ playing, handlePlaying, next, previous }) => {
                     <PlayCircleOutlineIcon fontSize="large" />
                 )}
             </IconButton>
-            <IconButton className={classes.button} onClick={() => previous()}>
+            <IconButton className={classes.button} onClick={() => next()}>
                 <SkipNextIcon fontSize="medium" />
             </IconButton>
         </>
