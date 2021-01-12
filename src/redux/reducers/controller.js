@@ -8,9 +8,8 @@ const intialState = {
     progress: 0,
     token: null,
     user: '',
-    tracksUrl: [],
-    songInfo: [],
-    currentTrack: null
+    currentTrack: [],
+    songInfo: []
 };
 
 const reducer = (state = intialState, action) => {
@@ -24,12 +23,12 @@ const reducer = (state = intialState, action) => {
             console.log(action);
             return {
                 ...state,
-                tracksUrl: action.tracks.urlList,
+                currentTrack: action.tracks.urlList,
                 index: action.tracks.idx
             };
         }
         case actionType.NEXT_SONG:
-            if (state.index === state.tracksUrl.length - 1) {
+            if (state.index === state.currentTrack.length - 1) {
                 return {
                     ...state,
                     index: 0
@@ -43,7 +42,7 @@ const reducer = (state = intialState, action) => {
             if (state.index === 0) {
                 return {
                     ...state,
-                    index: state.tracksUrl.length - 1
+                    index: state.currentTrack.length - 1
                 };
             }
             return {

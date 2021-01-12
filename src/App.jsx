@@ -18,7 +18,6 @@ function App() {
     const history = useHistory();
     const [token, setToken] = React.useState(null);
     const [user, setUser] = React.useState('');
-    const [songs, setSongs] = React.useState([]);
     // const [tracksUrl, setTrackUrl] = React.useState([]);
     // const [index, setIndex] = React.useState(0);
 
@@ -46,11 +45,6 @@ function App() {
         'https://api.spotify.com/v1/browse/categories'
     );
 
-    // const setSong = (index, trackList, track) => {
-    //     // setTrackUrl(trackList);
-    //     setSongs(track);
-    //     setIndex(index);
-    // };
     const logOut = () => {
         window.location.hash = '';
         setToken(null);
@@ -73,17 +67,7 @@ function App() {
                         <Route exact path="/playlist/:id">
                             <Playlist />
                         </Route>
-                        <ControlBar
-                            audio={audio}
-                            // tracksUrl={tracksUrl}
-                            // index={index}
-                            // setIndex={setIndex}
-                            // playing={songPlaying}
-                            // progress={progress}
-                            // muted={isMuted}
-                            // value={volume}
-                            //currentTrack={currentTrack}
-                        />
+                        <ControlBar audio={audio} />
                     </>
                 </Switch>
             )}

@@ -10,12 +10,10 @@ import { useStyles } from './styles';
 const ControlBar = ({ audio }) => {
     const dispatch = useDispatch();
     const controller = useSelector(state => state.controller);
-    const [isMuted, setIsMuted] = React.useState(false);
-    // const [volume, setVolume] = React.useState(50);
+    // const [isMuted, setIsMuted] = React.useState(false);
     const [progress, setProgress] = React.useState(0);
-    const [currentTrack, setCurrentTrack] = React.useState(null);
     const classes = useStyles();
-    const { songPlaying, tracksUrl, index, volume } = controller;
+    const { songPlaying, currentTrack, index, volume } = controller;
 
     const firstRender = React.useRef(true);
     const prevVolumeRef = React.useRef();
@@ -32,7 +30,7 @@ const ControlBar = ({ audio }) => {
     React.useEffect(() => {
         const changeSong = () => {
             // setCurrentTrack(songs[index]);
-            audio.src = tracksUrl[index];
+            audio.src = currentTrack[index]?.preview_url;
             audio.play();
             dispatch(playSong(true));
         };
@@ -42,7 +40,8 @@ const ControlBar = ({ audio }) => {
         }
 
         changeSong();
-    }, [index, tracksUrl]);
+    }, [index, currentTrack]);
+
     React.useEffect(() => {
         const timer = setInterval(() => {
             setProgress(oldProgress => {
@@ -127,7 +126,7 @@ const ControlBar = ({ audio }) => {
     return (
         <div className={classes.root}>
             <div className={classes.name}>
-                <NowPlaying currentTrack={currentTrack} />
+                <NowPlaying currentTrack={currentTrack[index]?.album} />
             </div>
             <div className={classes.control}>
                 <div>

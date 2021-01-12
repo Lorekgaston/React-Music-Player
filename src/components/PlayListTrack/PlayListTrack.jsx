@@ -39,9 +39,9 @@ const useStyles = makeStyles({
     }
 });
 
-const PlayListTrack = ({ track, labelId, play, idx }) => {
+const PlayListTrack = ({ track: { name, duration_ms, album }, labelId, play, idx }) => {
     const classes = useStyles();
-    const { name, duration_ms } = track;
+
     return (
         <>
             <ListItem className={classes.listItem}>
@@ -51,7 +51,7 @@ const PlayListTrack = ({ track, labelId, play, idx }) => {
                     </IconButton>
                 </ListItemIcon>
                 <ListItemAvatar>
-                    <Avatar variant="square" src={track.album.images[2].url} />
+                    <Avatar variant="square" src={album.images[2].url} />
                 </ListItemAvatar>
                 <ListItemText id={labelId} primary={name} />
 

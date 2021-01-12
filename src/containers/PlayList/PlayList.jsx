@@ -39,7 +39,7 @@ const useStyles = makeStyles({
     }
 });
 
-const PlayList = ({ play }) => {
+const PlayList = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
     const classes = useStyles();
@@ -51,19 +51,12 @@ const PlayList = ({ play }) => {
         const { track } = song;
         return track.preview_url != null;
     });
-    const trackListInfo = items
-        ?.map(song => {
-            const { track } = song;
-            return track;
-        })
-        .filter(track => track.preview_url != null);
-    console.log(playList);
     const playTrack = idx => {
         const urlList = playList?.map(song => {
             const {
-                track: { preview_url }
+                track: { preview_url, album }
             } = song;
-            return preview_url;
+            return { preview_url, album };
         });
 
         dispatch(setAudio({ urlList, idx }));
@@ -82,7 +75,6 @@ const PlayList = ({ play }) => {
                             return (
                                 <PlayListTrack
                                     key={song + idx}
-                                    trackListInfo={trackListInfo}
                                     track={track}
                                     play={playTrack}
                                     labelId={labelId}

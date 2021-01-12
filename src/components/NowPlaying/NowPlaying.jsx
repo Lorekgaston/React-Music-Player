@@ -39,7 +39,7 @@ const NowPlaying = ({ currentTrack }) => {
                 <List className={classes.root}>
                     <ListItem>
                         <ListItemAvatar>
-                            <Avatar variant="square" src={currentTrack.album.images[2].url} />
+                            <Avatar variant="square" src={currentTrack.images[2].url} />
                         </ListItemAvatar>
                         <ListItemText
                             primary={
