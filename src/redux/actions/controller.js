@@ -1,13 +1,9 @@
 import * as actionType from '../actionTypes';
 
-export const playSong = () => {
+export const playSong = isPlaying => {
     return {
-        type: actionType.PLAY_SONG
-    };
-};
-export const pauseSong = () => {
-    return {
-        type: actionType.PAUSE_SONG
+        type: actionType.PLAY_SONG,
+        isPlaying
     };
 };
 export const nextSong = () => {
@@ -20,8 +16,20 @@ export const previousSong = () => {
         type: actionType.PREVIOUS_SONG
     };
 };
-export const handleVolume = () => {
+export const handleVolume = newValue => {
     return {
-        type: actionType.HANDLE_VOLUME
+        type: actionType.HANDLE_VOLUME,
+        newValue
+    };
+};
+export const setAudio = tracks => {
+    return {
+        type: actionType.SET_AUDIO,
+        tracks
+    };
+};
+export const setProgress = () => {
+    return {
+        type: actionType.SET_PROGRESS
     };
 };

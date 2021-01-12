@@ -60,8 +60,8 @@ const Login = () => {
             <div className={classes.header}>
                 <Typography variant="h2">Music Player</Typography>
                 <Typography variant="caption" component="p">
-                    This Web App is only for demo purposes no has no commercial use. Please notice
-                    that in order to view this demo you must sign in with your spotify account
+                    This Web App is only for demo purposes, has no commercial use. To view this demo
+                    you must sign in with your spotify account
                 </Typography>
                 <Button href={redirect_url} className={classes.button}>
                     Login

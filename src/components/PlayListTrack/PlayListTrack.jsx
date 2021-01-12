@@ -13,7 +13,7 @@ import Favorite from '@material-ui/icons/Favorite';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import { Typography } from '@material-ui/core';
 import { grey } from '@material-ui/core/colors';
-import { convetTominutes } from '../../../utils/handleTime';
+import { convetTominutes } from '../../utils/handleTime';
 
 const useStyles = makeStyles({
     favorite: {
@@ -39,14 +39,14 @@ const useStyles = makeStyles({
     }
 });
 
-const PlayListTrack = ({ trackListInfo, track, urlList, labelId, play, idx }) => {
+const PlayListTrack = ({ track, labelId, play, idx }) => {
     const classes = useStyles();
     const { name, duration_ms } = track;
     return (
         <>
             <ListItem className={classes.listItem}>
                 <ListItemIcon>
-                    <IconButton onClick={() => play(idx, urlList, trackListInfo)}>
+                    <IconButton onClick={() => play(idx)}>
                         <PlayArrowIcon className={classes.play} />
                     </IconButton>
                 </ListItemIcon>

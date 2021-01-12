@@ -1,11 +1,13 @@
 import * as React from 'react';
+import { useDispatch } from 'react-redux';
+import { setAudio } from '../../redux/actions/controller';
 import { useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import { grey } from '@material-ui/core/colors';
 import { Paper } from '@material-ui/core';
 import useFetch from '../../hooks/useFetch';
-import PlayListTrack from './PlayListTrack/PlayListTrack';
+import PlayListTrack from '../../components/PlayListTrack/PlayListTrack';
 
 const useStyles = makeStyles({
     root: {
@@ -38,18 +40,13 @@ const useStyles = makeStyles({
 });
 
 const PlayList = ({ play }) => {
+    const dispatch = useDispatch();
     const { id } = useParams();
     const classes = useStyles();
     const { data, isLoading } = useFetch(
         `https://api.spotify.com/v1/playlists/${id}/tracks?offset=0&limit=30`
     );
     const items = data?.data.items;
-    const urlList = items?.map(song => {
-        const {
-            track: { preview_url }
-        } = song;
-        return preview_url;
-    });
     const playList = items?.filter(song => {
         const { track } = song;
         return track.preview_url != null;
@@ -61,6 +58,16 @@ const PlayList = ({ play }) => {
         })
         .filter(track => track.preview_url != null);
     console.log(playList);
+    const playTrack = idx => {
+        const urlList = playList?.map(song => {
+            const {
+                track: { preview_url }
+            } = song;
+            return preview_url;
+        });
+
+        dispatch(setAudio({ urlList, idx }));
+    };
     return (
         <Paper className={classes.root}>
             {isLoading ? (
@@ -77,9 +84,8 @@ const PlayList = ({ play }) => {
                                     key={song + idx}
                                     trackListInfo={trackListInfo}
                                     track={track}
-                                    urlList={urlList}
+                                    play={playTrack}
                                     labelId={labelId}
-                                    play={play}
                                     idx={idx}
                                 />
                             );

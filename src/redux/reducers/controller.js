@@ -9,7 +9,7 @@ const intialState = {
     token: null,
     user: '',
     tracksUrl: [],
-    songs: [],
+    songInfo: [],
     currentTrack: null
 };
 
@@ -17,8 +17,46 @@ const reducer = (state = intialState, action) => {
     switch (action.type) {
         case actionType.PLAY_SONG:
             return {
-                state
+                ...state,
+                songPlaying: action.isPlaying
             };
+        case actionType.SET_AUDIO: {
+            console.log(action);
+            return {
+                ...state,
+                tracksUrl: action.tracks.urlList,
+                index: action.tracks.idx
+            };
+        }
+        case actionType.NEXT_SONG:
+            if (state.index === state.tracksUrl.length - 1) {
+                return {
+                    ...state,
+                    index: 0
+                };
+            }
+            return {
+                ...state,
+                index: state.index + 1
+            };
+        case actionType.PREVIOUS_SONG:
+            if (state.index === 0) {
+                return {
+                    ...state,
+                    index: state.tracksUrl.length - 1
+                };
+            }
+            return {
+                ...state,
+                index: state.index - 1
+            };
+        case actionType.HANDLE_VOLUME:
+            return {
+                ...state,
+                volume: action.newValue
+            };
+        default:
+            return state;
     }
 };
 
