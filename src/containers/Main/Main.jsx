@@ -7,6 +7,8 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { redirect_url } from '../../Auth';
 import CategoriesList from '../../components/Categories/CategoriesList';
+import CategoryPage from '../../components/CategoryPage/CategoryPage';
+import Playlist from '../PlayList/PlayList';
 import Home from '../../components/Home/Home';
 
 const useStyles = makeStyles({
@@ -39,7 +41,7 @@ const useStyles = makeStyles({
         textOverflow: 'ellipsis'
     },
     content: {
-        padding: '0.6rem 0.8rem'
+        padding: '0.6rem 0.6rem'
     },
     '@global': {
         '*::-webkit-scrollbar': {
@@ -80,19 +82,19 @@ const Main = ({ token, user, logOut, catergories, isLoading }) => {
                 </AppBar>
             </div>
             <div className={classes.content}>
-                <Typography variant="h1" className={classes.titles}>
-                    Hello
-                </Typography>
-                <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-                    <Switch>
-                        <Route exact path="/home">
-                            <Home />
-                        </Route>
-                        <Route exact path="/categories">
-                            <CategoriesList categories={catergories} loading={isLoading} />
-                        </Route>
-                    </Switch>
-                </div>
+                <Typography variant="h1" className={classes.titles}></Typography>
+
+                <Switch>
+                    <Route exact path="/categories">
+                        <CategoriesList categories={catergories} loading={isLoading} />
+                    </Route>
+                    <Route exact path="/categoryPage/:id">
+                        <CategoryPage token={token} />
+                    </Route>
+                    <Route exact path="/playlist/:id">
+                        <Playlist />
+                    </Route>
+                </Switch>
             </div>
         </div>
     );

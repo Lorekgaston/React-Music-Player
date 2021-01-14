@@ -34,7 +34,7 @@ const Home = () => {
     return (
         <div>
             <Card className={classes.card}>
-                <CardMedia className={classes.media} component="img" src={} />
+                <CardMedia className={classes.media} component="img" src="#" />
                 <CardContent className={classes.cardContent}>
                     <Typography variant="h6"></Typography>
                 </CardContent>

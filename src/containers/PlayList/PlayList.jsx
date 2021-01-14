@@ -15,8 +15,9 @@ const useStyles = makeStyles({
         width: '100%',
         height: 'calc(100vh - 154px)',
         maxHeight: '100%',
-        overflowY: 'scroll',
+        // overflowY: 'scroll',
         // backgroundColor: '#202020',
+        backgroundColor: '#121212',
         color: grey[200]
     },
     favorite: {
@@ -43,7 +44,7 @@ const PlayList = () => {
     const { id } = useParams();
     const classes = useStyles();
     const { data, isLoading } = useFetch(
-        `https://api.spotify.com/v1/playlists/${id}/tracks?offset=0&limit=30`
+        `https://api.spotify.com/v1/playlists/${id}/tracks?offset=0&limit=50`
     );
     const items = data?.data.items;
     const playList = items?.filter(song => {
