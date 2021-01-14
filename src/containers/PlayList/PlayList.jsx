@@ -11,13 +11,12 @@ import PlayListTrack from '../../components/PlayListTrack/PlayListTrack';
 
 const useStyles = makeStyles({
     root: {
+        flexGrow: 1,
         width: '100%',
-        height: 'auto',
-        maxHeight: 780,
+        height: 'calc(100vh - 154px)',
+        maxHeight: '100%',
         overflowY: 'scroll',
-        maxWidth: 1356,
-        margin: '25px auto',
-        backgroundColor: '#202020',
+        // backgroundColor: '#202020',
         color: grey[200]
     },
     favorite: {
@@ -52,14 +51,14 @@ const PlayList = () => {
         return track.preview_url != null;
     });
     const playTrack = idx => {
-        const urlList = playList?.map(song => {
+        const trackList = playList?.map(song => {
             const {
                 track: { preview_url, album }
             } = song;
             return { preview_url, album };
         });
 
-        dispatch(setAudio({ urlList, idx }));
+        dispatch(setAudio({ trackList, idx }));
     };
     return (
         <Paper className={classes.root}>

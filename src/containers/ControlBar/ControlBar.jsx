@@ -29,7 +29,6 @@ const ControlBar = ({ audio }) => {
 
     React.useEffect(() => {
         const changeSong = () => {
-            // setCurrentTrack(songs[index]);
             audio.src = currentTrack[index]?.preview_url;
             audio.play();
             dispatch(playSong(true));
@@ -44,17 +43,15 @@ const ControlBar = ({ audio }) => {
 
     React.useEffect(() => {
         const timer = setInterval(() => {
-            setProgress(oldProgress => {
-                if (oldProgress === 100) {
-                    return 0;
-                }
-                return (audio.currentTime / audio.duration) * 100;
-            });
-        }, 1000);
+            if (progress === 0) {
+                setProgress(0);
+                dispatch(playSong(false));
+            }
+            setProgress(Math.round((audio.currentTime / audio.duration) * 100));
 
-        return () => {
-            clearInterval(timer);
-        };
+            console.log(progress);
+        }, 1000);
+        return () => clearInterval(timer);
     }, [songPlaying]);
 
     React.useEffect(() => {
@@ -76,52 +73,32 @@ const ControlBar = ({ audio }) => {
 
     const volumeHandler = (e, newValue) => {
         dispatch(handleVolume(newValue));
-        // setVolume(newValue);
-        // if (isMuted && volume > 0) {
-        //     setIsMuted(false);
-        //     setVolume(newValue);
-        // }
+        if (volume > 0) {
+            audio.muted = false;
+            dispatch(handleVolume(newValue));
+        }
+    };
+    const progressHandler = (e, newValue) => {
+        setProgress(newValue);
+        audio.currentTime = (audio.currentTime / audio.duration) * newValue;
+        console.log((audio.currentTime = (audio.currentTime / audio.duration) * newValue));
     };
 
-    // const muteHandler = () => {
-    //     if (!isMuted) {
-    //         setVolume(0);
-    //         setIsMuted(true);
-    //     }
-    //     if (isMuted) {
-    //         setVolume(prevVolume);
-    //         setIsMuted(false);
-    //     }
-    // };
+    const muteHandler = () => {
+        if (!audio.muted) {
+            audio.muted = true;
+        }
+        if (audio.muted) {
+            dispatch(handleVolume(prevVolume));
+            // setIsMuted(false);
+        }
+    };
 
     const nextSong = () => {
         dispatch({ type: 'NEXT_SONG' });
     };
     const prevSong = () => {
         dispatch({ type: 'PREVIOUS_SONG' });
-    };
-    const currentTimeHandler = () => {
-        let minutes = Math.floor(audio.currentTime / 60);
-        let seconds = Math.floor(audio.currentTime % 60);
-        if (minutes < 10) {
-            minutes = `0${minutes}`;
-        }
-        if (seconds < 10) {
-            seconds = `0${seconds}`;
-        }
-        return `${minutes}:${seconds}`;
-    };
-
-    const durationHandler = () => {
-        let minutes = Math.floor(audio.duration / 60);
-        let seconds = Math.floor(audio.duration % 60);
-        if (minutes < 10) {
-            minutes = `0${minutes}`;
-        }
-        if (seconds < 10) {
-            seconds = `0${seconds}`;
-        }
-        return `${minutes}:${seconds}`;
     };
     return (
         <div className={classes.root}>
@@ -138,18 +115,14 @@ const ControlBar = ({ audio }) => {
                     />
                 </div>
                 <div className={classes.progressContainer}>
-                    <Progress
-                        currentTime={currentTimeHandler}
-                        duration={durationHandler}
-                        progress={progress}
-                    />
+                    <Progress audio={audio} progress={progress} changeProgress={progressHandler} />
                 </div>
             </div>
             <div className={classes.volume}>
                 <VolumeController
                     value={volume}
                     handleVolume={volumeHandler}
-                    // handleMute={muteHandler}
+                    handleMute={muteHandler}
                     muted={volume}
                 />
             </div>

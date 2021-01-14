@@ -13,7 +13,7 @@ import Favorite from '@material-ui/icons/Favorite';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import { Typography } from '@material-ui/core';
 import { grey } from '@material-ui/core/colors';
-import { convetTominutes } from '../../utils/handleTime';
+import { parseTime } from '../../utils/handleTime';
 
 const useStyles = makeStyles({
     favorite: {
@@ -65,7 +65,7 @@ const PlayListTrack = ({ track: { name, duration_ms, album }, labelId, play, idx
                         />
                     }
                 />
-                <Typography>{convetTominutes(duration_ms)}</Typography>
+                <Typography>{parseTime(duration_ms)}</Typography>
             </ListItem>
         </>
     );

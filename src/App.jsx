@@ -1,28 +1,23 @@
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import ControlBar from './containers/ControlBar/ControlBar';
-import Playlist from './containers/PlayList/PlayList';
-import Header from './components/Header';
+import Main from './containers/Main/Main';
 import { getAuthToken } from './Auth';
-import useFetchCategories from './hooks/useFetchCategories';
-import CategoriesList from './components/Categories/CategoriesList';
 import CategoryPage from './components/CategoryPage/CategoryPage';
 import Login from './components/Login/Login';
+import Navbar from './components/Navbar/Navbar';
 
 const audio = new Audio();
+const auth = getAuthToken();
 
 function App() {
-    const dispatch = useDispatch();
     const history = useHistory();
     const [token, setToken] = React.useState(null);
     const [user, setUser] = React.useState('');
-    // const [tracksUrl, setTrackUrl] = React.useState([]);
-    // const [index, setIndex] = React.useState(0);
 
     React.useEffect(() => {
-        const auth = getAuthToken();
         const _token = auth.access_token;
         const getUserInfo = async () => {
             const res = await axios(`https://api.spotify.com/v1/me`, {
@@ -31,48 +26,73 @@ function App() {
                 }
             });
             if (res) {
+                console.log(`logged as ${res.data.email}`);
                 setUser(res.data.email);
             }
         };
-        if (auth) {
+
+        if (_token) {
             // window.location.hash = '';
             setToken(_token);
             getUserInfo();
         }
     }, []);
 
-    const { catergories, isLoading } = useFetchCategories(
-        'https://api.spotify.com/v1/browse/categories'
-    );
-
     const logOut = () => {
         window.location.hash = '';
         setToken(null);
         history.push('/login');
     };
+    console.log(auth);
     return (
-        <div className="App">
+        <div style={{ height: '100vh', minHeight: '100%' }}>
             {!token ? (
                 <Login />
             ) : (
-                <Switch>
-                    <>
-                        <Header token={token} user={user} logOut={logOut} />
-                        <Route exact path="/">
-                            <CategoriesList categories={catergories} loading={isLoading} />
-                        </Route>
-                        <Route exact path="/categoryPage/:id">
-                            <CategoryPage token={token} />
-                        </Route>
-                        <Route exact path="/playlist/:id">
-                            <Playlist />
-                        </Route>
-                        <ControlBar audio={audio} />
-                    </>
-                </Switch>
+                <>
+                    <div
+                        style={{
+                            height: 'calc(100vh - 90px)',
+                            background: '#121212',
+                            display: 'flex'
+                        }}>
+                        <Navbar />
+                        <Main token={token} user={user} logOut={logOut} />
+                        {/* <Switch>
+                            
+                            <Route exact path="/categoryPage/:id">
+                                <CategoryPage token={token} />
+                            </Route>
+                            <Route exact path="/playlist/:id">
+                                <Playlist />
+                            </Route>
+                        </Switch> */}
+                    </div>
+                    <ControlBar audio={audio} />
+                </>
             )}
         </div>
     );
 }
 
 export default App;
+
+// {!token ? (
+//     <Login />
+// ) : (
+//     <Switch>
+//         <>
+//             <Header token={token} user={user} logOut={logOut} />
+//             <Route exact path="/">
+//                 <CategoriesList categories={catergories} loading={isLoading} />
+//             </Route>
+//             <Route exact path="/categoryPage/:id">
+//                 <CategoryPage token={token} />
+//             </Route>
+//             <Route exact path="/playlist/:id">
+//                 <Playlist />
+//             </Route>
+//             <ControlBar audio={audio} />
+//         </>
+//     </Switch>
+// )}

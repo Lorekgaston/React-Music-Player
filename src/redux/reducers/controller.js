@@ -23,7 +23,7 @@ const reducer = (state = intialState, action) => {
             console.log(action);
             return {
                 ...state,
-                currentTrack: action.tracks.urlList,
+                currentTrack: action.tracks.trackList,
                 index: action.tracks.idx
             };
         }
