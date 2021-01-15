@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { useHistory } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -22,9 +22,6 @@ const useStyles = makeStyles({
     },
     media: {
         height: 170
-        // '&.MuiCardMedia-img': {
-        //     objectFit: 'contain'
-        // }
     },
     cardContent: {
         padding: '10px 0'
@@ -33,7 +30,8 @@ const useStyles = makeStyles({
         fontSize: 40,
         fontWeight: 700,
         color: '#ffff',
-        padding: 10,
+        padding: 15,
+        margin: '15px 0',
         textTransform: 'capitalize'
     }
 });
@@ -79,13 +77,3 @@ const CategoriesList = () => {
 };
 
 export default CategoriesList;
-
-{
-    /* <Card key={category.id + idx} className={classes.card}>
-                        <CardActionArea
-                            onClick={() => history.push(`/categoryPage/${category.id}`)}>
-                            <CardHeader title={category.name} />
-                            <CardMedia className={classes.media} image={category.icons[0].url} />
-                        </CardActionArea>
-                    </Card> */
-}

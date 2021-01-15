@@ -1,4 +1,5 @@
-import React from 'react';
+import * as React from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -72,3 +73,13 @@ const PlayListTrack = ({ track: { name, duration_ms, album }, labelId, play, idx
 };
 
 export default PlayListTrack;
+
+PlayListTrack.propTypes = {
+    track: PropTypes.object,
+    name: PropTypes.string,
+    duration_ms: PropTypes.string,
+    album: PropTypes.object,
+    labelId: PropTypes.string,
+    play: PropTypes.func,
+    idx: PropTypes.number
+};

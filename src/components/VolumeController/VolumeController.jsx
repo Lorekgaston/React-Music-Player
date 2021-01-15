@@ -1,4 +1,5 @@
-import React from 'react';
+import * as React from 'react';
+import PropTypes from 'prop-types';
 import Slider from '@material-ui/core/Slider';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { green, grey } from '@material-ui/core/colors';
@@ -70,3 +71,10 @@ const VolumeController = ({ value, handleVolume, handleMuted, muted }) => {
 };
 
 export default VolumeController;
+
+VolumeController.propTypes = {
+    value: PropTypes.number,
+    handleVolume: PropTypes.func,
+    handleMuted: PropTypes.func,
+    muted: PropTypes.bool
+};

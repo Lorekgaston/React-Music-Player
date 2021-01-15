@@ -1,5 +1,5 @@
-import React from 'react';
-import LinearProgress from '@material-ui/core/LinearProgress';
+import * as React from 'react';
+import PropTypes from 'prop-types';
 import { Typography } from '@material-ui/core';
 import Slider from '@material-ui/core/Slider';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
@@ -65,3 +65,8 @@ const Progress = ({ audio, progress }) => {
 };
 
 export default Progress;
+
+Progress.propTypes = {
+    audio: PropTypes.object,
+    progress: PropTypes.number
+};

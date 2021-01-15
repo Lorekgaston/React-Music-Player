@@ -1,11 +1,9 @@
 import * as React from 'react';
-import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import ControlBar from './containers/ControlBar/ControlBar';
 import Main from './containers/Main/Main';
 import { getAuthToken } from './Auth';
-import CategoryPage from './components/CategoryPage/CategoryPage';
 import Login from './components/Login/Login';
 import Navbar from './components/Navbar/Navbar';
 
@@ -67,23 +65,3 @@ function App() {
 }
 
 export default App;
-
-// {!token ? (
-//     <Login />
-// ) : (
-//     <Switch>
-//         <>
-//             <Header token={token} user={user} logOut={logOut} />
-//             <Route exact path="/">
-//                 <CategoriesList categories={catergories} loading={isLoading} />
-//             </Route>
-//             <Route exact path="/categoryPage/:id">
-//                 <CategoryPage token={token} />
-//             </Route>
-//             <Route exact path="/playlist/:id">
-//                 <Playlist />
-//             </Route>
-//             <ControlBar audio={audio} />
-//         </>
-//     </Switch>
-// )}

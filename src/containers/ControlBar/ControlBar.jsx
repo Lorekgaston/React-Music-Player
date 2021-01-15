@@ -1,7 +1,8 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { playSong, handleVolume, setProgress } from '../../redux/actions/controller';
-import VolumeController from '../../components/VolumeController';
+import VolumeController from '../../components/VolumeController/VolumeController';
 import Progress from '../../components/Progress/Progress';
 import ControlButtons from '../../components/ControlButtons/ControlButtons';
 import NowPlaying from '../../components/NowPlaying/NowPlaying';
@@ -10,12 +11,11 @@ import { useStyles } from './styles';
 const ControlBar = ({ audio }) => {
     const dispatch = useDispatch();
     const controller = useSelector(state => state.controller);
-    // const [progress, setProgress] = React.useState(0);
     const classes = useStyles();
     const { songPlaying, currentTrack, index, volume, progress, isMuted } = controller;
 
     const firstRender = React.useRef(true);
-    const prevVolumeRef = React.useRef();
+    // const prevVolumeRef = React.useRef();
 
     React.useEffect(() => {
         const handleAudio = () => {
@@ -80,11 +80,11 @@ const ControlBar = ({ audio }) => {
     //     muteAudio();
     // }, [isMuted]);
 
-    React.useEffect(() => {
-        prevVolumeRef.current = volume;
-    });
+    // React.useEffect(() => {
+    //     prevVolumeRef.current = volume;
+    // });
 
-    const prevVolume = prevVolumeRef.current;
+    // const prevVolume = prevVolumeRef.current;
 
     const autoPlay = timer => {
         dispatch(setProgress(0));
@@ -133,3 +133,7 @@ const ControlBar = ({ audio }) => {
 };
 
 export default ControlBar;
+
+ControlBar.propTypes = {
+    audio: PropTypes.object
+};

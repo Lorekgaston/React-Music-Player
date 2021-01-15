@@ -12,7 +12,7 @@ const useFetch = url => {
     const [token, setToken] = React.useState(auth.access_token);
 
     React.useEffect(() => {
-        const getCategories = async () => {
+        const fetchData = async () => {
             setIsLoading(true);
             try {
                 const response = await axios(url, {
@@ -25,15 +25,16 @@ const useFetch = url => {
                 } else {
                     setError(true);
                 }
-                setIsLoading(false);
             } catch (err) {
                 setError(true);
                 setErrorMessage(err.message);
                 setIsLoading(false);
+            } finally {
+                setIsLoading(false);
             }
         };
         if (token) {
-            getCategories();
+            fetchData();
         }
     }, [url]);
 

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -55,7 +56,7 @@ const useStyles = makeStyles({
     }
 });
 
-const Main = ({ token, user, logOut, catergories, isLoading }) => {
+const Main = ({ token, user, logOut }) => {
     const classes = useStyles();
     return (
         <div className={classes.root}>
@@ -88,7 +89,7 @@ const Main = ({ token, user, logOut, catergories, isLoading }) => {
                     <Home />
                 </Route>
                 <Route exact path="/categories">
-                    <CategoriesList categories={catergories} loading={isLoading} />
+                    <CategoriesList />
                 </Route>
                 <Route exact path="/categoryPage/:id">
                     <CategoryPage token={token} />
@@ -102,3 +103,9 @@ const Main = ({ token, user, logOut, catergories, isLoading }) => {
 };
 
 export default Main;
+
+Main.propTypes = {
+    token: PropTypes.string,
+    user: PropTypes.string,
+    logOut: PropTypes.func
+};

@@ -1,4 +1,5 @@
-import React from 'react';
+import * as React from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
 import PauseCircleOutlineIcon from '@material-ui/icons/PauseCircleOutline';
@@ -37,3 +38,10 @@ const ControlButtons = ({ playing, handlePlaying, next, previous }) => {
 };
 
 export default ControlButtons;
+
+ControlButtons.propTypes = {
+    playing: PropTypes.bool,
+    handlePlaying: PropTypes.func,
+    next: PropTypes.func,
+    previous: PropTypes.func
+};

@@ -1,11 +1,11 @@
 import * as React from 'react';
-import axios from 'axios';
 import { useParams, useHistory } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
+import useFetch from '../../hooks/useFetch';
 
 const useStyles = makeStyles({
     card: {
@@ -22,9 +22,6 @@ const useStyles = makeStyles({
     },
     media: {
         height: 170
-        // '&.MuiCardMedia-img': {
-        //     objectFit: 'contain'
-        // }
     },
     cardContent: {
         padding: '10px 0'
@@ -33,49 +30,21 @@ const useStyles = makeStyles({
         fontSize: 40,
         fontWeight: 700,
         color: '#ffff',
-        padding: 10,
+        padding: 15,
+        margin: '15px 0',
         textTransform: 'capitalize'
     }
 });
 
-const CategoryPage = ({ token }) => {
+const CategoryPage = () => {
     const { id } = useParams();
     const history = useHistory();
     const classes = useStyles();
-    const [data, setData] = React.useState(null);
-    const [isLoading, setIsLoading] = React.useState(false);
-    const [error, setError] = React.useState(false);
-    const [errorMessage, setErrorMessage] = React.useState('');
 
-    React.useEffect(() => {
-        const getCategoryPLaylists = async () => {
-            setIsLoading(true);
-            try {
-                const response = await axios(
-                    `https://api.spotify.com/v1/browse/categories/${id}/playlists`,
-                    {
-                        headers: {
-                            Authorization: 'Bearer ' + token
-                        }
-                    }
-                );
-                if (response) {
-                    setData(response.data.playlists.items);
-                } else {
-                    setError(true);
-                }
-                setIsLoading(false);
-            } catch (err) {
-                setError(true);
-                setErrorMessage(err.message);
-                setIsLoading(false);
-            }
-        };
-        if (token) {
-            getCategoryPLaylists();
-        }
-    }, []);
-    console.log(data);
+    const { data, isLoading } = useFetch(
+        `https://api.spotify.com/v1/browse/categories/${id}/playlists?offset=0&limit=30`
+    );
+
     return (
         <div>
             {isLoading ? (
@@ -86,8 +55,8 @@ const CategoryPage = ({ token }) => {
                         {id}
                     </Typography>
                     <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-                        {data?.length > 0 &&
-                            data?.map((playlist, idx) => (
+                        {data?.data.playlists.items.length > 0 &&
+                            data?.data.playlists.items.map((playlist, idx) => (
                                 <Card
                                     className={classes.card}
                                     key={playlist.id + idx}
