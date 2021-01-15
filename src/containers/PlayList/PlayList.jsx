@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import { grey } from '@material-ui/core/colors';
-import { Paper } from '@material-ui/core';
+import { Divider, ListItem, ListItemText, Paper, Typography } from '@material-ui/core';
 import useFetch from '../../hooks/useFetch';
 import PlayListTrack from '../../components/PlayListTrack/PlayListTrack';
 
@@ -13,8 +13,8 @@ const useStyles = makeStyles({
     root: {
         flexGrow: 1,
         width: '100%',
-        height: 'calc(100vh - 154px)',
-        maxHeight: '100%',
+        // height: 'calc(100vh - 154px)',
+        // maxHeight: '100%',
         // overflowY: 'scroll',
         // backgroundColor: '#202020',
         backgroundColor: '#121212',
@@ -36,6 +36,16 @@ const useStyles = makeStyles({
     },
     play: {
         color: grey[200]
+    },
+    listTitle: {
+        marginLeft: '3.4rem'
+    },
+    listHeader: {
+        padding: '0 16px'
+    },
+    divider: {
+        backgroundColor: 'rgb(48 48 48 / 0.7)',
+        marginBottom: 10
     }
 });
 
@@ -67,6 +77,11 @@ const PlayList = () => {
                 <h1>Loaging...</h1>
             ) : (
                 <List>
+                    <ListItem className={classes.listHeader}>
+                        <ListItemText className={classes.listTitle} primary="Track" />
+                        <Typography>Time</Typography>
+                    </ListItem>
+                    <Divider variant="fullWidth" className={classes.divider} />
                     {playList?.length > 0 &&
                         playList?.map((song, idx) => {
                             const { track } = song;

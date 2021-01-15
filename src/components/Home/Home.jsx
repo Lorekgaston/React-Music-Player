@@ -31,14 +31,16 @@ const useStyles = makeStyles({
 
 const Home = () => {
     const classes = useStyles();
+
     return (
         <div>
-            <Card className={classes.card}>
+            <h1>Home</h1>
+            {/* <Card className={classes.card}>
                 <CardMedia className={classes.media} component="img" src="#" />
                 <CardContent className={classes.cardContent}>
-                    <Typography variant="h6"></Typography>
+                    <Typography variant="h6">Home</Typography>
                 </CardContent>
-            </Card>
+            </Card> */}
         </div>
     );
 };

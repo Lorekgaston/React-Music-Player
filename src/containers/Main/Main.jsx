@@ -41,7 +41,8 @@ const useStyles = makeStyles({
         textOverflow: 'ellipsis'
     },
     content: {
-        padding: '0.6rem 0.6rem'
+        padding: '0.6rem 0.6rem',
+        height: 'auto'
     },
     '@global': {
         '*::-webkit-scrollbar': {
@@ -81,21 +82,21 @@ const Main = ({ token, user, logOut, catergories, isLoading }) => {
                     </Toolbar>
                 </AppBar>
             </div>
-            <div className={classes.content}>
-                <Typography variant="h1" className={classes.titles}></Typography>
 
-                <Switch>
-                    <Route exact path="/categories">
-                        <CategoriesList categories={catergories} loading={isLoading} />
-                    </Route>
-                    <Route exact path="/categoryPage/:id">
-                        <CategoryPage token={token} />
-                    </Route>
-                    <Route exact path="/playlist/:id">
-                        <Playlist />
-                    </Route>
-                </Switch>
-            </div>
+            <Switch>
+                <Route exact path="/home">
+                    <Home />
+                </Route>
+                <Route exact path="/categories">
+                    <CategoriesList categories={catergories} loading={isLoading} />
+                </Route>
+                <Route exact path="/categoryPage/:id">
+                    <CategoryPage token={token} />
+                </Route>
+                <Route exact path="/playlist/:id">
+                    <Playlist />
+                </Route>
+            </Switch>
         </div>
     );
 };

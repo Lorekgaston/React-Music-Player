@@ -70,7 +70,7 @@ const Navbar = () => {
                     className={classes.item}
                     button
                     selected={selectedIndex === 0}
-                    onClick={event => handleListItemClick(event, 0)}>
+                    onClick={event => handleListItemClick(event, 0, '/home')}>
                     <HomeIcon className={classes.icon} />
                     <ListItemText
                         primary={

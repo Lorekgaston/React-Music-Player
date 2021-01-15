@@ -58,15 +58,6 @@ function App() {
                         }}>
                         <Navbar />
                         <Main token={token} user={user} logOut={logOut} />
-                        {/* <Switch>
-                            
-                            <Route exact path="/categoryPage/:id">
-                                <CategoryPage token={token} />
-                            </Route>
-                            <Route exact path="/playlist/:id">
-                                <Playlist />
-                            </Route>
-                        </Switch> */}
                     </div>
                     <ControlBar audio={audio} />
                 </>
