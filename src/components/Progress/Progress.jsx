@@ -47,19 +47,18 @@ const ProgressSlider = withStyles({
     }
 })(Slider);
 
-const Progress = ({ audio, progress, changeProgress }) => {
+const Progress = ({ audio, progress }) => {
     const classes = useStyles();
     return (
         <>
             <Typography variant="caption">{parseTime(audio.currentTime)}</Typography>
             <ProgressSlider
                 value={progress}
-                onChange={changeProgress}
                 variant="determinate"
                 className={classes.progressBar}
             />
             <Typography variant="caption">
-                {isNaN(progress) ? '00:00' : parseTime(audio.duration)}
+                {Number.isNaN(audio.duration) ? '00:00' : parseTime(audio.duration)}
             </Typography>
         </>
     );

@@ -7,3 +7,4 @@ export const SET_USER = 'SET_USER';
 export const SET_TOKEN = 'SET_TOKEN';
 export const SET_AUDIO = 'SET_AUDIO';
 export const SET_PROGRESS = 'SET_PROGRESS';
+export const SET_MUTE = 'SET_MUTE';

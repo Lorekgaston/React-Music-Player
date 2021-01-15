@@ -54,6 +54,16 @@ const reducer = (state = intialState, action) => {
                 ...state,
                 volume: action.newValue
             };
+        case actionType.SET_PROGRESS:
+            return {
+                ...state,
+                progress: action.value
+            };
+        case actionType.SET_MUTE:
+            return {
+                ...state,
+                isMuted: !state.isMuted
+            };
         default:
             return state;
     }

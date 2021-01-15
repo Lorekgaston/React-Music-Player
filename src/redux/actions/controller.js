@@ -22,14 +22,20 @@ export const handleVolume = newValue => {
         newValue
     };
 };
+export const handleMuted = () => {
+    return {
+        type: actionType.SET_MUTE
+    };
+};
 export const setAudio = tracks => {
     return {
         type: actionType.SET_AUDIO,
         tracks
     };
 };
-export const setProgress = () => {
+export const setProgress = value => {
     return {
-        type: actionType.SET_PROGRESS
+        type: actionType.SET_PROGRESS,
+        value
     };
 };

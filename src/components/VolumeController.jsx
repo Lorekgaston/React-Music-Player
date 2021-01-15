@@ -45,11 +45,11 @@ const VolumeSlider = withStyles({
         borderRadius: 4
     }
 })(Slider);
-const VolumeController = ({ value, handleVolume, handleMute, muted }) => {
+const VolumeController = ({ value, handleVolume, handleMuted, muted }) => {
     const classes = useStyles();
     return (
         <>
-            <IconButton onClick={() => handleMute()}>
+            <IconButton onClick={() => handleMuted()}>
                 {!muted && value !== 0 ? (
                     value <= 35 && value >= 1 ? (
                         <VolumeMuteIcon />
