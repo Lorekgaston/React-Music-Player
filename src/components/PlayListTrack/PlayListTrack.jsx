@@ -37,6 +37,9 @@ const useStyles = makeStyles({
     },
     play: {
         color: grey[200]
+    },
+    time: {
+        paddingRight: 12
     }
 });
 
@@ -66,7 +69,7 @@ const PlayListTrack = ({ track: { name, duration_ms, album }, labelId, play, idx
                         />
                     }
                 />
-                <Typography>{parseTime(duration_ms)}</Typography>
+                <Typography className={classes.time}>{parseTime(duration_ms)}</Typography>
             </ListItem>
         </>
     );

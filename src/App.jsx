@@ -24,7 +24,7 @@ function App() {
                 }
             });
             if (res) {
-                console.log(`logged as ${res.data.email}`);
+                console.log(`logged as ${res.data}`);
                 setUser(res.data.email);
             }
         };

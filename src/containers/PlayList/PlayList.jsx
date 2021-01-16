@@ -43,6 +43,9 @@ const useStyles = makeStyles({
     listHeader: {
         padding: '0 16px'
     },
+    headerTime: {
+        paddingRight: 12
+    },
     divider: {
         backgroundColor: 'rgb(48 48 48 / 0.7)',
         marginBottom: 10
@@ -79,7 +82,7 @@ const PlayList = () => {
                 <List>
                     <ListItem className={classes.listHeader}>
                         <ListItemText className={classes.listTitle} primary="Track" />
-                        <Typography>Time</Typography>
+                        <Typography className={classes.headerTime}>Time</Typography>
                     </ListItem>
                     <Divider variant="fullWidth" className={classes.divider} />
                     {playList?.length > 0 &&

@@ -27,7 +27,7 @@ const useStyles = makeStyles({
         padding: '10px 0'
     },
     title: {
-        fontSize: 40,
+        fontSize: 30,
         fontWeight: 700,
         color: '#ffff',
         padding: 15,

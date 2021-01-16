@@ -1,47 +1,47 @@
 import * as React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
+import useFetchHomeData from '../../hooks/useFetchHomeData';
+import FeaturePlaylists from '../FeaturePlaylists/FeaturePlaylists';
+import RecentlyPlayed from '../RecentlyPlayed/RecentlyPlayed';
+import Recommendations from '../Recommendations/Recommendations';
+import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles({
-    card: {
-        backgroundColor: '#202020',
-        color: '#ffff',
-        borderRadius: 5,
-        width: 160,
-        margin: 10,
-        padding: '0.9rem',
-        cursor: 'pointer',
-        '&:hover': {
-            backgroundColor: '#282828'
-        }
-    },
-    media: {
-        height: 170
-        // '&.MuiCardMedia-img': {
-        //     objectFit: 'contain'
-        // }
-    },
-    cardContent: {
-        padding: '10px 0'
+    section: {
+        minHeight: 300,
+        marginBottom: 12
     }
 });
 
 const Home = () => {
     const classes = useStyles();
-
+    const { featuredPlaylists, recentlyPlayed, recommendations, isLoading } = useFetchHomeData([
+        `https://api.spotify.com/v1/me/player/recently-played?limit=8`,
+        `https://api.spotify.com/v1/browse/featured-playlists?limit=8&locale=us_AR`,
+        `https://api.spotify.com/v1/recommendations?limit=8&seed_artists=7Ln80lUS6He07XvHI8qqHH,0ONHkAv9pCAFxb0zJwDNTy&seed_genres=rock,jazz`
+    ]);
+    // const { data, isLoading } = useFetch('https://api.spotify.com/v1/browse/new-releases');
+    console.log(featuredPlaylists, recentlyPlayed, recommendations);
     return (
-        <div>
-            <h1>Home</h1>
-            {/* <Card className={classes.card}>
-                <CardMedia className={classes.media} component="img" src="#" />
-                <CardContent className={classes.cardContent}>
-                    <Typography variant="h6">Home</Typography>
-                </CardContent>
-            </Card> */}
-        </div>
+        <>
+            {isLoading ? (
+                <div style={{ padding: '24px 32px 0', display: 'flex', justifyContent: 'center' }}>
+                    <Typography>Loading...</Typography>
+                </div>
+            ) : (
+                <div style={{ padding: '24px 32px 0' }}>
+                    <section className={classes.section}>
+                        <RecentlyPlayed data={recentlyPlayed} />
+                    </section>
+                    <section className={classes.section}>
+                        <Recommendations data={recommendations} />
+                    </section>
+                    <section className={classes.section}>
+                        <FeaturePlaylists data={featuredPlaylists} />
+                    </section>
+                </div>
+            )}
+        </>
     );
 };
 
