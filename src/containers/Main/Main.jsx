@@ -11,6 +11,7 @@ import CategoriesList from '../../components/Categories/CategoriesList';
 import CategoryPage from '../../components/CategoryPage/CategoryPage';
 import Playlist from '../PlayList/PlayList';
 import Home from '../../components/Home/Home';
+import Album from '../Album/Album';
 
 const useStyles = makeStyles({
     root: {
@@ -96,6 +97,9 @@ const Main = ({ token, user, logOut }) => {
                 </Route>
                 <Route exact path="/playlist/:id">
                     <Playlist />
+                </Route>
+                <Route exact path="/album/:id">
+                    <Album />
                 </Route>
             </Switch>
         </div>

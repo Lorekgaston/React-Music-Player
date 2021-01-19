@@ -33,7 +33,7 @@ const RecentlyPlayed = ({ data, isLoading }) => {
                                 key={item.track.id + idx}
                                 image={images[0].url}
                                 name={name}
-                                param={`/playlist/${id}`}
+                                param={`/album/${id}`}
                             />
                         );
                     })}

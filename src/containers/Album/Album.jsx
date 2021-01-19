@@ -56,35 +56,26 @@ const useStyles = makeStyles({
         marginBottom: 10
     }
 });
-// `https://api.spotify.com/v1/playlists/${id}/tracks?offset=0&limit=50`
-const PlayList = () => {
+const Album = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
     const classes = useStyles();
+    const { data, isLoading } = useFetch(`https://api.spotify.com/v1/albums/${id}`);
 
-    const { data, isLoading } = useFetch(
-        `https://api.spotify.com/v1/playlists/${id}?fields=description,images,name,primary_color,type,tracks.items(track(album,duration_ms,id,name,preview_url))`
-    );
-
+    const { artists } = data?.data || {};
     const items = data?.data.tracks.items;
-    const playList = items?.filter(song => {
-        const { track } = song;
-        return track.preview_url != null;
-    });
 
-    const trackList = playList?.map(song => {
-        const {
-            track: {
-                preview_url,
-                name,
-                duration_ms,
-                album: { artists, images }
-            }
-        } = song;
-        return { preview_url, name, duration_ms, artists, images };
-    });
+    let trackList = items
+        ?.filter(song => {
+            return song.preview_url != null;
+        })
+        .map(item => {
+            const { preview_url, name, duration_ms, images } = item;
+            return { preview_url, name, duration_ms, images, artists };
+        });
 
-    const playTrack = idx => dispatch(setAudio({ trackList, idx }));
+    // const playTrack = idx => dispatch(setAudio({ trackList, idx }));
+    console.log(data);
 
     return (
         <Paper className={classes.root}>
@@ -92,11 +83,11 @@ const PlayList = () => {
                 <h1>Loaging...</h1>
             ) : (
                 <>
-                    <div className={classes.header}>
+                    {/* <div className={classes.header}>
                         <Avatar src={data?.data.images[0].url} />
                         <div>
                             <Typography variant="h1">{data?.data.name}</Typography>
-                            <Typography variant="body1">{data?.data.description}</Typography>
+                            <Typography variant="body1">{data?.data.artists[0].name}</Typography>
                         </div>
                     </div>
                     <List>
@@ -107,25 +98,23 @@ const PlayList = () => {
                         <Divider variant="fullWidth" className={classes.divider} />
                         {trackList?.length > 0 &&
                             trackList?.map((song, idx) => {
-                                // const { track } = song;
                                 const labelId = `checkbox-list-label-${song}`;
 
                                 return (
                                     <PlayListTrack
                                         key={song + idx}
                                         track={song}
-                                        isLoading={isLoading}
                                         play={playTrack}
                                         labelId={labelId}
                                         idx={idx}
                                     />
                                 );
                             })}
-                    </List>
+                    </List> */}
                 </>
             )}
         </Paper>
     );
 };
 
-export default PlayList;
+export default Album;
