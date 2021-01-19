@@ -1,5 +1,5 @@
 const client_id = process.env.REACT_APP_CLIENT_ID;
-const URI = 'http://localhost:3000/';
+const URI = process.env.REACT_APP_REDIRECT_URI;
 
 const scopes = [
     'user-read-private',
