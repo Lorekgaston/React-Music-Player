@@ -9,14 +9,14 @@ import Navbar from './components/Navbar/Navbar';
 
 const audio = new Audio();
 const auth = getAuthToken();
-
 function App() {
     const history = useHistory();
     const [token, setToken] = React.useState(null);
-    const [user, setUser] = React.useState('');
+    const [user, setUser] = React.useState(null);
 
     React.useEffect(() => {
         const _token = auth.access_token;
+
         const getUserInfo = async () => {
             const res = await axios(`https://api.spotify.com/v1/me`, {
                 headers: {
@@ -30,18 +30,17 @@ function App() {
         };
 
         if (_token) {
-            // window.location.hash = '';
             setToken(_token);
             getUserInfo();
+            history.push('/home');
         }
     }, []);
 
     const logOut = () => {
-        window.location.hash = '';
+        localStorage.removeItem('token');
         setToken(null);
         history.push('/login');
     };
-    console.log(auth);
     return (
         <div style={{ height: '100vh', minHeight: '100%' }}>
             {!token ? (

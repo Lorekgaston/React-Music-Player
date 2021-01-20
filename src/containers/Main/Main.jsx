@@ -7,7 +7,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { redirect_url } from '../../Auth';
-import CategoriesList from '../../components/Categories/CategoriesList';
+import Categories from '../../components/Categories/Categories';
 import CategoryPage from '../../components/CategoryPage/CategoryPage';
 import Playlist from '../PlayList/PlayList';
 import Home from '../../components/Home/Home';
@@ -27,6 +27,7 @@ const useStyles = makeStyles({
     },
     appBar: {
         backgroundColor: '#282828'
+        // backgroundColor: 'rgba(0,0,0, 0.0)',
     },
     title: {
         flexGrow: 1
@@ -84,24 +85,25 @@ const Main = ({ token, user, logOut }) => {
                     </Toolbar>
                 </AppBar>
             </div>
-
-            <Switch>
-                <Route exact path="/home">
-                    <Home />
-                </Route>
-                <Route exact path="/categories">
-                    <CategoriesList />
-                </Route>
-                <Route exact path="/categoryPage/:id">
-                    <CategoryPage token={token} />
-                </Route>
-                <Route exact path="/playlist/:id">
-                    <Playlist />
-                </Route>
-                <Route exact path="/album/:id">
-                    <Album />
-                </Route>
-            </Switch>
+            <div style={{ padding: '24px 32px 0' }}>
+                <Switch>
+                    <Route exact path="/home">
+                        <Home />
+                    </Route>
+                    <Route exact path="/categories">
+                        <Categories />
+                    </Route>
+                    <Route exact path="/categoryPage/:id">
+                        <CategoryPage token={token} />
+                    </Route>
+                    <Route exact path="/playlist/:id">
+                        <Playlist />
+                    </Route>
+                    <Route exact path="/album/:id">
+                        <Album />
+                    </Route>
+                </Switch>
+            </div>
         </div>
     );
 };

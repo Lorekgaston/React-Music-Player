@@ -14,12 +14,12 @@ const useStyles = makeStyles({
     }
 });
 
-const RecentlyPlayed = ({ data, isLoading }) => {
+const RecentlyPlayed = ({ data }) => {
     const classes = useStyles();
     return (
         <>
             <Typography className={classes.title}>Recently Played</Typography>
-            <div style={{ display: 'flex' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
                 {data?.data.items.length > 0 &&
                     data?.data.items.map((item, idx) => {
                         const {

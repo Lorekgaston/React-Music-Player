@@ -19,7 +19,7 @@ const FeaturePlaylists = ({ data }) => {
     return (
         <>
             <Typography className={classes.title}>Feature Playlists</Typography>
-            <div style={{ display: 'flex' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
                 {data?.data.playlists.items.length > 0 &&
                     data?.data.playlists.items.map((playlist, idx) => (
                         <CoverCard

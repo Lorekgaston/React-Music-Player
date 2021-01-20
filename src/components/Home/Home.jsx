@@ -20,8 +20,6 @@ const Home = () => {
         `https://api.spotify.com/v1/browse/featured-playlists?limit=8&locale=us_AR`,
         `https://api.spotify.com/v1/recommendations?limit=8&seed_artists=7Ln80lUS6He07XvHI8qqHH,0ONHkAv9pCAFxb0zJwDNTy&seed_genres=rock,jazz`
     ]);
-    // const { data, isLoading } = useFetch('https://api.spotify.com/v1/browse/new-releases');
-    console.log(featuredPlaylists, recentlyPlayed, recommendations);
     return (
         <>
             {isLoading ? (
@@ -29,7 +27,7 @@ const Home = () => {
                     <Typography>Loading...</Typography>
                 </div>
             ) : (
-                <div style={{ padding: '24px 32px 0' }}>
+                <>
                     <section className={classes.section}>
                         <RecentlyPlayed data={recentlyPlayed} />
                     </section>
@@ -39,7 +37,7 @@ const Home = () => {
                     <section className={classes.section}>
                         <FeaturePlaylists data={featuredPlaylists} />
                     </section>
-                </div>
+                </>
             )}
         </>
     );
