@@ -18,7 +18,7 @@ const Home = () => {
     const { featuredPlaylists, recentlyPlayed, recommendations, isLoading } = useFetchHomeData([
         `https://api.spotify.com/v1/me/player/recently-played?limit=8`,
         `https://api.spotify.com/v1/browse/featured-playlists?limit=8&locale=us_AR`,
-        `https://api.spotify.com/v1/recommendations?limit=8&seed_artists=7Ln80lUS6He07XvHI8qqHH,0ONHkAv9pCAFxb0zJwDNTy&seed_genres=rock,jazz`
+        `https://api.spotify.com/v1/recommendations?limit=8&seed_genres=rock,jazz`
     ]);
     return (
         <>

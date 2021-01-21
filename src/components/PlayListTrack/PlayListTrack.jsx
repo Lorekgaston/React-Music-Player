@@ -6,6 +6,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
+import AlbumIcon from '@material-ui/icons/Album';
 import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -54,7 +55,13 @@ const PlayListTrack = ({ track: { duration_ms, name, images }, labelId, play, id
                     </IconButton>
                 </ListItemIcon>
                 <ListItemAvatar>
-                    <Avatar variant="square" src={images[0].url} />
+                    {images[0].url ? (
+                        <Avatar variant="square" src={images[0].url} />
+                    ) : (
+                        <Avatar variant="square">
+                            <AlbumIcon />
+                        </Avatar>
+                    )}
                 </ListItemAvatar>
                 <ListItemText id={labelId} primary={name} />
 

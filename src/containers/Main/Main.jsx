@@ -12,6 +12,7 @@ import CategoryPage from '../../components/CategoryPage/CategoryPage';
 import Playlist from '../PlayList/PlayList';
 import Home from '../../components/Home/Home';
 import Album from '../Album/Album';
+import routes from '../../routes/index';
 
 const useStyles = makeStyles({
     root: {
@@ -21,13 +22,9 @@ const useStyles = makeStyles({
     nav: {
         height: '56px',
         width: '100%'
-        // width: 'calc(100% - 250px)',
-        // padding: '0.5rem 2rem',
-        // flexGrow: 1
     },
     appBar: {
         backgroundColor: '#282828'
-        // backgroundColor: 'rgba(0,0,0, 0.0)',
     },
     title: {
         flexGrow: 1
@@ -85,9 +82,34 @@ const Main = ({ token, user, logOut }) => {
                     </Toolbar>
                 </AppBar>
             </div>
-            <div style={{ padding: '24px 32px 0' }}>
-                <Switch>
-                    <Route exact path="/home">
+            <div>
+                <div style={{ padding: '24px 32px 0' }}>
+                    <Switch>
+                        {routes.map((route, i) => (
+                            <Route
+                                key={i}
+                                path={route.path}
+                                exact
+                                render={props => <route.component {...props} />}
+                            />
+                        ))}
+                    </Switch>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default Main;
+
+Main.propTypes = {
+    token: PropTypes.string,
+    user: PropTypes.string,
+    logOut: PropTypes.func
+};
+
+{
+    /* <Route exact path="/home">
                         <Home />
                     </Route>
                     <Route exact path="/categories">
@@ -101,17 +123,5 @@ const Main = ({ token, user, logOut }) => {
                     </Route>
                     <Route exact path="/album/:id">
                         <Album />
-                    </Route>
-                </Switch>
-            </div>
-        </div>
-    );
-};
-
-export default Main;
-
-Main.propTypes = {
-    token: PropTypes.string,
-    user: PropTypes.string,
-    logOut: PropTypes.func
-};
+                    </Route> */
+}

@@ -4,8 +4,9 @@ import { useHistory } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
+import AlbumIcon from '@material-ui/icons/Album';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
+import { Avatar, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles({
     card: {
@@ -14,7 +15,7 @@ const useStyles = makeStyles({
         color: '#ffff',
         borderRadius: 5,
         width: '100%',
-        maxWidth: 150,
+        maxWidth: 154,
         minHeight: 260,
         margin: 10,
         padding: '0.9rem',
@@ -40,7 +41,7 @@ const CoverCard = ({ image, name, param }) => {
     return (
         <>
             <Card className={classes.card} onClick={() => history.push(param)}>
-                <CardMedia className={classes.media} component="img" src={image} />
+                <CardMedia className={classes.media} component="img" src={image} alt={name} />
                 <CardContent className={classes.cardContent}>
                     <Typography noWrap={true} variant="h6">
                         {name}
