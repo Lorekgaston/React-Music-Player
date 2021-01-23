@@ -105,7 +105,7 @@ const ControlBar = ({ audio }) => {
     return (
         <div className={classes.root}>
             <div className={classes.name}>
-                <NowPlaying currentTrack={currentTrack[index]?.album} />
+                <NowPlaying currentTrack={currentTrack[index]} />
             </div>
             <div className={classes.control}>
                 <div>
