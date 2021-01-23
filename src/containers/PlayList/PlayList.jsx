@@ -8,6 +8,7 @@ import { grey } from '@material-ui/core/colors';
 import { Avatar, Divider, ListItem, ListItemText, Paper, Typography } from '@material-ui/core';
 import useFetch from '../../hooks/useFetch';
 import PlayListTrack from '../../components/PlayListTrack/PlayListTrack';
+import { parseTime } from '../../utils/handleTime';
 
 const useStyles = makeStyles({
     root: {
@@ -41,6 +42,14 @@ const useStyles = makeStyles({
     headerDescription: {
         fontSize: 14,
         padding: '15px 5px 0'
+    },
+    headerBottom: {
+        display: 'flex',
+        flexDirection: 'row',
+        padding: '0 5px'
+    },
+    headerBottomItem: {
+        marginRight: 5
     },
     avatar: {
         marginRight: 20,
@@ -78,14 +87,13 @@ const useStyles = makeStyles({
         marginBottom: 10
     }
 });
-// `https://api.spotify.com/v1/playlists/${id}/tracks?offset=0&limit=50`
 const PlayList = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
     const classes = useStyles();
 
     const { data, isLoading } = useFetch(
-        `https://api.spotify.com/v1/playlists/${id}?fields=description,images,name,primary_color,type,tracks.items(track(album,duration_ms,id,name,preview_url))`
+        `https://api.spotify.com/v1/playlists/${id}?fields=description,owner(display_name,external_urls),images,name,primary_color,type,tracks.items(track(album,duration_ms,id,name,preview_url))`
     );
 
     const items = data?.data.tracks.items;
@@ -105,10 +113,11 @@ const PlayList = () => {
         } = song;
         return { preview_url, name, duration_ms, artists, images };
     });
+    const playlistDuration = trackList?.map(item => item.duration_ms);
 
     const playTrack = idx => dispatch(setAudio({ trackList, idx }));
 
-    console.log(data?.data);
+    console.log(playlistDuration);
     return (
         <Paper className={classes.root}>
             {isLoading ? (
@@ -132,6 +141,21 @@ const PlayList = () => {
                             <Typography variant="body1" className={classes.headerDescription}>
                                 {data?.data.description}
                             </Typography>
+                            <div className={classes.headerBottom}>
+                                <Typography variant="caption" className={classes.headerBottomItem}>
+                                    <span>Created by:</span>{' '}
+                                    <strong style={{ cursor: 'pointer' }}>
+                                        {data?.data.owner.display_name}{' '}
+                                    </strong>
+                                    {'  '}-
+                                </Typography>
+                                <Typography variant="caption" className={classes.headerBottomItem}>
+                                    {playList?.length} Songs -
+                                </Typography>
+                                <Typography variant="caption" className={classes.headerBottomItem}>
+                                    {parseTime(playlistDuration)}
+                                </Typography>
+                            </div>
                         </div>
                     </div>
                     <div style={{ padding: '24px 32px 0' }}>

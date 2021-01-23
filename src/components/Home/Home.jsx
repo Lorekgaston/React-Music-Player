@@ -20,6 +20,7 @@ const Home = () => {
         `https://api.spotify.com/v1/browse/featured-playlists?limit=8&locale=us_AR`,
         `https://api.spotify.com/v1/recommendations?limit=8&seed_genres=rock,jazz`
     ]);
+    console.log(recommendations);
     return (
         <>
             {isLoading ? (

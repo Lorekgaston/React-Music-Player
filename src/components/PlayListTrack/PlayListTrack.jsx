@@ -41,10 +41,30 @@ const useStyles = makeStyles({
     },
     time: {
         paddingRight: 12
+    },
+    primary: {
+        color: grey[100],
+        cursor: 'pointer',
+        fontSize: '1rem',
+        fontWeight: 600,
+        lineHeight: 1.6,
+        letterSpacing: '0.0200em',
+        '&:hover': {
+            textDecoration: 'underline'
+        }
+    },
+    secondary: {
+        color: grey[500],
+        cursor: 'pointer',
+        fontSize: '0.78rem',
+        marginRight: 5,
+        '&:hover': {
+            textDecoration: 'underline'
+        }
     }
 });
 
-const PlayListTrack = ({ track: { duration_ms, name, images }, labelId, play, idx }) => {
+const PlayListTrack = ({ track: { duration_ms, name, images, artists }, play, idx }) => {
     const classes = useStyles();
     return (
         <>
@@ -63,18 +83,22 @@ const PlayListTrack = ({ track: { duration_ms, name, images }, labelId, play, id
                         </Avatar>
                     )}
                 </ListItemAvatar>
-                <ListItemText id={labelId} primary={name} />
-
-                <FormControlLabel
-                    control={
-                        <Checkbox
-                            className={classes.favorite}
-                            icon={<FavoriteBorder />}
-                            checkedIcon={<Favorite />}
-                            name="checkedH"
-                        />
+                {/* <ListItemText id={labelId} primary={name} secondary={artists[0].name} /> */}
+                <ListItemText
+                    primary={
+                        <>
+                            <Typography variant="h6" className={classes.primary}>
+                                {name}
+                            </Typography>
+                        </>
                     }
+                    secondary={artists.map(artist => (
+                        <Typography key={artist.id} variant="caption" className={classes.secondary}>
+                            {artist.name}
+                        </Typography>
+                    ))}
                 />
+
                 <Typography className={classes.time}>{parseTime(duration_ms)}</Typography>
             </ListItem>
         </>
@@ -92,3 +116,16 @@ PlayListTrack.propTypes = {
     play: PropTypes.func,
     idx: PropTypes.number
 };
+
+{
+    /* <FormControlLabel
+                    control={
+                        <Checkbox
+                            className={classes.favorite}
+                            icon={<FavoriteBorder />}
+                            checkedIcon={<Favorite />}
+                            name="checkedH"
+                        />
+                    }
+                /> */
+}
