@@ -8,3 +8,4 @@ export const SET_TOKEN = 'SET_TOKEN';
 export const SET_AUDIO = 'SET_AUDIO';
 export const SET_PROGRESS = 'SET_PROGRESS';
 export const SET_MUTE = 'SET_MUTE';
+export const SET_TRACKLIST = 'SET_TRACKLIST';

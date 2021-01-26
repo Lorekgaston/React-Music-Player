@@ -2,7 +2,7 @@ import Categories from '../components/Categories/Categories';
 import CategoryPage from '../components/CategoryPage/CategoryPage';
 import Playlist from '../containers/PlayList/PlayList';
 import Home from '../components/Home/Home';
-import Album from '../containers/Album/Album';
+import Single from '../containers/Single/Single';
 
 const routes = [
     {
@@ -23,7 +23,7 @@ const routes = [
     },
     {
         path: '/album/:id',
-        component: Album
+        component: Single
     }
 ];
 

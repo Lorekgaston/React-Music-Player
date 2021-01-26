@@ -20,8 +20,9 @@ const useFetch = url => {
                         Authorization: 'Bearer ' + token
                     }
                 });
+                const { data } = response;
                 if (response) {
-                    setData(response);
+                    setData(data);
                 } else {
                     setError(true);
                 }

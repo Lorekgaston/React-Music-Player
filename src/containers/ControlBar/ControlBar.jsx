@@ -12,10 +12,24 @@ const ControlBar = ({ audio }) => {
     const dispatch = useDispatch();
     const controller = useSelector(state => state.controller);
     const classes = useStyles();
-    const { songPlaying, currentTrack, index, volume, progress, isMuted } = controller;
+    const {
+        songPlaying,
+        currentTrack,
+        index,
+        volume,
+        progress,
+        isMuted,
+        trackList,
+        isSingle
+    } = controller;
 
     const firstRender = React.useRef(true);
     // const prevVolumeRef = React.useRef();
+    const setSong = track => {
+        audio.src = track;
+        audio.play();
+        playHandler();
+    };
 
     React.useEffect(() => {
         const handleAudio = () => {
@@ -27,18 +41,31 @@ const ControlBar = ({ audio }) => {
     }, [songPlaying]);
 
     React.useEffect(() => {
-        const changeSong = () => {
-            audio.src = currentTrack[index]?.preview_url;
-            audio.play();
-            playHandler();
-        };
+        // const setSong = () => {
+        //     audio.src = currentTrack?.preview_url;
+        //     audio.play();
+        //     playHandler();
+        // };
         if (firstRender.current) {
             firstRender.current = false;
             return;
         }
 
-        changeSong();
-    }, [index, currentTrack]);
+        setSong(currentTrack?.preview_url);
+    }, [currentTrack]);
+    React.useEffect(() => {
+        // const setSong = () => {
+        //     audio.src = trackList[index]?.preview_url;
+        //     audio.play();
+        //     playHandler();
+        // };
+        if (firstRender.current) {
+            firstRender.current = false;
+            return;
+        }
+
+        setSong(trackList[index]?.preview_url);
+    }, [index, trackList]);
 
     React.useEffect(() => {
         const timer = setInterval(() => {
@@ -92,6 +119,12 @@ const ControlBar = ({ audio }) => {
         clearInterval(timer);
         nextSong();
     };
+    // const setCurrentTrackView = (currentTrack) => {
+    //     Array.isArray(currentTrack) {
+    //         currentTrack[index]
+    //     }
+    // }
+    console.log(currentTrack);
 
     const playHandler = () => dispatch(playSong(true));
     const nextSong = () => dispatch({ type: 'NEXT_SONG' });
@@ -105,7 +138,11 @@ const ControlBar = ({ audio }) => {
     return (
         <div className={classes.root}>
             <div className={classes.name}>
-                <NowPlaying currentTrack={currentTrack[index]} />
+                {isSingle ? (
+                    <NowPlaying track={currentTrack} />
+                ) : (
+                    <NowPlaying track={trackList[index]} />
+                )}
             </div>
             <div className={classes.control}>
                 <div>

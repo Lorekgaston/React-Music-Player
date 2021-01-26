@@ -16,6 +16,7 @@ const useStyles = makeStyles({
 
 const Recommendations = ({ data }) => {
     const classes = useStyles();
+    console.log(data);
     return (
         <>
             <Typography className={classes.title}>Recommendations</Typography>
@@ -24,14 +25,15 @@ const Recommendations = ({ data }) => {
                     data?.data.tracks.map((item, idx) => {
                         const {
                             name,
-                            album: { images, id }
+                            id,
+                            album: { images }
                         } = item;
                         return (
                             <CoverCard
                                 key={item.id + idx}
-                                image={images[0].url}
+                                image={images[0]?.url}
                                 name={name}
-                                param={`/playlist/${id}`}
+                                param={`/album/${id}`}
                             />
                         );
                     })}

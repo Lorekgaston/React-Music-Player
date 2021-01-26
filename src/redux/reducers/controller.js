@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 import * as actionType from '../actionTypes';
 
 const intialState = {
@@ -8,8 +9,9 @@ const intialState = {
     progress: 0,
     token: null,
     user: '',
-    currentTrack: [],
-    songInfo: []
+    currentTrack: null,
+    trackList: [],
+    isSingle: false
 };
 
 const reducer = (state = intialState, action) => {
@@ -19,16 +21,23 @@ const reducer = (state = intialState, action) => {
                 ...state,
                 songPlaying: action.isPlaying
             };
-        case actionType.SET_AUDIO: {
+        case actionType.SET_AUDIO:
             console.log(action);
             return {
                 ...state,
-                currentTrack: action.tracks.trackList,
-                index: action.tracks.idx
+                currentTrack: action.track,
+                isSingle: true
             };
-        }
+        case actionType.SET_TRACKLIST:
+            console.log(action);
+            return {
+                ...state,
+                trackList: action.tracks.trackList,
+                index: action.tracks.i,
+                isSingle: false
+            };
         case actionType.NEXT_SONG:
-            if (state.index === state.currentTrack.length - 1) {
+            if (state.index === state.trackList.length - 1) {
                 return {
                     ...state,
                     index: 0
@@ -42,7 +51,7 @@ const reducer = (state = intialState, action) => {
             if (state.index === 0) {
                 return {
                     ...state,
-                    index: state.currentTrack.length - 1
+                    index: state.trackList.length - 1
                 };
             }
             return {

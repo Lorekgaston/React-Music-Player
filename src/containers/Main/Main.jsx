@@ -7,11 +7,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { redirect_url } from '../../Auth';
-import Categories from '../../components/Categories/Categories';
-import CategoryPage from '../../components/CategoryPage/CategoryPage';
-import Playlist from '../PlayList/PlayList';
-import Home from '../../components/Home/Home';
-import Album from '../Album/Album';
 import routes from '../../routes/index';
 
 const useStyles = makeStyles({
@@ -24,7 +19,8 @@ const useStyles = makeStyles({
         width: '100%'
     },
     appBar: {
-        backgroundColor: '#282828'
+        // backgroundColor: '#282828'
+        backgroundColor: '#000000'
     },
     title: {
         flexGrow: 1
@@ -55,30 +51,20 @@ const useStyles = makeStyles({
     }
 });
 
-const Main = ({ token, user, logOut }) => {
+const Main = ({ user, logOut }) => {
     const classes = useStyles();
     return (
         <div className={classes.root}>
             <div className={classes.nav}>
                 <AppBar className={classes.appBar} position="static">
                     <Toolbar>
-                        <Typography variant="h6" className={classes.title}>
-                            React-Music-Player
+                        <Typography variant="h6" className={classes.title}></Typography>
+                        <Typography variant="body2" className={classes.user}>
+                            {user}
                         </Typography>
-                        {token ? (
-                            <>
-                                <Typography variant="body2" className={classes.user}>
-                                    {user}
-                                </Typography>
-                                <Button color="inherit" variant="text" onClick={() => logOut()}>
-                                    Log Out
-                                </Button>
-                            </>
-                        ) : (
-                            <Button color="inherit" href={redirect_url}>
-                                Login
-                            </Button>
-                        )}
+                        <Button color="inherit" variant="text" onClick={() => logOut()}>
+                            Log Out
+                        </Button>
                     </Toolbar>
                 </AppBar>
             </div>
@@ -103,7 +89,6 @@ const Main = ({ token, user, logOut }) => {
 export default Main;
 
 Main.propTypes = {
-    token: PropTypes.string,
     user: PropTypes.string,
     logOut: PropTypes.func
 };

@@ -64,35 +64,34 @@ const useStyles = makeStyles({
     }
 });
 
-const PlayListTrack = ({ track: { duration_ms, name, images, artists }, play, idx }) => {
+const PlayListTrack = ({ track: { duration_ms, name, images = [], artists } = {}, play, i }) => {
     const classes = useStyles();
     return (
         <>
             <ListItem className={classes.listItem}>
                 <ListItemIcon>
-                    <IconButton onClick={() => play(idx)}>
+                    <IconButton onClick={() => play(i)}>
                         <PlayArrowIcon className={classes.play} />
                     </IconButton>
                 </ListItemIcon>
                 <ListItemAvatar>
-                    {images[0].url ? (
-                        <Avatar variant="square" src={images[0].url} />
+                    {images[0]?.url ? (
+                        <Avatar variant="square" src={images[0]?.url} />
                     ) : (
                         <Avatar variant="square">
                             <AlbumIcon />
                         </Avatar>
                     )}
                 </ListItemAvatar>
-                {/* <ListItemText id={labelId} primary={name} secondary={artists[0].name} /> */}
                 <ListItemText
                     primary={
                         <>
-                            <Typography variant="h6" className={classes.primary}>
+                            <Typography variant="h6" className={classes.primary} noWrap={true}>
                                 {name}
                             </Typography>
                         </>
                     }
-                    secondary={artists.map(artist => (
+                    secondary={artists?.map(artist => (
                         <Typography key={artist.id} variant="caption" className={classes.secondary}>
                             {artist.name}
                         </Typography>

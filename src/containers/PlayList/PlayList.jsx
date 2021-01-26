@@ -1,92 +1,14 @@
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
-import { setAudio } from '../../redux/actions/controller';
+import { setAudio, setTrackList } from '../../redux/actions/controller';
 import { useParams } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import { grey } from '@material-ui/core/colors';
-import { Avatar, Divider, ListItem, ListItemText, Paper, Typography } from '@material-ui/core';
+import { Paper } from '@material-ui/core';
 import useFetch from '../../hooks/useFetch';
-import PlayListTrack from '../../components/PlayListTrack/PlayListTrack';
-import { parseTime } from '../../utils/handleTime';
+import { useStyles } from './styles';
+import PlaylistHeader from '../../components/PlaylistHeader/PlaylistHeader';
+import PlaylistTracklist from '../../components/PlaylistTracklist/PlaylistTracklist';
+import { filterPlayableTracks, handleTracklistData } from '../../utils/handletrackList';
 
-const useStyles = makeStyles({
-    root: {
-        flexGrow: 1,
-        width: '100%',
-        backgroundColor: '#121212',
-        color: grey[200]
-    },
-    header: {
-        height: '245px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        padding: '24px 32px 0'
-    },
-    headerText: {
-        padding: 20,
-        display: 'flex',
-        flexDirection: 'column'
-    },
-    headerType: {
-        fontSize: 12,
-        marginLeft: 5,
-        fontWeight: 600,
-        textTransform: 'uppercase'
-    },
-    headerName: {
-        fontSize: 100,
-        fontWeight: 600
-    },
-    headerDescription: {
-        fontSize: 14,
-        padding: '15px 5px 0'
-    },
-    headerBottom: {
-        display: 'flex',
-        flexDirection: 'row',
-        padding: '0 5px'
-    },
-    headerBottomItem: {
-        marginRight: 5
-    },
-    avatar: {
-        marginRight: 20,
-        width: 232,
-        height: 232
-    },
-    favorite: {
-        color: grey[200],
-        '&:hover': {
-            backgroundColor: grey[900]
-        },
-        '&.Mui-checked': {
-            color: grey[200]
-        }
-    },
-    listItem: {
-        '&:hover': {
-            backgroundColor: grey[800]
-        }
-    },
-    play: {
-        color: grey[200]
-    },
-    listTitle: {
-        marginLeft: '3.4rem'
-    },
-    listHeader: {
-        padding: '0 16px'
-    },
-    headerTime: {
-        paddingRight: 12
-    },
-    divider: {
-        backgroundColor: 'rgb(48 48 48 / 0.7)',
-        marginBottom: 10
-    }
-});
 const PlayList = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
@@ -96,28 +18,16 @@ const PlayList = () => {
         `https://api.spotify.com/v1/playlists/${id}?fields=description,owner(display_name,external_urls),images,name,primary_color,type,tracks.items(track(album,duration_ms,id,name,preview_url))`
     );
 
-    const items = data?.data.tracks.items;
-    const playList = items?.filter(song => {
-        const { track } = song;
-        return track.preview_url != null;
-    });
-
-    const trackList = playList?.map(song => {
-        const {
-            track: {
-                preview_url,
-                name,
-                duration_ms,
-                album: { artists, images }
-            }
-        } = song;
-        return { preview_url, name, duration_ms, artists, images };
-    });
+    // Spread data and asign default value to items, to prevent null or undefine error when destructuring api response.
+    const { tracks: { items } = {} } = { ...data };
+    // Used helper functions to filter data.
+    const playList = filterPlayableTracks(items);
+    const trackList = handleTracklistData(playList);
     const playlistDuration = trackList?.map(item => item.duration_ms);
+    const playTrack = i => {
+        dispatch(setTrackList({ trackList, i }));
+    };
 
-    const playTrack = idx => dispatch(setAudio({ trackList, idx }));
-
-    console.log(playlistDuration);
     return (
         <Paper className={classes.root}>
             {isLoading ? (
@@ -125,63 +35,20 @@ const PlayList = () => {
             ) : (
                 <>
                     <div className={classes.header}>
-                        <Avatar
-                            className={classes.avatar}
-                            src={data?.data.images[0].url}
-                            alt={data?.data.name}
-                            variant="square"
+                        <PlaylistHeader
+                            classes={classes}
+                            data={data}
+                            playlistDuration={playlistDuration}
+                            playList={playList}
                         />
-                        <div className={classes.headerText}>
-                            <Typography variant="body1" className={classes.headerType}>
-                                {data?.data.type}
-                            </Typography>
-                            <Typography variant="h2" className={classes.headerName}>
-                                {data?.data.name}
-                            </Typography>
-                            <Typography variant="body1" className={classes.headerDescription}>
-                                {data?.data.description}
-                            </Typography>
-                            <div className={classes.headerBottom}>
-                                <Typography variant="caption" className={classes.headerBottomItem}>
-                                    <span>Created by:</span>{' '}
-                                    <strong style={{ cursor: 'pointer' }}>
-                                        {data?.data.owner.display_name}{' '}
-                                    </strong>
-                                    {'  '}-
-                                </Typography>
-                                <Typography variant="caption" className={classes.headerBottomItem}>
-                                    {playList?.length} Songs -
-                                </Typography>
-                                <Typography variant="caption" className={classes.headerBottomItem}>
-                                    {parseTime(playlistDuration)}
-                                </Typography>
-                            </div>
-                        </div>
                     </div>
                     <div style={{ padding: '24px 32px 0' }}>
-                        <List>
-                            <ListItem className={classes.listHeader}>
-                                <ListItemText className={classes.listTitle} primary="Track" />
-                                <Typography className={classes.headerTime}>Time</Typography>
-                            </ListItem>
-                            <Divider variant="fullWidth" className={classes.divider} />
-                            {trackList?.length > 0 &&
-                                trackList?.map((song, idx) => {
-                                    // const { track } = song;
-                                    const labelId = `checkbox-list-label-${song}`;
-
-                                    return (
-                                        <PlayListTrack
-                                            key={song + idx}
-                                            track={song}
-                                            isLoading={isLoading}
-                                            play={playTrack}
-                                            labelId={labelId}
-                                            idx={idx}
-                                        />
-                                    );
-                                })}
-                        </List>
+                        <PlaylistTracklist
+                            classes={classes}
+                            playTrack={playTrack}
+                            trackList={trackList}
+                            loading={isLoading}
+                        />
                     </div>
                 </>
             )}

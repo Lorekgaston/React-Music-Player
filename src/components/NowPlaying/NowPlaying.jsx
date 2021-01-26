@@ -32,25 +32,25 @@ const useStyles = makeStyles({
     }
 });
 
-const NowPlaying = ({ currentTrack }) => {
+const NowPlaying = ({ track }) => {
     const classes = useStyles();
     return (
         <>
-            {!currentTrack ? null : (
+            {!track ? null : (
                 <List className={classes.root}>
                     <ListItem>
                         <ListItemAvatar>
-                            <Avatar variant="square" src={currentTrack.images[2].url} />
+                            <Avatar variant="square" src={track.images[2].url} />
                         </ListItemAvatar>
                         <ListItemText
                             primary={
                                 <>
                                     <Typography variant="body2" className={classes.primary}>
-                                        {currentTrack.name}
+                                        {track.name}
                                     </Typography>
                                 </>
                             }
-                            secondary={currentTrack.artists.map(artist => (
+                            secondary={track.artists.map(artist => (
                                 <Typography
                                     key={artist.id}
                                     variant="caption"
@@ -69,5 +69,5 @@ const NowPlaying = ({ currentTrack }) => {
 export default NowPlaying;
 
 NowPlaying.propTypes = {
-    currentTrack: PropTypes.object
+    track: PropTypes.object
 };

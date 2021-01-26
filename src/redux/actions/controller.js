@@ -27,15 +27,21 @@ export const handleMuted = () => {
         type: actionType.SET_MUTE
     };
 };
-export const setAudio = tracks => {
+export const setAudio = track => {
     return {
         type: actionType.SET_AUDIO,
-        tracks
+        track
     };
 };
 export const setProgress = value => {
     return {
         type: actionType.SET_PROGRESS,
         value
+    };
+};
+export const setTrackList = tracks => {
+    return {
+        type: actionType.SET_TRACKLIST,
+        tracks
     };
 };
