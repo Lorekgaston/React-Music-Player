@@ -151,6 +151,7 @@ const ControlBar = ({ audio }) => {
                         handlePlaying={musicHandler}
                         next={nextSong}
                         previous={prevSong}
+                        isSingle={isSingle}
                     />
                 </div>
                 <div className={classes.progressContainer}>
