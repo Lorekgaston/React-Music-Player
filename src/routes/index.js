@@ -22,7 +22,7 @@ const routes = [
         component: Playlist
     },
     {
-        path: '/album/:id',
+        path: '/single/:id',
         component: Single
     }
 ];

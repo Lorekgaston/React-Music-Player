@@ -16,6 +16,7 @@ const useStyles = makeStyles({
 
 const RecentlyPlayed = ({ data }) => {
     const classes = useStyles();
+    console.log(data);
     return (
         <>
             <Typography className={classes.title}>Recently Played</Typography>
@@ -25,7 +26,8 @@ const RecentlyPlayed = ({ data }) => {
                         const {
                             track: {
                                 name,
-                                album: { images, id }
+                                album: { images },
+                                id
                             }
                         } = item;
                         return (
@@ -33,7 +35,7 @@ const RecentlyPlayed = ({ data }) => {
                                 key={item.track.id + idx}
                                 image={images[0].url}
                                 name={name}
-                                param={`/album/${id}`}
+                                param={`/single/${id}`}
                             />
                         );
                     })}

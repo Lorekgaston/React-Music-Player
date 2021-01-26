@@ -16,7 +16,6 @@ const useStyles = makeStyles({
 
 const Recommendations = ({ data }) => {
     const classes = useStyles();
-    console.log(data);
     return (
         <>
             <Typography className={classes.title}>Recommendations</Typography>
@@ -33,7 +32,7 @@ const Recommendations = ({ data }) => {
                                 key={item.id + idx}
                                 image={images[0]?.url}
                                 name={name}
-                                param={`/album/${id}`}
+                                param={`/single/${id}`}
                             />
                         );
                     })}
