@@ -65,7 +65,7 @@ const ControlBar = ({ audio }) => {
         }
 
         setSong(trackList[index]?.preview_url);
-    }, [index, trackList]);
+    }, [index]);
 
     React.useEffect(() => {
         const timer = setInterval(() => {

@@ -6,8 +6,8 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import { redirect_url } from '../../Auth';
 import routes from '../../routes/index';
+import SearchInput from '../../components/SearchInput/SearchInput';
 
 const useStyles = makeStyles({
     root: {
@@ -22,8 +22,17 @@ const useStyles = makeStyles({
         // backgroundColor: '#282828'
         backgroundColor: '#000000'
     },
-    title: {
-        flexGrow: 1
+    toolbar: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center'
+    },
+    appBarRight: {
+        width: '50%'
+    },
+    appBarrLeft: {
+        display: 'flex',
+        alignItems: 'center'
     },
     user: {
         textTransform: 'capitalize',
@@ -51,20 +60,24 @@ const useStyles = makeStyles({
     }
 });
 
-const Main = ({ user, logOut }) => {
+const Main = ({ token, user, logOut }) => {
     const classes = useStyles();
     return (
         <div className={classes.root}>
             <div className={classes.nav}>
                 <AppBar className={classes.appBar} position="static">
-                    <Toolbar>
-                        <Typography variant="h6" className={classes.title}></Typography>
-                        <Typography variant="body2" className={classes.user}>
-                            {user}
-                        </Typography>
-                        <Button color="inherit" variant="text" onClick={() => logOut()}>
-                            Log Out
-                        </Button>
+                    <Toolbar className={classes.toolbar}>
+                        <div className={classes.appBarRight}>
+                            <SearchInput token={token} />
+                        </div>
+                        <div className={classes.appBarrLeft}>
+                            <Typography variant="body2" className={classes.user}>
+                                {user}
+                            </Typography>
+                            <Button color="inherit" variant="text" onClick={() => logOut()}>
+                                Log Out
+                            </Button>
+                        </div>
                     </Toolbar>
                 </AppBar>
             </div>
@@ -90,7 +103,8 @@ export default Main;
 
 Main.propTypes = {
     user: PropTypes.string,
-    logOut: PropTypes.func
+    logOut: PropTypes.func,
+    token: PropTypes.string
 };
 
 {
