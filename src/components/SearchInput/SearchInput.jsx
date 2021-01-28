@@ -1,5 +1,7 @@
 import * as React from 'react';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { fetchPlaylist } from '../../redux/actions/search';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import { TextField } from '@material-ui/core';
@@ -34,6 +36,7 @@ const useStyles = makeStyles({
 });
 const SearchInput = ({ token }) => {
     const classes = useStyles();
+    const dispatch = useDispatch();
     const [value, setValue] = React.useState('');
     const handleChage = e => {
         e.preventDefault();
@@ -41,18 +44,7 @@ const SearchInput = ({ token }) => {
     };
 
     React.useEffect(() => {
-        const searchSongs = async () => {
-            const response = await axios.get(
-                `https://api.spotify.com/v1/search?q=${value}&type=playlist&limit=15`,
-                {
-                    headers: {
-                        Authorization: 'Bearer ' + token
-                    }
-                }
-            );
-            console.log(response);
-        };
-        return () => searchSongs();
+        return () => dispatch(fetchPlaylist(value, token));
     }, [value]);
     console.log(value);
     return (
@@ -61,7 +53,6 @@ const SearchInput = ({ token }) => {
                 id="Search"
                 placeholder="Search for artist's playlist..."
                 variant="outlined"
-                // type="search"
                 className={classes.searchBar}
                 value={value}
                 onChange={handleChage}

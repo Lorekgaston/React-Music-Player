@@ -59,7 +59,7 @@ const ControlBar = ({ audio }) => {
         //     audio.play();
         //     playHandler();
         // };
-        if (firstRender.current) {
+        if (!firstRender.current) {
             firstRender.current = false;
             return;
         }

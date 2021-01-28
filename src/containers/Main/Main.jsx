@@ -106,21 +106,3 @@ Main.propTypes = {
     logOut: PropTypes.func,
     token: PropTypes.string
 };
-
-{
-    /* <Route exact path="/home">
-                        <Home />
-                    </Route>
-                    <Route exact path="/categories">
-                        <Categories />
-                    </Route>
-                    <Route exact path="/categoryPage/:id">
-                        <CategoryPage token={token} />
-                    </Route>
-                    <Route exact path="/playlist/:id">
-                        <Playlist />
-                    </Route>
-                    <Route exact path="/album/:id">
-                        <Album />
-                    </Route> */
-}
