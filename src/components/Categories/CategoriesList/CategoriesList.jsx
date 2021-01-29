@@ -15,6 +15,7 @@ const useStyles = makeStyles({
 
 const CategoriesList = ({ data }) => {
     const classes = useStyles();
+    console.log(data);
     return (
         <>
             <Typography className={classes.title}>Categories</Typography>
@@ -26,7 +27,7 @@ const CategoriesList = ({ data }) => {
                                 key={item.id + idx}
                                 image={item.icons[0].url}
                                 name={item.name}
-                                param={`/categorypage/${item.id}`}
+                                param={`/categorypage/${item?.id}`}
                             />
                         );
                     })}

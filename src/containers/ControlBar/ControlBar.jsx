@@ -41,31 +41,12 @@ const ControlBar = ({ audio }) => {
     }, [songPlaying]);
 
     React.useEffect(() => {
-        // const setSong = () => {
-        //     audio.src = currentTrack?.preview_url;
-        //     audio.play();
-        //     playHandler();
-        // };
         if (firstRender.current) {
             firstRender.current = false;
             return;
         }
-
-        setSong(currentTrack?.preview_url);
-    }, [currentTrack]);
-    React.useEffect(() => {
-        // const setSong = () => {
-        //     audio.src = trackList[index]?.preview_url;
-        //     audio.play();
-        //     playHandler();
-        // };
-        if (!firstRender.current) {
-            firstRender.current = false;
-            return;
-        }
-
-        setSong(trackList[index]?.preview_url);
-    }, [index]);
+        isSingle ? setSong(currentTrack?.preview_url) : setSong(trackList[index]?.preview_url);
+    }, [currentTrack, index, trackList]);
 
     React.useEffect(() => {
         const timer = setInterval(() => {
@@ -119,11 +100,6 @@ const ControlBar = ({ audio }) => {
         clearInterval(timer);
         nextSong();
     };
-    // const setCurrentTrackView = (currentTrack) => {
-    //     Array.isArray(currentTrack) {
-    //         currentTrack[index]
-    //     }
-    // }
     console.log(currentTrack);
 
     const playHandler = () => dispatch(playSong(true));

@@ -77,8 +77,8 @@ const CategoryPage = () => {
                 <>
                     <Typography className={classes.title}>{id}</Typography>
                     <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-                        {data?.data.playlists.items.length > 0 &&
-                            data?.data.playlists.items.map((playlist, idx) => (
+                        {data?.playlists.items.length > 0 &&
+                            data?.playlists.items.map((playlist, idx) => (
                                 <CoverCard
                                     key={playlist.id + idx}
                                     image={playlist.images[0].url}

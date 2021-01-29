@@ -5,42 +5,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles({
-    // card: {
-    //     backgroundColor: '#202020',
-    //     color: '#ffff',
-    //     borderRadius: 5,
-    //     width: 160,
-    //     margin: 10,
-    //     padding: '0.9rem',
-    //     cursor: 'pointer',
-    //     '&:hover': {
-    //         backgroundColor: '#282828'
-    //     }
-    // },
-    card: {
-        position: 'relative',
-        backgroundColor: '#202020',
-        color: '#ffff',
-        borderRadius: 5,
-        width: '100%',
-        maxWidth: 160,
-        minHeight: 260,
-        margin: 10,
-        padding: '0.9rem',
-        cursor: 'pointer',
-        '&:hover': {
-            backgroundColor: '#282828'
-        }
-    },
-    media: {
-        height: 170
-    },
-    cardContent: {
-        padding: '10px 0'
-    },
-    text: {
-        textOverflow: 'ellipsis'
-    },
     title: {
         fontSize: 30,
         fontWeight: 700,
