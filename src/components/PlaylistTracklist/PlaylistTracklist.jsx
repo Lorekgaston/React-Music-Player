@@ -1,4 +1,5 @@
-import React from 'react';
+import * as React from 'react';
+import PropTypes from 'prop-types';
 import List from '@material-ui/core/List';
 import { Divider, ListItem, ListItemText, Typography } from '@material-ui/core';
 import PlayListTrack from '../PlayListTrack/PlayListTrack';
@@ -34,3 +35,10 @@ const PlaylistTracklist = ({ classes, playTrack, trackList, loading }) => {
 };
 
 export default PlaylistTracklist;
+
+PlaylistTracklist.propTypes = {
+    classes: PropTypes.object,
+    playTrack: PropTypes.func,
+    trackList: PropTypes.array,
+    loading: PropTypes.bool
+};

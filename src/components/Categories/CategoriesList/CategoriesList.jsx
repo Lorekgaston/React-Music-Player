@@ -15,7 +15,6 @@ const useStyles = makeStyles({
 
 const CategoriesList = ({ data }) => {
     const classes = useStyles();
-    console.log(data);
     return (
         <>
             <Typography className={classes.title}>Categories</Typography>

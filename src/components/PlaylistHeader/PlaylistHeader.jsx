@@ -1,4 +1,5 @@
-import React from 'react';
+import * as React from 'react';
+import PropTypes from 'prop-types';
 import { Avatar, Typography } from '@material-ui/core';
 import { parseTime } from '../../utils/handleTime';
 
@@ -38,3 +39,10 @@ const PlaylistHeader = ({ classes, data, playlistDuration, playList }) => (
 );
 
 export default PlaylistHeader;
+
+PlaylistHeader.propTypes = {
+    classes: PropTypes.object,
+    data: PropTypes.any,
+    playlistDuration: PropTypes.array,
+    playList: PropTypes.array
+};

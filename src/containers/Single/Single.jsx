@@ -10,7 +10,6 @@ import useFetch from '../../hooks/useFetch';
 import PlayListTrack from '../../components/PlayListTrack/PlayListTrack';
 import { parseTime } from '../../utils/handleTime';
 import { handleTrackData } from '../../utils/handletrackList';
-import PlaylistTracklist from '../../components/PlaylistTracklist/PlaylistTracklist';
 
 const useStyles = makeStyles({
     root: {

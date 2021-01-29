@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import routes from '../../routes/index';
 import SearchInput from '../../components/SearchInput/SearchInput';
+import User from '../../components/User/User';
 
 const useStyles = makeStyles({
     root: {
@@ -60,7 +60,7 @@ const useStyles = makeStyles({
     }
 });
 
-const Main = ({ token, user, logOut }) => {
+const Main = ({ token, logOut }) => {
     const classes = useStyles();
     return (
         <div className={classes.root}>
@@ -71,9 +71,7 @@ const Main = ({ token, user, logOut }) => {
                             <SearchInput token={token} />
                         </div>
                         <div className={classes.appBarrLeft}>
-                            <Typography variant="body2" className={classes.user}>
-                                {user}
-                            </Typography>
+                            <User classes={classes} token={token} />
                             <Button color="inherit" variant="text" onClick={() => logOut()}>
                                 Log Out
                             </Button>

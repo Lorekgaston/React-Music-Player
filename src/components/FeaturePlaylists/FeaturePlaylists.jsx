@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import CoverCard from '../CoverCard/CoverCard';
@@ -36,23 +37,6 @@ const FeaturePlaylists = ({ data }) => {
 
 export default FeaturePlaylists;
 
-// <>
-//     {isLoading ? (
-//         <Typography className={classes.title}>Loading...</Typography>
-//     ) : (
-//         <>
-//             <Typography className={classes.title}>Feature Playlists</Typography>
-//             <div style={{ display: 'flex' }}>
-//                 {data?.data.playlists.items.length > 0 &&
-//                     data?.data.playlists.items.map((playlist, idx) => (
-//                         <CoverCard
-//                             key={playlist.id + idx}
-//                             image={playlist.images[0].url}
-//                             name={playlist.name}
-//                             param={`/playlist/${playlist.id}`}
-//                         />
-//                     ))}
-//             </div>
-//         </>
-//     )}
-// </>
+FeaturePlaylists.propTypes = {
+    data: PropTypes.any
+};

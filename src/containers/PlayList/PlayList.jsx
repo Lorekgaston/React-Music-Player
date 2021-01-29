@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
-import { setAudio, setTrackList } from '../../redux/actions/controller';
+import { setTrackList } from '../../redux/actions/controller';
 import { useParams } from 'react-router-dom';
 import { Paper } from '@material-ui/core';
 import useFetch from '../../hooks/useFetch';

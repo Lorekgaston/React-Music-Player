@@ -1,23 +1,11 @@
 import * as React from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import useFetch from '../../hooks/useFetch';
 import CoverCard from '../CoverCard/CoverCard';
 
 const useStyles = makeStyles({
-    // card: {
-    //     backgroundColor: '#202020',
-    //     color: '#ffff',
-    //     borderRadius: 5,
-    //     width: 160,
-    //     margin: 10,
-    //     padding: '0.9rem',
-    //     cursor: 'pointer',
-    //     '&:hover': {
-    //         backgroundColor: '#282828'
-    //     }
-    // },
     card: {
         position: 'relative',
         backgroundColor: '#202020',
@@ -42,19 +30,10 @@ const useStyles = makeStyles({
     text: {
         textOverflow: 'ellipsis'
     },
-    // title: {
-    //     fontSize: 30,
-    //     fontWeight: 700,
-    //     color: '#ffff',
-    //     padding: 15,
-    //     margin: '15px 0',
-    //     textTransform: 'capitalize'
-    // }
     title: {
         fontSize: 30,
         fontWeight: 700,
         color: '#ffff',
-        // padding: 15,
         margin: '0 10px',
         textTransform: 'capitalize'
     }
@@ -62,7 +41,6 @@ const useStyles = makeStyles({
 
 const CategoryPage = () => {
     const { id } = useParams();
-    const history = useHistory();
     const classes = useStyles();
 
     const { data, isLoading } = useFetch(
