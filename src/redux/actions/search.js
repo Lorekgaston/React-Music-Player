@@ -24,7 +24,7 @@ export const fetchPlaylist = (string, token) => {
         dispatch(setLoading);
         try {
             const response = await axios.get(
-                `https://api.spotify.com/v1/search?q=${string}&type=playlist&limit=15`,
+                `https://api.spotify.com/v1/search?q=${string}&type=playlist&limit=30`,
                 {
                     headers: {
                         Authorization: 'Bearer ' + token

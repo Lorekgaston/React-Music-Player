@@ -1,6 +1,6 @@
 import * as React from 'react';
-import axios from 'axios';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { fetchPlaylist } from '../../redux/actions/search';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
@@ -35,12 +35,17 @@ const useStyles = makeStyles({
     }
 });
 const SearchInput = ({ token }) => {
-    const classes = useStyles();
     const dispatch = useDispatch();
+    const history = useHistory();
+    const classes = useStyles();
     const [value, setValue] = React.useState('');
     const handleChage = e => {
         e.preventDefault();
         setValue(e.target.value);
+        history.push('/search');
+        if (!value) {
+            return history.push('/home');
+        }
     };
 
     React.useEffect(() => {

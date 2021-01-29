@@ -3,6 +3,7 @@ import CategoryPage from '../components/CategoryPage/CategoryPage';
 import Playlist from '../containers/PlayList/PlayList';
 import Home from '../components/Home/Home';
 import Single from '../containers/Single/Single';
+import SearchResults from '../components/SearchResults';
 
 const routes = [
     {
@@ -24,6 +25,10 @@ const routes = [
     {
         path: '/single/:id',
         component: Single
+    },
+    {
+        path: '/search',
+        component: SearchResults
     }
 ];
 
