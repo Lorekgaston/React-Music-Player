@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import useFetchHomeData from '../../hooks/useFetchHomeData';
-import FeaturePlaylists from '../FeaturePlaylists/FeaturePlaylists';
-import RecentlyPlayed from '../RecentlyPlayed/RecentlyPlayed';
-import Recommendations from '../Recommendations/Recommendations';
+import FeaturePlaylists from '../../components/FeaturePlaylists/FeaturePlaylists';
+import RecentlyPlayed from '../../components/RecentlyPlayed/RecentlyPlayed';
+import Recommendations from '../../components/Recommendations/Recommendations';
 import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles({
@@ -16,7 +16,6 @@ const useStyles = makeStyles({
 
 const Home = ({ token }) => {
     const classes = useStyles();
-    const { user: { country } = {} } = useSelector(state => state.user);
     const { featuredPlaylists, recentlyPlayed, recommendations, isLoading } = useFetchHomeData(
         [
             `https://api.spotify.com/v1/me/top/tracks?limit=8`,
@@ -25,7 +24,6 @@ const Home = ({ token }) => {
         ],
         token
     );
-    console.log(recommendations, country);
     return (
         <>
             {isLoading ? (
@@ -50,3 +48,7 @@ const Home = ({ token }) => {
 };
 
 export default Home;
+
+Home.propTypes = {
+    token: PropTypes.string
+};

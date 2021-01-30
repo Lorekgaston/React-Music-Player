@@ -1,7 +1,7 @@
-import Categories from '../components/Categories/Categories';
-import CategoryPage from '../components/CategoryPage/CategoryPage';
+import Categories from '../containers/Categories/Categories';
+import CategoryPlaylists from '../components/CategoryPlaylists/CategoryPlaylists';
 import Playlist from '../containers/PlayList/PlayList';
-import Home from '../components/Home/Home';
+import Home from '../containers/Home/Home';
 import Single from '../containers/Single/Single';
 import SearchResults from '../components/SearchResults';
 
@@ -16,7 +16,7 @@ const routes = [
     },
     {
         path: '/categoryPage/:id',
-        component: CategoryPage
+        component: CategoryPlaylists
     },
     {
         path: '/playlist/:id',

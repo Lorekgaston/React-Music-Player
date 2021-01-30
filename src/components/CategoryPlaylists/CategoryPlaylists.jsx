@@ -39,7 +39,7 @@ const useStyles = makeStyles({
     }
 });
 
-const CategoryPage = () => {
+const CategoryPlaylists = () => {
     const { id } = useParams();
     const classes = useStyles();
 
@@ -71,7 +71,7 @@ const CategoryPage = () => {
     );
 };
 
-export default CategoryPage;
+export default CategoryPlaylists;
 
 {
     /* <Card

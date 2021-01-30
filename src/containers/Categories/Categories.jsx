@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import useFetchCategories from '../../hooks/useFetchCategories';
-
-import CategoriesList from './CategoriesList/CategoriesList';
+import CategoriesList from '../../components/CategoriesList/CategoriesList';
 
 const useStyles = makeStyles({
     title: {
@@ -16,7 +15,6 @@ const useStyles = makeStyles({
 
 const Categories = () => {
     const classes = useStyles();
-
     const { catergories, isLoading } = useFetchCategories(
         'https://api.spotify.com/v1/browse/categories?offset=0&limit=30'
     );

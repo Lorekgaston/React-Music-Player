@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import CoverCard from '../CoverCard/CoverCard';
@@ -42,3 +43,7 @@ const Recommendations = ({ data }) => {
 };
 
 export default Recommendations;
+
+Recommendations.propTypes = {
+    data: PropTypes.array
+};

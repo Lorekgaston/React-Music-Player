@@ -15,7 +15,7 @@ const PlaylistHeader = ({ classes, data, playlistDuration, playList }) => (
             <Typography variant="body1" className={classes.headerType}>
                 {data?.type}
             </Typography>
-            <Typography variant="h2" className={classes.headerName}>
+            <Typography variant="h2" className={classes.headerName} noWrap={true}>
                 {data?.name}
             </Typography>
             <Typography variant="body1" className={classes.headerDescription}>

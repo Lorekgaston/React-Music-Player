@@ -27,7 +27,7 @@ export const useStyles = makeStyles({
         textTransform: 'uppercase'
     },
     headerName: {
-        fontSize: 100,
+        fontSize: 50,
         fontWeight: 600
     },
     headerDescription: {

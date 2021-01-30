@@ -1,7 +1,8 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import CoverCard from '../../CoverCard/CoverCard';
+import CoverCard from '../CoverCard/CoverCard';
 
 const useStyles = makeStyles({
     title: {
@@ -36,3 +37,7 @@ const CategoriesList = ({ data }) => {
 };
 
 export default CategoriesList;
+
+CategoriesList.propTypes = {
+    data: PropTypes.array
+};

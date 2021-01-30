@@ -12,7 +12,8 @@ import User from '../../components/User/User';
 const useStyles = makeStyles({
     root: {
         width: '100%',
-        overflowY: 'auto'
+        overflowY: 'auto',
+        overflowX: 'hidden'
     },
     nav: {
         height: '56px',
