@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import useFetchHomeData from '../../hooks/useFetchHomeData';
 import FeaturePlaylists from '../FeaturePlaylists/FeaturePlaylists';
@@ -13,14 +14,18 @@ const useStyles = makeStyles({
     }
 });
 
-const Home = () => {
+const Home = ({ token }) => {
     const classes = useStyles();
-    const { featuredPlaylists, recentlyPlayed, recommendations, isLoading } = useFetchHomeData([
-        `https://api.spotify.com/v1/me/player/recently-played?limit=8`,
-        `https://api.spotify.com/v1/browse/featured-playlists?limit=8&locale=us_AR`,
-        `https://api.spotify.com/v1/recommendations?limit=8&seed_genres=rock,jazz,blues,classical`
-    ]);
-    console.log(recommendations);
+    const { user: { country } = {} } = useSelector(state => state.user);
+    const { featuredPlaylists, recentlyPlayed, recommendations, isLoading } = useFetchHomeData(
+        [
+            `https://api.spotify.com/v1/me/top/tracks?limit=8`,
+            `https://api.spotify.com/v1/browse/featured-playlists?limit=8&locale=us_AR`,
+            `https://api.spotify.com/v1/recommendations?limit=8&seed_genres=rock,jazz,blues,classical`
+        ],
+        token
+    );
+    console.log(recommendations, country);
     return (
         <>
             {isLoading ? (

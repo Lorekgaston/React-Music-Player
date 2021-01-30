@@ -29,6 +29,7 @@ const useFetchHomeData = urls => {
             try {
                 const [resOne, resTwo, resThree] = await axios.all(requests);
                 console.log(resOne, resTwo, resThree);
+
                 setRecentlyPlayed(resOne);
                 setFeaturedPlaylists(resTwo);
                 setRecommendations(resThree);

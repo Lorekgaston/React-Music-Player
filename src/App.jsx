@@ -1,5 +1,4 @@
 import * as React from 'react';
-import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import ControlBar from './containers/ControlBar/ControlBar';
 import Main from './containers/Main/Main';
@@ -8,16 +7,15 @@ import Login from './components/Login/Login';
 import Navbar from './components/Navbar/Navbar';
 
 const audio = new Audio();
-const auth = getAuthToken();
-function App() {
+
+const { access_token } = getAuthToken();
+
+const App = () => {
     const history = useHistory();
     const [token, setToken] = React.useState(null);
-    const [user, setUser] = React.useState(null);
-
     React.useEffect(() => {
-        const _token = auth.access_token;
-        if (_token) {
-            setToken(_token);
+        if (access_token) {
+            setToken(access_token);
             history.push('/home');
         }
     }, []);
@@ -25,7 +23,7 @@ function App() {
     const logOut = () => {
         localStorage.removeItem('token');
         setToken(null);
-        history.push('/login');
+        // history.push('/login');
     };
     return (
         <div style={{ height: '100vh', minHeight: '100%' }}>
@@ -40,13 +38,13 @@ function App() {
                             display: 'flex'
                         }}>
                         <Navbar />
-                        <Main token={token} user={user} logOut={logOut} />
+                        <Main token={token} logOut={logOut} />
                     </div>
                     <ControlBar audio={audio} />
                 </>
             )}
         </div>
     );
-}
+};
 
 export default App;

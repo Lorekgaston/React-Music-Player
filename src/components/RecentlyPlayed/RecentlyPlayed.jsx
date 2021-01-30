@@ -24,15 +24,13 @@ const RecentlyPlayed = ({ data }) => {
                 {data?.data.items.length > 0 &&
                     data?.data.items.map((item, idx) => {
                         const {
-                            track: {
-                                name,
-                                album: { images },
-                                id
-                            }
+                            name,
+                            album: { images },
+                            id
                         } = item;
                         return (
                             <CoverCard
-                                key={item.track.id + idx}
+                                key={item.id + idx}
                                 image={images[0].url}
                                 name={name}
                                 param={`/single/${id}`}
