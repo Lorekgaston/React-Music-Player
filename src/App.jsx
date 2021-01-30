@@ -16,22 +16,8 @@ function App() {
 
     React.useEffect(() => {
         const _token = auth.access_token;
-
-        // const getUserInfo = async () => {
-        //     const res = await axios(`https://api.spotify.com/v1/me`, {
-        //         headers: {
-        //             Authorization: 'Bearer ' + _token
-        //         }
-        //     });
-        //     if (res) {
-        //         console.log(`logged as ${res.data}`);
-        //         setUser(res.data.email);
-        //     }
-        // };
-
         if (_token) {
             setToken(_token);
-            // getUserInfo();
             history.push('/home');
         }
     }, []);
