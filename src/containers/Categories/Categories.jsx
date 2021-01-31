@@ -1,7 +1,9 @@
 import * as React from 'react';
+import { useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import useFetchCategories from '../../hooks/useFetchCategories';
+// import useFetchCategories from '../../hooks/useFetchCategories';
 import CategoriesList from '../../components/CategoriesList/CategoriesList';
+import { fetchCategories } from '../../redux/actions/categories';
 
 const useStyles = makeStyles({
     title: {
@@ -12,19 +14,27 @@ const useStyles = makeStyles({
         textTransform: 'capitalize'
     }
 });
+const useFetchCategories = action => {
+    const dispatch = useDispatch();
+    React.useEffect(() => {
+        dispatch(action);
+    }, []);
+};
 
 const Categories = () => {
+    // const categories = useSelector(state => state.categories)
     const classes = useStyles();
-    const { catergories, isLoading } = useFetchCategories(
-        'https://api.spotify.com/v1/browse/categories?offset=0&limit=30'
-    );
+    // const { catergories, isLoading } = useFetchCategories(
+    //     'https://api.spotify.com/v1/browse/categories?offset=0&limit=30'
+    // );
+    const { categories, isLoading, error } = useFetchCategories(fetchCategories);
     return (
         <>
             {isLoading ? (
                 <h1 className={classes.title}>Loading....</h1>
             ) : (
                 <section>
-                    <CategoriesList data={catergories} />
+                    <CategoriesList data={categories} />
                 </section>
             )}
         </>

@@ -15,3 +15,7 @@ export const SET_ERROR = 'SET_ERROR';
 export const GET_USER = 'GET_USER';
 export const SET_USER = 'SET_USER';
 export const SET_TOKEN = 'SET_TOKEN';
+//Fetch categories actionTypes
+export const FETCH_CATEGORIES_SUCCEDED = 'FETCH_CATEGORIES_SUCCEDED';
+export const FETCH_CATEGORIES_REQUESTED = 'FETCH_CATEGORIES_REQUESTED';
+export const FETCH_CATEGORIES_FAILED = 'FETCH_CATEGORIES_FAILED';
