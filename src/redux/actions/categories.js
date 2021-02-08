@@ -12,10 +12,10 @@ const fetchCategoriesSuccess = category => {
         category
     };
 };
-const fetchCategoriesFailure = error => {
+const fetchCategoriesFailure = message => {
     return {
         type: actionType.FETCH_CATEGORIES_FAILED,
-        error
+        message
     };
 };
 
@@ -23,11 +23,14 @@ export const fetchCategories = token => {
     return async dispatch => {
         dispatch(fetchCategoriesRequest);
         try {
-            const response = await axios.get(``, {
-                headers: {
-                    Authorization: 'Bearer ' + token
+            const response = await axios.get(
+                `https://api.spotify.com/v1/browse/categories?offset=0&limit=30`,
+                {
+                    headers: {
+                        Authorization: 'Bearer ' + token
+                    }
                 }
-            });
+            );
             const { data: { categories: { items } = {} } = {} } = response || {};
             dispatch(fetchCategoriesSuccess(items));
         } catch (err) {

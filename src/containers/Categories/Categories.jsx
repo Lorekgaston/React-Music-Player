@@ -1,9 +1,13 @@
 import * as React from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 // import useFetchCategories from '../../hooks/useFetchCategories';
 import CategoriesList from '../../components/CategoriesList/CategoriesList';
 import { fetchCategories } from '../../redux/actions/categories';
+import { getAuthToken } from '../../Auth';
+import useThunkAction from '../../hooks/UseThunkAction';
+
+const { access_token } = getAuthToken();
 
 const useStyles = makeStyles({
     title: {
@@ -14,22 +18,26 @@ const useStyles = makeStyles({
         textTransform: 'capitalize'
     }
 });
-const useFetchCategories = action => {
-    const dispatch = useDispatch();
-    React.useEffect(() => {
-        dispatch(action);
-    }, []);
-};
+
+// const useFetchCategories = action => {
+//     const dispatch = useDispatch();
+//     React.useEffect(() => {
+//         dispatch(action);
+//     }, []);
+// };
 
 const Categories = () => {
-    // const categories = useSelector(state => state.categories)
+    // const { categories, isLoading, error } = useSelector(state => state.categories);
     const classes = useStyles();
     // const { catergories, isLoading } = useFetchCategories(
     //     'https://api.spotify.com/v1/browse/categories?offset=0&limit=30'
     // );
-    const { categories, isLoading, error } = useFetchCategories(fetchCategories);
+    const { categories, isLoading, error, errorMessage } = useThunkAction(
+        fetchCategories(access_token)
+    );
     return (
         <>
+            {error && <h1>{errorMessage}</h1>}
             {isLoading ? (
                 <h1 className={classes.title}>Loading....</h1>
             ) : (

@@ -21,8 +21,8 @@ export const getAuthToken = () => {
         .substring(1)
         .split('&')
         .reduce((intial, item) => {
-            let parts = item.split('=');
-            intial[parts[0]] = decodeURIComponent(parts[1]);
+            let redirectUrl = item.split('=');
+            intial[redirectUrl[0]] = decodeURIComponent(redirectUrl[1]);
             return intial;
         }, {});
 };

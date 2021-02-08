@@ -1,11 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import useFetchHomeData from '../../hooks/useFetchHomeData';
 import FeaturePlaylists from '../../components/FeaturePlaylists/FeaturePlaylists';
 import RecentlyPlayed from '../../components/RecentlyPlayed/RecentlyPlayed';
 import Recommendations from '../../components/Recommendations/Recommendations';
 import { Typography } from '@material-ui/core';
+import { fetchHomeData } from '../../redux/actions/homeData';
 
 const useStyles = makeStyles({
     section: {
@@ -14,18 +15,27 @@ const useStyles = makeStyles({
     }
 });
 
-const Home = ({ token }) => {
+const useThunkAction = action => {
+    const dispatch = useDispatch();
+    React.useEffect(() => {
+        dispatch(action);
+    }, []);
+};
+
+const Home = () => {
     const classes = useStyles();
-    const { featuredPlaylists, recentlyPlayed, recommendations, isLoading } = useFetchHomeData(
-        [
-            `https://api.spotify.com/v1/me/top/tracks?limit=8`,
-            `https://api.spotify.com/v1/browse/featured-playlists?limit=8&locale=us_AR`,
-            `https://api.spotify.com/v1/recommendations?limit=8&seed_genres=rock,jazz,blues,classical`
-        ],
-        token
-    );
+    const {
+        recentlyPlayed,
+        featuredPlaylists,
+        recommendations,
+        isLoading,
+        error,
+        errorMessage
+    } = useSelector(state => state.homeData);
+    useThunkAction(fetchHomeData());
     return (
         <>
+            {error && <Typography>{errorMessage}</Typography>}
             {isLoading ? (
                 <div style={{ padding: '24px 32px 0', display: 'flex', justifyContent: 'center' }}>
                     <Typography>Loading...</Typography>

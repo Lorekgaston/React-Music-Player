@@ -16,6 +16,7 @@ const App = () => {
     React.useEffect(() => {
         if (access_token) {
             setToken(access_token);
+            localStorage.setItem('token', access_token);
             history.push('/home');
         }
     }, []);

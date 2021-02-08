@@ -1,26 +1,31 @@
 import * as actionType from '../actionTypes';
 
-const intialState = {
-    categories: [],
+const initialState = {
+    recentlyPlayed: null,
+    featuredPlaylists: null,
+    recommendations: null,
     isLoading: false,
     error: false,
     errorMessage: ''
 };
 
-const reducer = (state = intialState, action) => {
+const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionType.FETCH_CATEGORIES_REQUESTED:
+        case actionType.FETCH_HOME_REQUESTED:
             return {
                 ...state,
                 isLoading: true
             };
-        case actionType.FETCH_CATEGORIES_SUCCEDED:
+        case actionType.FETCH_HOME_SUCCEDED:
+            console.log(action);
             return {
                 ...state,
-                categories: action.category,
+                recentlyPlayed: action.data.responseOne,
+                featuredPlaylists: action.data.responseTwo,
+                recommendations: action.data.responseThree,
                 isLoading: false
             };
-        case actionType.FETCH_CATEGORIES_FAILED:
+        case actionType.FETCH_HOME_FAILED:
             return {
                 ...state,
                 error: true,
