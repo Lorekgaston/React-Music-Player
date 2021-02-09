@@ -24,7 +24,7 @@ const App = () => {
     const logOut = () => {
         localStorage.removeItem('token');
         setToken(null);
-        // history.push('/login');
+        history.push('/');
         audio.src = null;
     };
     return (
