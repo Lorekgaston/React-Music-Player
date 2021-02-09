@@ -6,7 +6,6 @@ import { green, grey } from '@material-ui/core/colors';
 import Link from '@material-ui/core/Link';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
-import InstagramIcon from '@material-ui/icons/Instagram';
 import { redirect_url } from '../../Auth';
 
 const useStyles = makeStyles({
@@ -77,9 +76,18 @@ const Login = () => {
                     </Link>
                 </Typography>
                 <div className={classes.contact}>
-                    <LinkedInIcon className={classes.icon} fontSize="large" />
-                    <InstagramIcon className={classes.icon} fontSize="large" />
-                    <GitHubIcon className={classes.icon} fontSize="large" />
+                    <Link
+                        className={classes.icon}
+                        color="inherit"
+                        href="https://www.linkedin.com/in/gaston-lorek-3587121b9/">
+                        <LinkedInIcon fontSize="large" />
+                    </Link>
+                    <Link
+                        className={classes.icon}
+                        color="inherit"
+                        href="https://github.com/Lorekgaston?tab=repositories">
+                        <GitHubIcon className={classes.icon} fontSize="large" />
+                    </Link>
                 </div>
             </div>
         </div>
