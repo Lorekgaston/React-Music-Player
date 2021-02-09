@@ -98,22 +98,6 @@ const Navbar = () => {
                         }
                     />
                 </ListItem>
-                <ListItem
-                    className={classes.item}
-                    button
-                    selected={selectedIndex === 2}
-                    onClick={event => handleListItemClick(event, 2)}>
-                    <PlaylistPlayIcon className={classes.icon} />
-                    <ListItemText
-                        primary={
-                            <>
-                                <Typography variant="body1" className={classes.text}>
-                                    Your Playlist
-                                </Typography>
-                            </>
-                        }
-                    />
-                </ListItem>
             </List>
         </Paper>
     );
