@@ -10,7 +10,14 @@ import { redirect_url } from '../../Auth';
 
 const useStyles = makeStyles({
     root: {
-        backgroundColor: grey[900],
+        background: `linear-gradient(
+            360deg,
+            rgba(0, 0, 0, 0.8),
+            rgba(0, 0, 0, 0.4)
+          ),
+          url(https://res.cloudinary.com/dxk8kglks/image/upload/v1612903113/Home/zac-bromell-QwrTnOlWAmI-unsplash_pc4ti6.jpg)`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
         height: '100vh',
         color: '#fff',
         display: 'flex',
@@ -49,6 +56,13 @@ const useStyles = makeStyles({
         '&:hover': {
             color: green[600]
         }
+    },
+    credit: {
+        position: 'absolute',
+        left: 0,
+        bottom: '10px',
+        fontSize: 10,
+        color: 'inherit'
     }
 });
 
@@ -88,6 +102,22 @@ const Login = () => {
                         href="https://github.com/Lorekgaston?tab=repositories">
                         <GitHubIcon className={classes.icon} fontSize="large" />
                     </Link>
+                </div>
+                <div className={classes.credit}>
+                    <span>
+                        Photo by{' '}
+                        <Link
+                            color="secondary"
+                            href="https://unsplash.com/@z5a1nt?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">
+                            Zac Bromell
+                        </Link>{' '}
+                        on{' '}
+                        <Link
+                            color="secondary"
+                            href="https://unsplash.com/s/photos/dj?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">
+                            Unsplash
+                        </Link>
+                    </span>
                 </div>
             </div>
         </div>
