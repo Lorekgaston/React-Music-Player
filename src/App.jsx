@@ -25,6 +25,7 @@ const App = () => {
         localStorage.removeItem('token');
         setToken(null);
         // history.push('/login');
+        audio.src = null;
     };
     return (
         <div style={{ height: '100vh', minHeight: '100%' }}>
