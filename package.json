@@ -9,6 +9,7 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.21.1",
+    "eslint": "6.8",
     "react": "^16.13.1",
     "react-audio-player": "^0.14.0",
     "react-dom": "^16.13.1",
@@ -43,7 +44,6 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.10.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-config-prettier": "^6.12.0",
     "eslint-plugin-import": "^2.22.1",
