@@ -1,4 +1,4 @@
-## Shopping Cart React-Redux
+## Try the app here [React-Music-App](https://wonderful-easley-fe6f40.netlify.app)
 
 ### Project Setup
 
