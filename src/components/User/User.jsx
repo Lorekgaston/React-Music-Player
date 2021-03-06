@@ -11,14 +11,12 @@ const useFetchUser = action => {
     }, []);
 };
 
-const User = ({ classes, token }) => {
+const User = ({ token }) => {
     const { user: { display_name } = {} } = useSelector(state => state.user);
     useFetchUser(fetchUser(token));
     return (
         <>
-            <Typography variant="body2" className={classes.user}>
-                {display_name}
-            </Typography>
+            <Typography variant="body2">{display_name}</Typography>
         </>
     );
 };
@@ -26,6 +24,5 @@ const User = ({ classes, token }) => {
 export default User;
 
 User.propTypes = {
-    classes: PropTypes.object,
     token: PropTypes.string
 };

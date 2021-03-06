@@ -1,0 +1,35 @@
+.Card {
+    position: 'relative';
+    background: #202020;
+    color: #ffff;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 6em;
+    min-height: 10em;
+    margin: 10px;
+    padding: 0.9em;
+    grid-row: 1;
+    &__media {
+        width: 70%;
+    }
+    &__cardContent {
+        padding: 0.5em 0;
+    }
+}
+
+@media (min-width: 600px) {
+    .Card {
+        max-width: 154px;
+        min-height: 260px;
+        cursor: 'pointer';
+        &:hover {
+            background-color: '#282828';
+        }
+        &__media {
+            height: 170px;
+        }
+        &__cardContent {
+            padding: '10px 0';
+        }
+    }
+}

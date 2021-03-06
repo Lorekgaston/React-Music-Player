@@ -15,6 +15,9 @@ const useStyles = makeStyles({
         color: grey[50],
         marginLeft: '10px',
         marginRight: '10px'
+    },
+    icons: {
+        color: grey[100]
     }
 });
 
@@ -53,19 +56,19 @@ const VolumeController = ({ value, handleVolume, handleMuted, muted }) => {
             <IconButton onClick={() => handleMuted()}>
                 {!muted && value !== 0 ? (
                     value <= 35 && value >= 1 ? (
-                        <VolumeMuteIcon />
+                        <VolumeMuteIcon className={classes.icons} />
                     ) : value <= 75 && value >= 36 ? (
-                        <VolumeDownIcon />
+                        <VolumeDownIcon className={classes.icons} />
                     ) : value === 0 ? (
-                        <VolumeOffIcon />
+                        <VolumeOffIcon className={classes.icons} />
                     ) : (
-                        <VolumeUpIcon />
+                        <VolumeUpIcon className={classes.icons} />
                     )
                 ) : (
-                    <VolumeOffIcon />
+                    <VolumeOffIcon className={classes.icons} />
                 )}
             </IconButton>
-            <VolumeSlider value={value} onChange={handleVolume} className={classes.slider} />
+            {/* <VolumeSlider value={value} onChange={handleVolume} className={classes.slider} /> */}
         </>
     );
 };

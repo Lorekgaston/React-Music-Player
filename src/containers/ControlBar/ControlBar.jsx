@@ -7,6 +7,9 @@ import Progress from '../../components/Progress/Progress';
 import ControlButtons from '../../components/ControlButtons/ControlButtons';
 import NowPlaying from '../../components/NowPlaying/NowPlaying';
 import { useStyles } from './styles';
+import './ControlBar.scss';
+import QueueMusicIcon from '@material-ui/icons/QueueMusic';
+import { IconButton } from '@material-ui/core';
 
 const ControlBar = ({ audio }) => {
     const dispatch = useDispatch();
@@ -112,16 +115,25 @@ const ControlBar = ({ audio }) => {
         dispatch(setProgress(Math.floor((audio.currentTime / audio.duration) * 100)));
 
     return (
-        <div className={classes.root}>
-            <div className={classes.name}>
+        <div className="Controlbar">
+            {/* <div className="Controlbar__nowPlaying">
                 {isSingle ? (
                     <NowPlaying track={currentTrack} />
                 ) : (
                     <NowPlaying track={trackList[index]} />
                 )}
+            </div> */}
+            <div className="Controlbar__progressbar">
+                {/* <Progress audio={audio} progress={progress} /> */}
+                {/* <div className="Controlbar__progressbar_bar"></div> */}
             </div>
-            <div className={classes.control}>
+            <div className="Controlbar__bottomContainer">
                 <div>
+                    <IconButton>
+                        <QueueMusicIcon fontSize="medium" className="Controlbar__icons" />
+                    </IconButton>
+                </div>
+                <div className="Controlbar__controlButtons">
                     <ControlButtons
                         playing={songPlaying}
                         handlePlaying={musicHandler}
@@ -130,17 +142,14 @@ const ControlBar = ({ audio }) => {
                         isSingle={isSingle}
                     />
                 </div>
-                <div className={classes.progressContainer}>
-                    <Progress audio={audio} progress={progress} />
+                <div className="">
+                    <VolumeController
+                        value={volume}
+                        handleVolume={volumeHandler}
+                        muted={isMuted}
+                        handleMuted={mutedHandler}
+                    />
                 </div>
-            </div>
-            <div className={classes.volume}>
-                <VolumeController
-                    value={volume}
-                    handleVolume={volumeHandler}
-                    muted={isMuted}
-                    handleMuted={mutedHandler}
-                />
             </div>
         </div>
     );

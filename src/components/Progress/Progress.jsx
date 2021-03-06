@@ -21,7 +21,8 @@ const useStyles = makeStyles({
 const ProgressSlider = withStyles({
     root: {
         color: green[600],
-        height: 2
+        height: 2,
+        width: '100%'
     },
     thumb: {
         height: 12,

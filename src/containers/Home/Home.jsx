@@ -1,19 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { makeStyles } from '@material-ui/core/styles';
-import FeaturePlaylists from '../../components/FeaturePlaylists/FeaturePlaylists';
-import RecentlyPlayed from '../../components/RecentlyPlayed/RecentlyPlayed';
-import Recommendations from '../../components/Recommendations/Recommendations';
 import { Typography } from '@material-ui/core';
 import { fetchHomeData } from '../../redux/actions/homeData';
-
-const useStyles = makeStyles({
-    section: {
-        minHeight: 300,
-        marginBottom: 12
-    }
-});
+import './Home.scss';
+import CardListSection from '../../components/CardListSection/CardListSection';
+import CoverCard from '../../components/CoverCard/CoverCard';
 
 const useThunkAction = action => {
     const dispatch = useDispatch();
@@ -23,7 +15,6 @@ const useThunkAction = action => {
 };
 
 const Home = () => {
-    const classes = useStyles();
     const {
         recentlyPlayed,
         featuredPlaylists,
@@ -42,15 +33,55 @@ const Home = () => {
                 </div>
             ) : (
                 <>
-                    <section className={classes.section}>
-                        <RecentlyPlayed data={recentlyPlayed} />
-                    </section>
-                    <section className={classes.section}>
-                        <Recommendations data={recommendations} />
-                    </section>
-                    <section className={classes.section}>
-                        <FeaturePlaylists data={featuredPlaylists} />
-                    </section>
+                    <CardListSection title={'Recently Played'}>
+                        {recentlyPlayed?.data.items.length > 0 &&
+                            recentlyPlayed?.data.items.map((item, idx) => {
+                                const {
+                                    name,
+                                    album: { images },
+                                    id
+                                } = item;
+                                return (
+                                    <CoverCard
+                                        key={item.id + idx}
+                                        image={images[0].url}
+                                        name={name}
+                                        param={`/single/${id}`}
+                                    />
+                                );
+                            })}
+                    </CardListSection>
+
+                    <CardListSection title={'Recommendations'}>
+                        {recommendations?.data.tracks.length > 0 &&
+                            recommendations?.data.tracks.map((item, idx) => {
+                                const {
+                                    name,
+                                    id,
+                                    album: { images }
+                                } = item;
+                                return (
+                                    <CoverCard
+                                        key={item.id + idx}
+                                        image={images[0]?.url}
+                                        name={name}
+                                        param={`/single/${id}`}
+                                    />
+                                );
+                            })}
+                    </CardListSection>
+
+                    <CardListSection title={'Featured Playlists'}>
+                        {featuredPlaylists?.data.playlists.items.length > 0 &&
+                            featuredPlaylists?.data.playlists.items.map((playlist, idx) => (
+                                <CoverCard
+                                    key={playlist.id + idx}
+                                    image={playlist.images[0].url}
+                                    name={playlist.name}
+                                    param={`/playlist/${playlist.id}`}
+                                />
+                            ))}
+                    </CardListSection>
                 </>
             )}
         </>

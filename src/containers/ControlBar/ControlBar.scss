@@ -1,0 +1,34 @@
+.Controlbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #070505;
+    &__progressbar {
+        position: relative;
+        width: 100%;
+        height: 10px;
+        background: #9e9e9e;
+        &_bar {
+            position: absolute;
+            width: 100%;
+            height: 10px;
+            background: chartreuse;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+    }
+    &__bottomContainer {
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    &__icons {
+        color: #fff;
+    }
+}

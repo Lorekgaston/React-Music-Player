@@ -28,20 +28,12 @@ const App = () => {
         audio.src = null;
     };
     return (
-        <div style={{ height: '100vh', minHeight: '100%' }}>
+        <div>
             {!token ? (
                 <Login />
             ) : (
                 <>
-                    <div
-                        style={{
-                            height: 'calc(100vh - 90px)',
-                            background: '#121212',
-                            display: 'flex'
-                        }}>
-                        <Navbar />
-                        <Main token={token} logOut={logOut} />
-                    </div>
+                    <Main token={token} logOut={logOut} />
                     <ControlBar audio={audio} />
                 </>
             )}
