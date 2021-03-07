@@ -34,7 +34,6 @@
         list-style: none;
         display: flex;
         flex-direction: column;
-        border-bottom: 1px solid rgb(49, 28, 65);
     }
     &__link {
         text-decoration: none;
@@ -51,7 +50,9 @@
     }
     &__user {
         display: block;
-        padding: 0 1rem;
+        padding: 1em 1em;
+        text-transform: capitalize;
+        border-bottom: 1px solid rgb(49, 28, 65);
     }
     &__icon {
         display: block;
@@ -61,15 +62,29 @@
         }
     }
     &__button {
-        width: 10%;
-        height: 100%;
-        padding-top: 5px;
+        justify-self: flex-end;
+        width: 90%;
+        margin-top: 15em;
+        padding: 1em 1em;
+    }
+    &__logo {
+        width: 50px;
+        & img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .MuiButtonBase-root.MuiButton-root.MuiButton-contained {
+        color: #f5e8ff;
+        width: 100%;
+        font-weight: 600;
+        background: rgba(49, 28, 65, 0.9);
     }
 }
 
 .open {
     height: 100vh;
-    top: 2.9em;
+    top: 3.6em;
     z-index: 90;
     opacity: 1;
 }

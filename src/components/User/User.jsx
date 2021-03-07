@@ -16,7 +16,7 @@ const User = ({ token }) => {
     useFetchUser(fetchUser(token));
     return (
         <>
-            <Typography variant="body2">{display_name}</Typography>
+            <Typography variant="h6">{display_name}</Typography>
         </>
     );
 };
