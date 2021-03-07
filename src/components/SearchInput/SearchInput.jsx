@@ -14,7 +14,7 @@ const useStyles = makeStyles({
         backgroundColor: '#fff',
         borderRadius: 100,
         height: 35,
-        width: '90%',
+        width: '100%',
         '& .MuiOutlinedInput-root': {
             '&.Mui-focused fieldset': {
                 borderColor: green[600],

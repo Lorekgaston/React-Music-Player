@@ -1,41 +1,10 @@
 .Main {
-    background: #f5f4f4;
+    background: #f5f1f8;
+    background: #101010;
     &__body {
+        padding: 80px 0;
         position: relative;
-        width: 97%;
-        padding: 0 auto;
+        width: 100%;
         overflow: scroll;
-    }
-}
-.Navbar {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: rgb(37, 36, 35);
-    background: linear-gradient(10deg, rgba(37, 36, 35, 0.9) 24%, rgba(49, 28, 65, 0.9) 73%);
-    // background: linear-gradient(9deg, rgba(37, 36, 35, 0.8) 24%, rgba(21, 33, 105, 1) 73%);
-    padding: 0.5em;
-    color: #fff;
-    &__topbar {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-    }
-    &__searchbar {
-        text-align: center;
-        width: 100%;
-    }
-}
-
-@media (min-width: 600px) {
-    .Navbar {
-        &__topbar {
-            justify-content: flex-end;
-        }
-        flex-direction: row-reverse;
-        justify-content: space-between;
-        &__searchbar {
-            width: 50%;
-        }
     }
 }

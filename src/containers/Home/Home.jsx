@@ -32,7 +32,7 @@ const Home = () => {
                     <Typography>Loading...</Typography>
                 </div>
             ) : (
-                <>
+                <div className="Home">
                     <CardListSection title={'Recently Played'}>
                         {recentlyPlayed?.data.items.length > 0 &&
                             recentlyPlayed?.data.items.map((item, idx) => {
@@ -82,7 +82,7 @@ const Home = () => {
                                 />
                             ))}
                     </CardListSection>
-                </>
+                </div>
             )}
         </>
     );

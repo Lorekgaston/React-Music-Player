@@ -26,9 +26,9 @@ export const fetchHomeData = () => {
     return async dispatch => {
         dispatch(fetchHomeRequest);
         const requests = [
-            `https://api.spotify.com/v1/me/top/tracks?limit=8`,
-            `https://api.spotify.com/v1/browse/featured-playlists?limit=8&locale=us_AR`,
-            `https://api.spotify.com/v1/recommendations?limit=8&seed_genres=rock,jazz,blues,classical`
+            `https://api.spotify.com/v1/me/top/tracks?limit=10`,
+            `https://api.spotify.com/v1/browse/featured-playlists?limit=10&locale=us_AR`,
+            `https://api.spotify.com/v1/recommendations?limit=10&seed_genres=rock,jazz,blues,classical`
         ].map(url =>
             axios
                 .get(url, {
