@@ -24,7 +24,7 @@ export const fetchCategories = token => {
         dispatch(fetchCategoriesRequest);
         try {
             const response = await axios.get(
-                `https://api.spotify.com/v1/browse/categories?offset=0&limit=30`,
+                `https://api.spotify.com/v1/browse/categories?offset=0&limit=50`,
                 {
                     headers: {
                         Authorization: 'Bearer ' + token

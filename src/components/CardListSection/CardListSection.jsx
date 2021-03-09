@@ -5,9 +5,7 @@ import './CardListSection.scss';
 
 const CardListSection = ({ children, title }) => (
     <>
-        <Typography className="Title" variant="h3">
-            {title}
-        </Typography>
+        <Typography variant="h3">{title}</Typography>
         <div className="CardListSection">{children}</div>
     </>
 );

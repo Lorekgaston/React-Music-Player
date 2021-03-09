@@ -22,111 +22,79 @@ const Header = ({ token }) => {
     const [isClicked, setIsClicked] = React.useState(false);
     const { isMobile } = useResize();
 
-    const handleClasses = () => {
-        const classes = ['Navbar__nav'];
-        if (isClicked) {
-            classes.push('open');
-        }
-        return classes;
-    };
-
-    const renderMobileHeader = () => (
-        <>
-            <div className="Navbar__container">
-                <div className="Navbar__searchbar">
-                    <SearchInput token={token} />
-                </div>
-                <Menu isClicked={isClicked}>
-                    <div className="Navbar__user">
-                        <User token={token} />
-                    </div>
-                    <ul className="Navbar__menu">
-                        <li className="Navbar__menuItem" onClick={() => setIsClicked(false)}>
-                            <Link className="Navbar__link" to="/home">
-                                Home
-                            </Link>
-                        </li>
-                        <li className="Navbar__menuItem" onClick={() => setIsClicked(false)}>
-                            <Link className="Navbar__link" to="/categories">
-                                Categories
-                            </Link>
-                        </li>
-                        <li className="Navbar__menuItem" onClick={() => setIsClicked(false)}>
-                            <Link className="Navbar__link" to="/search">
-                                Search
-                            </Link>
-                        </li>
-                        <li>
-                            <div className="Navbar__button">
-                                <Button color="inherit" variant="text">
-                                    Log Out
-                                </Button>
-                            </div>
-                        </li>
-                    </ul>
-                </Menu>
-
-                <div className="Navbar__iconContainer">
-                    {isClicked ? (
-                        <CloseRoundedIcon
-                            className="Navbar__icon"
-                            onClick={() => setIsClicked(prevState => !prevState)}
-                        />
-                    ) : (
-                        <MenuIcon
-                            className="Navbar__icon"
-                            onClick={() => setIsClicked(prevState => !prevState)}
-                        />
-                    )}
-                </div>
-            </div>
-        </>
-    );
-
     return (
         <div className="Navbar">
             <div className="Navbar__container">
                 <div className="Navbar__logo">
                     <img src={logo} alt="" />
                 </div>
-                <Menu isClicked={isClicked}>
-                    <div className="Navbar__user">
-                        <User token={token} />
-                    </div>
-                    <ul className="Navbar__menu">
-                        <li className="Navbar__menuItem" onClick={() => setIsClicked(false)}>
-                            <Link className="Navbar__link" to="/home">
-                                Home
-                            </Link>
-                        </li>
-                        <li className="Navbar__menuItem" onClick={() => setIsClicked(false)}>
-                            <Link className="Navbar__link" to="/categories">
-                                Categories
-                            </Link>
-                        </li>
-                        <li className="Navbar__menuItem" onClick={() => setIsClicked(false)}>
-                            <Link className="Navbar__link" to="/search">
-                                Search
-                            </Link>
-                        </li>
-                    </ul>
-                    <div className="Navbar__button">
-                        <Button variant="contained">Log Out</Button>
-                    </div>
-                </Menu>
-                <div className="Navbar__iconContainer">
-                    {isClicked ? (
-                        <CloseRoundedIcon
-                            className="Navbar__icon"
-                            onClick={() => setIsClicked(prevState => !prevState)}
-                        />
-                    ) : (
-                        <MenuIcon
-                            className="Navbar__icon"
-                            onClick={() => setIsClicked(prevState => !prevState)}
-                        />
-                    )}
-                </div>
+                {isMobile < 600 ? (
+                    <Menu isClicked={isClicked}>
+                        <div className="Navbar__user">
+                            <User token={token} />
+                        </div>
+                        <ul className="Navbar__menu">
+                            <li className="Navbar__menuItem" onClick={() => setIsClicked(false)}>
+                                <Link className="Navbar__link" to="/home">
+                                    Home
+                                </Link>
+                            </li>
+                            <li className="Navbar__menuItem" onClick={() => setIsClicked(false)}>
+                                <Link className="Navbar__link" to="/categories">
+                                    Categories
+                                </Link>
+                            </li>
+                            <li className="Navbar__menuItem" onClick={() => setIsClicked(false)}>
+                                <Link className="Navbar__link" to="/search">
+                                    Search
+                                </Link>
+                            </li>
+                        </ul>
+                        <div className="Navbar__button">
+                            <Button variant="contained">Log Out</Button>
+                        </div>
+                    </Menu>
+                ) : (
+                    <nav className="Navbar__nav">
+                        <ul className="Navbar__menu">
+                            <li className="Navbar__menuItem">
+                                <Link className="Navbar__link" to="/home">
+                                    Home
+                                </Link>
+                            </li>
+                            <li className="Navbar__menuItem">
+                                <Link className="Navbar__link" to="/categories">
+                                    Categories
+                                </Link>
+                            </li>
+                            <li className="Navbar__menuItem">
+                                <Link className="Navbar__link" to="/search">
+                                    Search
+                                </Link>
+                            </li>
+                        </ul>
+                        <div className="Navbar__navLeft">
+                            <div className="Navbar__user">
+                                <User token={token} />
+                            </div>
+
+                            <div className="Navbar__button">
+                                <Button variant="contained">Log Out</Button>
+                            </div>
+                        </div>
+                    </nav>
+                )}
+                {isClicked ? (
+                    <CloseRoundedIcon
+                        className="Navbar__icon"
+                        onClick={() => setIsClicked(prevState => !prevState)}
+                    />
+                ) : (
+                    <MenuIcon
+                        className="Navbar__icon"
+                        onClick={() => setIsClicked(prevState => !prevState)}
+                    />
+                )}
             </div>
         </div>
     );
@@ -137,37 +105,3 @@ export default Header;
 Header.propTypes = {
     token: PropTypes.string
 };
-
-{
-    /* <nav className="Navbar__nav">
-                    <ul className="Navbar__menu">
-                        <li className="Navbar__menuItem" onClick={() => setIsClicked(false)}>
-                            <Link className="Navbar__link" to="/home">
-                                Home
-                            </Link>
-                        </li>
-                        <li className="Navbar__menuItem" onClick={() => setIsClicked(false)}>
-                            <Link className="Navbar__link" to="/categories">
-                                Categories
-                            </Link>
-                        </li>
-                        <li className="Navbar__menuItem" onClick={() => setIsClicked(false)}>
-                            <Link className="Navbar__link" to="/search">
-                                Search
-                            </Link>
-                        </li>
-                        <li>
-                            <div className="Navbar__user">
-                                <User token={token} />
-                            </div>
-                        </li>
-                        <li>
-                            <div className="Navbar__button">
-                                <Button color="inherit" variant="text">
-                                    Log Out
-                                </Button>
-                            </div>
-                        </li>
-                    </ul>
-                </nav> */
-}

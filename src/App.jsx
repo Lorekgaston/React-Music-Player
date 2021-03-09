@@ -4,7 +4,6 @@ import ControlBar from './containers/ControlBar/ControlBar';
 import Main from './containers/Main/Main';
 import { getAuthToken } from './Auth';
 import Login from './components/Login/Login';
-import Navbar from './components/Navbar/Navbar';
 
 const audio = new Audio();
 

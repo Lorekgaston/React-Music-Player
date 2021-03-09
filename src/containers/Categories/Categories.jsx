@@ -1,27 +1,16 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import CategoriesList from '../../components/CategoriesList/CategoriesList';
+import { useHistory } from 'react-router-dom';
 import { fetchCategories } from '../../redux/actions/categories';
 import { getAuthToken } from '../../Auth';
 import useThunkAction from '../../hooks/UseThunkAction';
+import './Categories.scss';
+import { Typography } from '@material-ui/core';
+import useFetch from '../../hooks/useFetch';
 
 const { access_token } = getAuthToken();
 
-// const useStyles = makeStyles({
-//     title: {
-//         fontSize: 30,
-//         fontWeight: 700,
-//         color: '#ffff',
-//         margin: '0 10px',
-//         textTransform: 'capitalize'
-//     }
-// });
-
 const Categories = () => {
-    // const classes = useStyles();
-    // const { catergories, isLoading } = useFetchCategories(
-    //     'https://api.spotify.com/v1/browse/categories?offset=0&limit=30'
-    // );
+    const history = useHistory();
     const { categories, isLoading, error, errorMessage } = useThunkAction(
         fetchCategories(access_token)
     );
@@ -31,12 +20,43 @@ const Categories = () => {
             {isLoading ? (
                 <h1>Loading....</h1>
             ) : (
-                <section>
-                    <CategoriesList data={categories} />
-                </section>
+                <div className="CategoriesPage">
+                    <div className="CategoriesPage__Title">
+                        <Typography variant="h3">Browse categories</Typography>
+                    </div>
+                    <div className="Categories">
+                        {categories?.length > 0 &&
+                            categories?.map((item, idx) => {
+                                return (
+                                    <>
+                                        <div
+                                            className="Categories__card"
+                                            key={idx}
+                                            onClick={() =>
+                                                history.push(`/categorypage/${item?.id}`)
+                                            }>
+                                            <img src={item.icons[0].url} alt="" />
+                                            <div className="Categories__card_info">
+                                                <h4>{item.name}</h4>
+                                            </div>
+                                        </div>
+                                    </>
+                                );
+                            })}
+                    </div>
+                </div>
             )}
         </>
     );
 };
 
 export default Categories;
+
+{
+    /* <CoverCard
+                                    key={item.id + idx}
+                                    image={item.icons[0].url}
+                                    name={item.name}
+                                    param={`/categorypage/${item?.id}`}
+                                /> */
+}
