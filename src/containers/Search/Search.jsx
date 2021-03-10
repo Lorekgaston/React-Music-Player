@@ -5,6 +5,7 @@ import { Typography } from '@material-ui/core';
 import { getAuthToken } from '../../Auth';
 import { fetchPlaylist } from '../../redux/actions/search';
 import './Search.scss';
+import Loader from '../../components/Loading/Loader';
 
 const { access_token } = getAuthToken();
 
@@ -18,22 +19,27 @@ const Search = () => {
     }, [value]);
     return (
         <div className="Search">
+            <div className="Search__input">
+                <input
+                    type="text"
+                    autoComplete="off"
+                    name="searchInput"
+                    id="searchInput"
+                    placeholder="Search..."
+                    value={value}
+                    onChange={e => setValue(e.target.value)}
+                />
+            </div>
+            <div className="Search__title">
+                <Typography variant="h3">
+                    Result for {!value ? 'Search...' : value + '...'}
+                </Typography>
+            </div>
             {loading ? (
-                <h1>Loading....</h1>
+                <Loader />
             ) : (
-                <>
-                    <div className="Search__input">
-                        <input
-                            type="text"
-                            name="searchInput"
-                            id="searchInput"
-                            placeholder="Search..."
-                            value={value}
-                            onChange={e => setValue(e.target.value)}
-                        />
-                    </div>
-                    <Typography variant="h3">Result for search...</Typography>
-                    <div className="Search__results">
+                <div className="Search__results">
+                    <div className="Search__results_list">
                         {playlist?.length > 0 &&
                             playlist?.map((playlist, idx) => (
                                 <CoverCard
@@ -44,7 +50,7 @@ const Search = () => {
                                 />
                             ))}
                     </div>
-                </>
+                </div>
             )}
         </div>
     );

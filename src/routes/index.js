@@ -1,4 +1,4 @@
-import Categories from '../containers/Categories/Categories';
+import Genres from '../containers/Genres/Genres';
 import CategoryPlaylists from '../components/CategoryPlaylists/CategoryPlaylists';
 import Playlist from '../containers/PlayList/PlayList';
 import Home from '../containers/Home/Home';
@@ -11,11 +11,11 @@ const routes = [
         component: Home
     },
     {
-        path: '/categories',
-        component: Categories
+        path: '/Genres',
+        component: Genres
     },
     {
-        path: '/categoryPage/:id',
+        path: '/Genres/:id',
         component: CategoryPlaylists
     },
     {

@@ -3,40 +3,37 @@ import { useHistory } from 'react-router-dom';
 import { fetchCategories } from '../../redux/actions/categories';
 import { getAuthToken } from '../../Auth';
 import useThunkAction from '../../hooks/UseThunkAction';
-import './Categories.scss';
 import { Typography } from '@material-ui/core';
-import useFetch from '../../hooks/useFetch';
 
+import './Genres.scss';
 const { access_token } = getAuthToken();
 
-const Categories = () => {
+const Genres = () => {
     const history = useHistory();
     const { categories, isLoading, error, errorMessage } = useThunkAction(
         fetchCategories(access_token)
     );
     return (
-        <div className="CategoriesPage">
+        <div className="GenresPage">
             {error && <h1>{errorMessage}</h1>}
             {isLoading ? (
                 <h1>Loading....</h1>
             ) : (
                 <>
-                    <div className="CategoriesPage__Title">
-                        <Typography variant="h3">Browse categories</Typography>
+                    <div className="GenresPage__Title">
+                        <Typography variant="h3">Genres List</Typography>
                     </div>
-                    <div className="Categories">
+                    <div className="Genres">
                         {categories?.length > 0 &&
                             categories?.map((item, idx) => {
                                 return (
                                     <>
                                         <div
-                                            className="Categories__card"
+                                            className="Genres__card"
                                             key={idx}
-                                            onClick={() =>
-                                                history.push(`/categorypage/${item?.id}`)
-                                            }>
+                                            onClick={() => history.push(`/Genres/${item?.id}`)}>
                                             <img src={item.icons[0].url} alt="" />
-                                            <div className="Categories__card_info">
+                                            <div className="Genres__card_info">
                                                 <h4>{item.name}</h4>
                                             </div>
                                         </div>
@@ -50,7 +47,7 @@ const Categories = () => {
     );
 };
 
-export default Categories;
+export default Genres;
 
 {
     /* <CoverCard

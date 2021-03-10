@@ -39,8 +39,8 @@ const Header = ({ token }) => {
                                 </Link>
                             </li>
                             <li className="Navbar__menuItem" onClick={() => setIsClicked(false)}>
-                                <Link className="Navbar__link" to="/categories">
-                                    Categories
+                                <Link className="Navbar__link" to="/Genres">
+                                    Genres
                                 </Link>
                             </li>
                             <li className="Navbar__menuItem" onClick={() => setIsClicked(false)}>
@@ -62,8 +62,8 @@ const Header = ({ token }) => {
                                 </Link>
                             </li>
                             <li className="Navbar__menuItem">
-                                <Link className="Navbar__link" to="/categories">
-                                    Categories
+                                <Link className="Navbar__link" to="/Genres">
+                                    Genres
                                 </Link>
                             </li>
                             <li className="Navbar__menuItem">

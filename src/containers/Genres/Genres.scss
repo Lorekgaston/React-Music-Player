@@ -1,4 +1,4 @@
-.CategoriesPage {
+.GenresPage {
     width: 100%;
     position: relative;
     &__Title {
@@ -6,7 +6,7 @@
     }
 }
 
-.Categories {
+.Genres {
     width: 95%;
     margin: 0 auto;
     display: grid;
@@ -31,21 +31,21 @@
 }
 
 @media (min-width: 600px) {
-    .CategoriesPage {
+    .GenresPage {
         &__Title {
             font-size: 2rem;
 
             padding: 0.5em 1.7em;
         }
     }
-    .Categories {
+    .Genres {
         grid-template-columns: repeat(8, 1fr);
         &__card {
             width: 13em;
             gap: 0.6em 0;
             & img {
                 cursor: pointer;
-                transition: all 0.4s ease;
+                // transition: all 0.4s ease;
                 &:hover {
                     transform: translateY(-1px);
                     -webkit-box-shadow: 0px 0px 5px -4px rgba(99, 48, 138, 0.4);

@@ -6,6 +6,7 @@ import { fetchHomeData } from '../../redux/actions/homeData';
 import './Home.scss';
 import CardListSection from '../../components/CardListSection/CardListSection';
 import CoverCard from '../../components/CoverCard/CoverCard';
+import Loader from '../../components/Loading/Loader';
 
 const useThunkAction = action => {
     const dispatch = useDispatch();
@@ -25,14 +26,11 @@ const Home = () => {
     } = useSelector(state => state.homeData);
     useThunkAction(fetchHomeData());
     return (
-        <>
-            {error && <Typography>{errorMessage}</Typography>}
+        <div className="Home">
             {isLoading ? (
-                <div style={{ padding: '24px 32px 0', display: 'flex', justifyContent: 'center' }}>
-                    <Typography>Loading...</Typography>
-                </div>
+                <Loader />
             ) : (
-                <div className="Home">
+                <>
                     <CardListSection title={'Recently Played'}>
                         {recentlyPlayed?.data.items.length > 0 &&
                             recentlyPlayed?.data.items.map((item, idx) => {
@@ -82,9 +80,10 @@ const Home = () => {
                                 />
                             ))}
                     </CardListSection>
-                </div>
+                </>
             )}
-        </>
+            {error && <Typography>{errorMessage}</Typography>}
+        </div>
     );
 };
 

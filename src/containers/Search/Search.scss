@@ -3,6 +3,9 @@
     height: 100%;
     position: relative;
     text-transform: capitalize;
+    &__title {
+        padding: 0.5em 2.6em;
+    }
     &__input {
         text-align: center;
         height: 1.5rem;
@@ -18,6 +21,37 @@
                 outline: none !important;
                 box-shadow: 0 0 15px 5px #5b2a6f;
             }
+        }
+    }
+    &__results {
+        width: 95%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        &_list {
+            width: 79%;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }
+    }
+}
+
+@media (min-width: 600px) {
+    .Search {
+        &__input {
+            width: 30%;
+            margin: 1em auto;
+        }
+        &__results {
+            &_list {
+                width: 100%;
+                margin: auto;
+            }
+        }
+        &::-webkit-scrollbar {
+            display: none;
         }
     }
 }

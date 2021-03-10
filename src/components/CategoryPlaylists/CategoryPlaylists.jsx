@@ -4,6 +4,7 @@ import { Typography } from '@material-ui/core';
 import useFetch from '../../hooks/useFetch';
 import CoverCard from '../CoverCard/CoverCard';
 import './CategoryPlayList.scss';
+import Loader from '../Loading/Loader';
 
 const CategoryPlaylists = () => {
     const { id } = useParams();
@@ -15,7 +16,7 @@ const CategoryPlaylists = () => {
     return (
         <div className="CategoryPlaylists">
             {isLoading ? (
-                <h1>Loading....</h1>
+                <Loader />
             ) : !data ? (
                 <h1>THere Are no playlist</h1>
             ) : (
