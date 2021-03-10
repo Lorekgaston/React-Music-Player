@@ -4,6 +4,7 @@ import ControlBar from './containers/ControlBar/ControlBar';
 import Main from './containers/Main/Main';
 import { getAuthToken } from './Auth';
 import Login from './components/Login/Login';
+import Header from './components/Header/Header';
 
 const audio = new Audio();
 
@@ -27,16 +28,17 @@ const App = () => {
         audio.src = null;
     };
     return (
-        <div>
+        <>
             {!token ? (
                 <Login />
             ) : (
                 <>
+                    <Header token={token} />
                     <Main token={token} logOut={logOut} />
                     <ControlBar audio={audio} />
                 </>
             )}
-        </div>
+        </>
     );
 };
 

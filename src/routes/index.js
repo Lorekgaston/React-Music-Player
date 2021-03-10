@@ -3,7 +3,7 @@ import CategoryPlaylists from '../components/CategoryPlaylists/CategoryPlaylists
 import Playlist from '../containers/PlayList/PlayList';
 import Home from '../containers/Home/Home';
 import Single from '../containers/Single/Single';
-import SearchResults from '../components/SearchResults';
+import Search from '../containers/Search/Search';
 
 const routes = [
     {
@@ -28,7 +28,7 @@ const routes = [
     },
     {
         path: '/search',
-        component: SearchResults
+        component: Search
     }
 ];
 

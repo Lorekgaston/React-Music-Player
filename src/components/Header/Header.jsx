@@ -5,7 +5,6 @@ import User from '../../components/User/User';
 import MenuIcon from '@material-ui/icons/Menu';
 import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 import Button from '@material-ui/core/Button';
-import SearchInput from '../../components/SearchInput/SearchInput';
 import useResize from '../../hooks/useResize';
 import logo from '../../assets/img/Logo Music.jpg';
 import './Header.scss';

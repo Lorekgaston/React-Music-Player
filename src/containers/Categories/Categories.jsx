@@ -15,12 +15,12 @@ const Categories = () => {
         fetchCategories(access_token)
     );
     return (
-        <>
+        <div className="CategoriesPage">
             {error && <h1>{errorMessage}</h1>}
             {isLoading ? (
                 <h1>Loading....</h1>
             ) : (
-                <div className="CategoriesPage">
+                <>
                     <div className="CategoriesPage__Title">
                         <Typography variant="h3">Browse categories</Typography>
                     </div>
@@ -44,9 +44,9 @@ const Categories = () => {
                                 );
                             })}
                     </div>
-                </div>
+                </>
             )}
-        </>
+        </div>
     );
 };
 

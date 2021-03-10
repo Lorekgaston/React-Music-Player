@@ -42,9 +42,9 @@ const SearchInput = ({ token }) => {
         e.preventDefault();
         setValue(e.target.value);
         history.push('/search');
-        if (!value) {
-            return history.push('/home');
-        }
+        // if (!value) {
+        //     return history.push('/home');
+        // }
     };
 
     React.useEffect(() => {
