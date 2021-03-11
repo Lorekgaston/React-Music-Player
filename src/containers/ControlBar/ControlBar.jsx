@@ -6,7 +6,6 @@ import VolumeController from '../../components/VolumeController/VolumeController
 import Progress from '../../components/Progress/Progress';
 import ControlButtons from '../../components/ControlButtons/ControlButtons';
 import NowPlaying from '../../components/NowPlaying/NowPlaying';
-import { useStyles } from './styles';
 import './ControlBar.scss';
 import QueueMusicIcon from '@material-ui/icons/QueueMusic';
 import { IconButton } from '@material-ui/core';
@@ -14,7 +13,6 @@ import { IconButton } from '@material-ui/core';
 const ControlBar = ({ audio }) => {
     const dispatch = useDispatch();
     const controller = useSelector(state => state.controller);
-    const classes = useStyles();
     const {
         songPlaying,
         currentTrack,

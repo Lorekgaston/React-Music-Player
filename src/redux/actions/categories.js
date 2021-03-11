@@ -1,9 +1,10 @@
 import axios from 'axios';
 import * as actionType from '../actionTypes';
 
-const fetchCategoriesRequest = () => {
+const fetchCategoriesRequest = loading => {
     return {
-        type: actionType.FETCH_CATEGORIES_REQUESTED
+        type: actionType.FETCH_CATEGORIES_REQUESTED,
+        loading
     };
 };
 const fetchCategoriesSuccess = category => {
@@ -21,7 +22,7 @@ const fetchCategoriesFailure = message => {
 
 export const fetchCategories = token => {
     return async dispatch => {
-        dispatch(fetchCategoriesRequest);
+        dispatch(fetchCategoriesRequest(true));
         try {
             const response = await axios.get(
                 `https://api.spotify.com/v1/browse/categories?offset=0&limit=50`,

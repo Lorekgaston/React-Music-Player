@@ -12,7 +12,7 @@ const reducer = (state = intialState, action) => {
         case actionType.FETCH_CATEGORIES_REQUESTED:
             return {
                 ...state,
-                isLoading: true
+                isLoading: action.loading
             };
         case actionType.FETCH_CATEGORIES_SUCCEDED:
             return {

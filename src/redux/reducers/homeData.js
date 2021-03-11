@@ -14,7 +14,7 @@ const reducer = (state = initialState, action) => {
         case actionType.FETCH_HOME_REQUESTED:
             return {
                 ...state,
-                isLoading: true
+                isLoading: action.loading
             };
         case actionType.FETCH_HOME_SUCCEDED:
             console.log(action);

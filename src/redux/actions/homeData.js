@@ -4,9 +4,10 @@ import { getAuthToken } from '../../Auth';
 
 const { access_token } = getAuthToken();
 
-const fetchHomeRequest = () => {
+const fetchHomeRequest = loading => {
     return {
-        type: actionType.FETCH_HOME_REQUESTED
+        type: actionType.FETCH_HOME_REQUESTED,
+        loading
     };
 };
 const fetchHomeSuccess = data => {
@@ -24,7 +25,7 @@ const fetchHomeFail = message => {
 
 export const fetchHomeData = () => {
     return async dispatch => {
-        dispatch(fetchHomeRequest);
+        dispatch(fetchHomeRequest(true));
         const requests = [
             `https://api.spotify.com/v1/me/top/tracks?limit=10`,
             `https://api.spotify.com/v1/browse/featured-playlists?limit=10&locale=us_AR`,

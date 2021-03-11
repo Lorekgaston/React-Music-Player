@@ -1,8 +1,17 @@
-.CategoryPlaylists {
+.ListOfPlaylists {
     width: 100%;
     height: 100%;
     position: relative;
     text-transform: capitalize;
+    &__picture {
+        width: 274px;
+        height: 274px;
+        & img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+    }
     &__Title {
         padding: 0.5em 2.6em;
     }
@@ -22,7 +31,7 @@
 }
 
 @media (min-width: 600px) {
-    .CategoryPlaylists {
+    .ListOfPlaylists {
         &__List {
             &_flexbox {
                 width: 100%;
