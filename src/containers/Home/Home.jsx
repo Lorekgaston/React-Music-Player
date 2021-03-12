@@ -25,6 +25,7 @@ const Home = () => {
         errorMessage
     } = useSelector(state => state.homeData);
     useThunkAction(fetchHomeData());
+    console.log(recentlyPlayed?.data.items);
     return (
         <div className="Home">
             {isLoading ? (
@@ -33,40 +34,44 @@ const Home = () => {
                 <>
                     <CardListSection title={'Recently Played'}>
                         {recentlyPlayed?.data.items.length > 0 &&
-                            recentlyPlayed?.data.items.map((item, idx) => {
-                                const {
-                                    name,
-                                    album: { images },
-                                    id
-                                } = item;
-                                return (
-                                    <CoverCard
-                                        key={item.id + idx}
-                                        image={images[0].url}
-                                        name={name}
-                                        param={`/single/${id}`}
-                                    />
-                                );
-                            })}
+                            recentlyPlayed?.data.items
+                                .filter(item => item.preview_url != null)
+                                .map((item, idx) => {
+                                    const {
+                                        name,
+                                        album: { images },
+                                        id
+                                    } = item;
+                                    return (
+                                        <CoverCard
+                                            key={item.id + idx}
+                                            image={images[0].url}
+                                            name={name}
+                                            param={`/single/${id}`}
+                                        />
+                                    );
+                                })}
                     </CardListSection>
 
                     <CardListSection title={'Recommendations'}>
                         {recommendations?.data.tracks.length > 0 &&
-                            recommendations?.data.tracks.map((item, idx) => {
-                                const {
-                                    name,
-                                    id,
-                                    album: { images }
-                                } = item;
-                                return (
-                                    <CoverCard
-                                        key={item.id + idx}
-                                        image={images[0]?.url}
-                                        name={name}
-                                        param={`/single/${id}`}
-                                    />
-                                );
-                            })}
+                            recommendations?.data.tracks
+                                .filter(item => item.preview_url != null)
+                                .map((item, idx) => {
+                                    const {
+                                        name,
+                                        id,
+                                        album: { images }
+                                    } = item;
+                                    return (
+                                        <CoverCard
+                                            key={item.id + idx}
+                                            image={images[0]?.url}
+                                            name={name}
+                                            param={`/single/${id}`}
+                                        />
+                                    );
+                                })}
                     </CardListSection>
 
                     <CardListSection title={'Featured Playlists'}>

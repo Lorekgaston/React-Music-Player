@@ -128,7 +128,11 @@ const ControlBar = ({ audio }) => {
             <div className="Controlbar__bottomContainer">
                 <div>
                     <IconButton>
-                        <QueueMusicIcon fontSize="medium" className="Controlbar__icons" />
+                        <QueueMusicIcon
+                            fontSize="medium"
+                            className="Controlbar__icons"
+                            onClick={() => dispatch({ type: 'TOOGLE_PLAYLIST' })}
+                        />
                     </IconButton>
                 </div>
                 <div className="Controlbar__controlButtons">

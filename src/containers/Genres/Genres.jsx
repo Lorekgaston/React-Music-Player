@@ -1,18 +1,36 @@
 import * as React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { fetchCategories } from '../../redux/actions/categories';
 import { getAuthToken } from '../../Auth';
-import useThunkAction from '../../hooks/UseThunkAction';
 import { Typography } from '@material-ui/core';
 
 import './Genres.scss';
 const { access_token } = getAuthToken();
 
+const useThunkAction = action => {
+    const dispatch = useDispatch();
+    React.useEffect(() => {
+        dispatch(action);
+    }, []);
+};
+
 const Genres = () => {
     const history = useHistory();
-    const { categories, isLoading, error, errorMessage } = useThunkAction(
-        fetchCategories(access_token)
-    );
+    const { categories, isLoading, error, errorMessage } = useSelector(state => state.categories);
+    useThunkAction(fetchCategories(access_token));
+    const aToz = cat =>
+        cat?.sort((a, b) => {
+            return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
+        });
+    const joinedCategories = categories?.map(category => category.data.categories.items);
+    const genres = [].concat.apply([], joinedCategories).reduce((item, o) => {
+        if (!item.some(obj => obj.name === o.name)) {
+            item.push(o);
+        }
+        return item;
+    }, []);
+
     return (
         <div className="GenresPage">
             {error && <h1>{errorMessage}</h1>}
@@ -21,11 +39,11 @@ const Genres = () => {
             ) : (
                 <>
                     <div className="GenresPage__Title">
-                        <Typography variant="h3">Genres List</Typography>
+                        <Typography variant="h3">Genres</Typography>
                     </div>
                     <div className="Genres">
-                        {categories?.length > 0 &&
-                            categories?.map((item, idx) => {
+                        {genres?.length > 0 &&
+                            aToz(genres).map((item, idx) => {
                                 return (
                                     <>
                                         <div

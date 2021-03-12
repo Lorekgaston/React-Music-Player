@@ -45,3 +45,8 @@ export const setTrackList = tracks => {
         tracks
     };
 };
+export const tooglePlaylist = () => {
+    return {
+        type: actionType.TOOGLE_PLAYLIST
+    };
+};

@@ -11,7 +11,8 @@ const intialState = {
     user: '',
     currentTrack: null,
     trackList: [],
-    isSingle: false
+    isSingle: false,
+    isPlaylistOpen: false
 };
 
 const reducer = (state = intialState, action) => {
@@ -72,6 +73,11 @@ const reducer = (state = intialState, action) => {
             return {
                 ...state,
                 isMuted: !state.isMuted
+            };
+        case actionType.TOOGLE_PLAYLIST:
+            return {
+                ...state,
+                isPlaylistOpen: !state.isPlaylistOpen
             };
         default:
             return state;

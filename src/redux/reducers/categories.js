@@ -15,6 +15,7 @@ const reducer = (state = intialState, action) => {
                 isLoading: action.loading
             };
         case actionType.FETCH_CATEGORIES_SUCCEDED:
+            console.log(action.category);
             return {
                 ...state,
                 categories: action.category,

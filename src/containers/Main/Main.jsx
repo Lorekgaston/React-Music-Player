@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import routes from '../../routes/index';
 import './Main.scss';
+import PlayList from '../PlayList/PlayList';
 
 const Main = () => {
     return (

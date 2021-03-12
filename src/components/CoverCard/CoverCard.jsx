@@ -8,18 +8,18 @@ import { Typography } from '@material-ui/core';
 import './CoverCard.scss';
 
 const CoverCard = ({ image, name, param }) => {
+    const [hover, setHover] = React.useState(false);
     const history = useHistory();
+
     return (
-        <>
-            <Card className="Card" onClick={() => history.push(param)}>
-                <CardMedia className="Card__media" component="img" src={image} alt={name} />
-                <CardContent className="Card__cardContent">
-                    <Typography variant="h6">
-                        {name.length > 24 ? `${name.substring(0, 24)}...` : name}
-                    </Typography>
-                </CardContent>
-            </Card>
-        </>
+        <div
+            className="Card"
+            onClick={() => history.push(param)}
+            onMouseEnter={() => setHover(prevState => !prevState)}
+            onMouseLeave={() => setHover(prevState => !prevState)}>
+            <img src={image} alt="" />
+            {hover && <div className="Card__overlay"></div>}
+        </div>
     );
 };
 
@@ -30,3 +30,9 @@ CoverCard.propTypes = {
     name: PropTypes.string,
     param: PropTypes.string
 };
+
+{
+    /* <div className="Card_info">
+                <h4>{name}</h4>
+            </div> */
+}

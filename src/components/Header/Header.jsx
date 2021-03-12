@@ -7,15 +7,8 @@ import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 import Button from '@material-ui/core/Button';
 import useResize from '../../hooks/useResize';
 import logo from '../../assets/img/Logo Music.jpg';
+import Menu from '../Menu/Menu';
 import './Header.scss';
-
-const Menu = ({ children, isClicked }) => {
-    return (
-        <div className={isClicked ? 'Navbar__nav open' : 'Navbar__nav'}>
-            {isClicked ? children : null}
-        </div>
-    );
-};
 
 const Header = ({ token }) => {
     const [isClicked, setIsClicked] = React.useState(false);
@@ -28,7 +21,7 @@ const Header = ({ token }) => {
                     <img src={logo} alt="" />
                 </div>
                 {isMobile < 600 ? (
-                    <Menu isClicked={isClicked}>
+                    <Menu isClicked={isClicked} classes={'Navbar__nav'}>
                         <div className="Navbar__user">
                             <User token={token} />
                         </div>

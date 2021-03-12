@@ -23,17 +23,22 @@ const fetchCategoriesFailure = message => {
 export const fetchCategories = token => {
     return async dispatch => {
         dispatch(fetchCategoriesRequest(true));
-        try {
-            const response = await axios.get(
-                `https://api.spotify.com/v1/browse/categories?offset=0&limit=50`,
-                {
+        const requests = [
+            `https://api.spotify.com/v1/browse/categories?limit=50&offset=0`,
+            `https://api.spotify.com/v1/browse/categories?limit=50&offset=50`
+        ].map(url =>
+            axios
+                .get(url, {
                     headers: {
                         Authorization: 'Bearer ' + token
                     }
-                }
-            );
-            const { data: { categories: { items } = {} } = {} } = response || {};
-            dispatch(fetchCategoriesSuccess(items));
+                })
+                .catch(err => dispatch(fetchCategoriesFailure(err.message)))
+        );
+        try {
+            const response = await axios.all(requests);
+            // const { data: { categories: { items } = {} } = {} } = response || {};
+            dispatch(fetchCategoriesSuccess(response));
         } catch (err) {
             const message = await err.message;
             dispatch(fetchCategoriesFailure(message));
