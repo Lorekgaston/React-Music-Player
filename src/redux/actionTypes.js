@@ -8,6 +8,7 @@ export const SET_PROGRESS = 'SET_PROGRESS';
 export const SET_MUTE = 'SET_MUTE';
 export const SET_TRACKLIST = 'SET_TRACKLIST';
 export const TOOGLE_PLAYLIST = 'TOOGLE_PLAYLIST';
+export const HANDLE_PLAYLIST = 'HANDLE_PLAYLIST';
 
 export const SEARCH_PLAYLIST = 'SEARCH_PLAYLIST';
 export const SET_LOADING = 'SET_LOADING';

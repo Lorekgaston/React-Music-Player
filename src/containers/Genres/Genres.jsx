@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 import { fetchCategories } from '../../redux/actions/categories';
 import { getAuthToken } from '../../Auth';
 import { Typography } from '@material-ui/core';
@@ -17,6 +17,7 @@ const useThunkAction = action => {
 
 const Genres = () => {
     const history = useHistory();
+    const { url } = useRouteMatch();
     const { categories, isLoading, error, errorMessage } = useSelector(state => state.categories);
     useThunkAction(fetchCategories(access_token));
     const aToz = cat =>
@@ -30,7 +31,7 @@ const Genres = () => {
         }
         return item;
     }, []);
-
+    console.log(url);
     return (
         <div className="GenresPage">
             {error && <h1>{errorMessage}</h1>}
@@ -49,7 +50,7 @@ const Genres = () => {
                                         <div
                                             className="Genres__card"
                                             key={idx}
-                                            onClick={() => history.push(`/Genres/${item?.id}`)}>
+                                            onClick={() => history.push(`${url}/${item?.id}`)}>
                                             <img src={item.icons[0].url} alt="" />
                                             <div className="Genres__card_info">
                                                 <h4>{item.name}</h4>

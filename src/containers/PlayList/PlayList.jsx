@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setTrackList } from '../../redux/actions/controller';
 import { useParams } from 'react-router-dom';
 import { Paper } from '@material-ui/core';
@@ -9,13 +9,16 @@ import PlaylistHeader from '../../components/PlaylistHeader/PlaylistHeader';
 import PlaylistTracklist from '../../components/PlaylistTracklist/PlaylistTracklist';
 import { filterPlayableTracks, handleTracklistData } from '../../utils/handletrackList';
 
+import './Playlist.scss';
+
 const PlayList = () => {
     const dispatch = useDispatch();
-    const { id } = useParams();
+    const { playlistId } = useSelector(state => state.controller);
+    // const { id } = useParams();
     const classes = useStyles();
-
     const { data, isLoading } = useFetch(
-        `https://api.spotify.com/v1/playlists/${id}?fields=description,owner(display_name,external_urls),images,name,primary_color,type,tracks.items(track(album,duration_ms,id,name,preview_url))`
+        `https://api.spotify.com/v1/playlists/${playlistId}?fields=description,owner(display_name,external_urls),images,name,primary_color,type,tracks.items(track(album,duration_ms,id,name,preview_url))`,
+        playlistId
     );
 
     // Spread data and asign default value to items, to prevent null or undefine error when destructuring api response.
@@ -29,20 +32,17 @@ const PlayList = () => {
     };
 
     return (
-        <Paper className={classes.root}>
-            {isLoading ? (
-                <h1>Loaging...</h1>
-            ) : (
+        <div className="Playlist">
+            {isLoading ? null : (
                 <>
-                    <div className={classes.header}>
+                    <div className="Playlist__Header">
                         <PlaylistHeader
-                            classes={classes}
                             data={data}
                             playlistDuration={playlistDuration}
                             playList={playList}
                         />
                     </div>
-                    <div style={{ padding: '24px 32px 0' }}>
+                    <div className="Playlist__tracklist">
                         <PlaylistTracklist
                             classes={classes}
                             playTrack={playTrack}
@@ -52,7 +52,7 @@ const PlayList = () => {
                     </div>
                 </>
             )}
-        </Paper>
+        </div>
     );
 };
 

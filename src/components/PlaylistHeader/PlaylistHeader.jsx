@@ -2,38 +2,23 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Avatar, Typography } from '@material-ui/core';
 import { parseTime } from '../../utils/handleTime';
+import './PlaylistHeader.scss';
 
-const PlaylistHeader = ({ classes, data, playlistDuration, playList }) => (
+const PlaylistHeader = ({ data, playlistDuration, playList }) => (
     <>
-        <Avatar
-            className={classes.avatar}
-            src={data?.images[0].url}
-            alt={data?.name}
-            variant="square"
-        />
-        <div className={classes.headerText}>
-            <Typography variant="body1" className={classes.headerType}>
-                {data?.type}
-            </Typography>
-            <Typography variant="h2" className={classes.headerName} noWrap={true}>
+        <div className="ImageContainer">
+            <img src={data?.images[0].url} alt={data?.name} />
+        </div>
+        <div className="PlaylistHeader">
+            <Typography variant="h4" className="" noWrap={true}>
                 {data?.name}
             </Typography>
-            <Typography variant="body1" className={classes.headerDescription}>
+            <Typography variant="body1" className="">
+                {data?.type}
+            </Typography>
+            <Typography variant="body1" className="">
                 {data?.description}
             </Typography>
-            <div className={classes.headerBottom}>
-                <Typography variant="caption" className={classes.headerBottomItem}>
-                    <span>Created by:</span>{' '}
-                    <strong style={{ cursor: 'pointer' }}>{data?.owner.display_name} </strong>
-                    {'  '}-
-                </Typography>
-                <Typography variant="caption" className={classes.headerBottomItem}>
-                    {playList?.length} Songs -
-                </Typography>
-                <Typography variant="caption" className={classes.headerBottomItem}>
-                    {parseTime(playlistDuration)}
-                </Typography>
-            </div>
         </div>
     </>
 );
@@ -46,3 +31,19 @@ PlaylistHeader.propTypes = {
     playlistDuration: PropTypes.array,
     playList: PropTypes.array
 };
+
+{
+    /* <div className="">
+                <Typography variant="caption" className="">
+                    <span>Created by:</span>{' '}
+                    <strong style={{ cursor: 'pointer' }}>{data?.owner.display_name} </strong>
+                    {'  '}-
+                </Typography>
+                <Typography variant="caption" className="">
+                    {playList?.length} Songs -
+                </Typography>
+                <Typography variant="caption" className="">
+                    {parseTime(playlistDuration)}
+                </Typography>
+            </div> */
+}

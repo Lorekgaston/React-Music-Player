@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Route, Switch, useParams, useRouteMatch } from 'react-router-dom';
 import { Typography } from '@material-ui/core';
 import useFetch from '../../hooks/useFetch';
 import CoverCard from '../CoverCard/CoverCard';
 import './ListOfPlaylists.scss';
 import Loader from '../Loading/Loader';
 import { fetchListOfPlaylistData } from '../../redux/actions/listOfPlaylists';
+import PlayList from '../../containers/PlayList/PlayList';
 
 const useThunkAction = action => {
     const dispatch = useDispatch();
@@ -17,13 +18,12 @@ const useThunkAction = action => {
 
 const ListOfPlaylists = () => {
     const { id } = useParams();
-
+    const { url, path } = useRouteMatch();
     const { listOfPlaylist, isLoading, isError, errorMessage } = useSelector(
         state => state.listOfPlaylist
     );
     useThunkAction(fetchListOfPlaylistData(id));
-
-    console.log(listOfPlaylist);
+    console.log(url, path, `${url}/:id`);
     return (
         <div className="ListOfPlaylists">
             {isLoading ? (
@@ -45,7 +45,7 @@ const ListOfPlaylists = () => {
                                             key={playlist.id + idx}
                                             image={playlist.images[0].url}
                                             name={playlist.name}
-                                            param={`/playlist/${playlist.id}`}
+                                            id={playlist.id}
                                         />
                                     </>
                                 ))}

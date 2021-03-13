@@ -5,6 +5,7 @@ import Main from './containers/Main/Main';
 import { getAuthToken } from './Auth';
 import Login from './components/Login/Login';
 import Header from './components/Header/Header';
+import PlayList from './containers/PlayList/PlayList';
 
 const audio = new Audio();
 

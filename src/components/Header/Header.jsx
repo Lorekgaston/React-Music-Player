@@ -21,7 +21,7 @@ const Header = ({ token }) => {
                     <img src={logo} alt="" />
                 </div>
                 {isMobile < 600 ? (
-                    <Menu isClicked={isClicked} classes={'Navbar__nav'}>
+                    <Menu isClicked={isClicked} classes={'Navbar__nav'} subClasses={'open'}>
                         <div className="Navbar__user">
                             <User token={token} />
                         </div>

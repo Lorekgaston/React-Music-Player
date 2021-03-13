@@ -50,3 +50,9 @@ export const tooglePlaylist = () => {
         type: actionType.TOOGLE_PLAYLIST
     };
 };
+export const handlePLaylist = id => {
+    return {
+        type: actionType.HANDLE_PLAYLIST,
+        id
+    };
+};

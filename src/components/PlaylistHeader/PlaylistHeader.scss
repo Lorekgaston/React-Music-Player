@@ -1,0 +1,13 @@
+.PlaylistHeader {
+    color: white;
+}
+.ImageContainer {
+    padding: 1em 0;
+    min-height: 50px;
+    display: flex;
+    justify-content: center;
+    & img {
+        width: 70%;
+        border-radius: 10px;
+    }
+}

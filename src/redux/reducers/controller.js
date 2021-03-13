@@ -12,7 +12,8 @@ const intialState = {
     currentTrack: null,
     trackList: [],
     isSingle: false,
-    isPlaylistOpen: false
+    isPlaylistOpen: false,
+    playlistId: null
 };
 
 const reducer = (state = intialState, action) => {
@@ -78,6 +79,11 @@ const reducer = (state = intialState, action) => {
             return {
                 ...state,
                 isPlaylistOpen: !state.isPlaylistOpen
+            };
+        case actionType.HANDLE_PLAYLIST:
+            return {
+                ...state,
+                playlistId: action.id
             };
         default:
             return state;

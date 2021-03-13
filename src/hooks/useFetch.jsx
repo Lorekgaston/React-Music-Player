@@ -4,7 +4,7 @@ import { getAuthToken } from '../Auth';
 
 const auth = getAuthToken();
 
-const useFetch = url => {
+const useFetch = (url, id) => {
     const [data, setData] = React.useState(null);
     const [isLoading, setIsLoading] = React.useState(false);
     const [error, setError] = React.useState(false);
@@ -37,7 +37,7 @@ const useFetch = url => {
         if (token) {
             fetchData();
         }
-    }, [url]);
+    }, [url, id]);
 
     return { data, isLoading, error, errorMessage, token };
 };

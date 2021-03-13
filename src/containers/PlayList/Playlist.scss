@@ -1,0 +1,14 @@
+.Playlist {
+    flex-grow: 1;
+    width: 100%;
+    background: #121212;
+    &__header {
+        // display: 'flex';
+
+        // align-items: 'center';
+        // justify-content: 'flex-start';
+        padding: '24px 32px 0';
+    }
+    &__tracklist {
+    }
+}

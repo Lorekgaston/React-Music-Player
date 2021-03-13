@@ -1,20 +1,20 @@
 import * as React from 'react';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
-import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import { Typography } from '@material-ui/core';
+import { handlePLaylist } from '../../redux/actions/controller';
 import './CoverCard.scss';
 
-const CoverCard = ({ image, name, param }) => {
+const CoverCard = ({ image, name, id }) => {
     const [hover, setHover] = React.useState(false);
-    const history = useHistory();
-
+    const dispatch = useDispatch();
+    const handlePlaylist = () => {
+        dispatch(handlePLaylist(id));
+        dispatch({ type: 'TOOGLE_PLAYLIST' });
+    };
     return (
         <div
             className="Card"
-            onClick={() => history.push(param)}
+            onClick={() => handlePlaylist()}
             onMouseEnter={() => setHover(prevState => !prevState)}
             onMouseLeave={() => setHover(prevState => !prevState)}>
             <img src={image} alt="" />
@@ -28,7 +28,7 @@ export default CoverCard;
 CoverCard.propTypes = {
     image: PropTypes.string,
     name: PropTypes.string,
-    param: PropTypes.string
+    id: PropTypes.string
 };
 
 {
