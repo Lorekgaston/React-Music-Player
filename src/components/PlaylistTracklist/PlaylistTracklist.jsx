@@ -7,11 +7,7 @@ import PlayListTrack from '../PlayListTrack/PlayListTrack';
 const PlaylistTracklist = ({ classes, playTrack, trackList, loading }) => {
     return (
         <>
-            <List>
-                <ListItem className={classes.listHeader}>
-                    <ListItemText className={classes.listTitle} primary="Track" />
-                    <Typography className={classes.headerTime}>Time</Typography>
-                </ListItem>
+            <List style={{ overflowY: 'auto' }}>
                 <Divider variant="fullWidth" className={classes.divider} />
                 {trackList?.length > 0 &&
                     trackList?.map((song, idx) => {

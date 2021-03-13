@@ -1,5 +1,21 @@
 .PlaylistHeader {
     color: white;
+    width: 90%;
+    margin: 0 1em;
+    &__name {
+        text-align: center;
+        &.MuiTypography-root.MuiTypography-h3 {
+            padding: 0.2em 0;
+        }
+    }
+    &__description {
+        text-align: left;
+        padding: 0.38em 0;
+    }
+    &__type {
+        text-align: left;
+        padding: 0.5em 0;
+    }
 }
 .ImageContainer {
     padding: 1em 0;
@@ -7,7 +23,20 @@
     display: flex;
     justify-content: center;
     & img {
-        width: 70%;
+        width: 55%;
         border-radius: 10px;
+    }
+}
+
+@media (min-width: 600px) {
+    .ImageContainer {
+        padding: 1em 0;
+        min-height: 50px;
+        display: flex;
+        justify-content: center;
+        & img {
+            width: 20%;
+            border-radius: 10px;
+        }
     }
 }

@@ -15,7 +15,7 @@ const Main = () => {
     console.log(isPlaylistOpen);
     return (
         <div className="Main">
-            <div className="Main__routes">
+            <div className={isPlaylistOpen ? 'Main__routes shrink' : 'Main__routes'}>
                 <div className="Main__navigation">
                     <NavigateBeforeIcon fontSize="large" />
                     <NavigateNextIcon fontSize="large" />
@@ -32,7 +32,11 @@ const Main = () => {
                 </Switch>
             </div>
 
-            <Menu isClicked={isPlaylistOpen} classes={'Main__menu'} subClasses={'menuOpen'}>
+            <Menu
+                isClicked={isPlaylistOpen}
+                classes={'Main__menu'}
+                open={'menuOpen'}
+                close={'menuClose'}>
                 <PlayList />
             </Menu>
         </div>

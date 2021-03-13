@@ -5,10 +5,10 @@
     padding: 80px 0;
     display: block;
     overflow: hidden;
+    // transition: width 0.5s ease-in-out;
     &__routes {
         width: 100%;
         overflow-y: auto;
-        transition: all 0.5s ease-in-out;
         &::-webkit-scrollbar {
             width: 5px;
         }
@@ -43,6 +43,7 @@
 
 @media (min-width: 600px) {
     .Main {
+        position: relative;
         min-height: 80vh;
         height: calc(100vh - 160px);
         padding: 0;
@@ -50,9 +51,10 @@
         display: flex;
         overflow: hidden;
         &__routes {
-            width: 100%;
+            width: 100vw;
             overflow-y: auto;
-            transition: all 0.5s ease-in-out;
+            transition: width 0.6s ease-in;
+            will-change: width;
             &::-webkit-scrollbar {
                 width: 5px;
             }
@@ -60,17 +62,41 @@
                 background: transparent;
             }
             &::-webkit-scrollbar-thumb {
-                background: rgba(49, 28, 65, 0.2);
+                background: transparent;
+                // background: rgba(49, 28, 65, 0.2);
                 border-radius: 10px;
             }
         }
-        &__playlist {
+        &__menu {
+            background: #101010;
             width: 40%;
-            min-height: 70vh;
+            position: absolute;
+            height: 84vh;
+            top: 0;
+            bottom: auto;
+            left: auto;
+            opacity: 0;
+            will-change: right, opacity;
         }
         &__navigation {
             padding: 0.2em 0.2em;
             margin: 0.1em 0.1em;
         }
+    }
+    .shrink {
+        width: 60%;
+        transition: width 0.6s ease-in-out;
+    }
+    .menuClose {
+        transition: right 0.8s ease-in, opacity 1s ease-in;
+        overflow: hidden;
+        opacity: 0;
+        right: -100%;
+    }
+    .menuOpen {
+        transition: right 0.8s ease-out, opacity 0.6s ease-out;
+        overflow: hidden;
+        opacity: 1;
+        right: 0;
     }
 }

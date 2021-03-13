@@ -1,15 +1,18 @@
 import * as React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { handlePLaylist } from '../../redux/actions/controller';
 import './CoverCard.scss';
 
 const CoverCard = ({ image, name, id }) => {
     const [hover, setHover] = React.useState(false);
+    const { isPlaylistOpen } = useSelector(state => state.controller);
     const dispatch = useDispatch();
     const handlePlaylist = () => {
+        if (!isPlaylistOpen) {
+            dispatch({ type: 'TOOGLE_PLAYLIST' });
+        }
         dispatch(handlePLaylist(id));
-        dispatch({ type: 'TOOGLE_PLAYLIST' });
     };
     return (
         <div

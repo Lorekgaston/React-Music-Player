@@ -13,9 +13,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import Favorite from '@material-ui/icons/Favorite';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
-import { Typography } from '@material-ui/core';
+import { Divider, Typography } from '@material-ui/core';
 import { grey } from '@material-ui/core/colors';
-import { parseTime } from '../../utils/handleTime';
 
 const useStyles = makeStyles({
     favorite: {
@@ -64,16 +63,11 @@ const useStyles = makeStyles({
     }
 });
 
-const PlayListTrack = ({ track: { duration_ms, name, images = [], artists } = {}, play, i }) => {
+const PlayListTrack = ({ track: { name, images = [], artists } = {}, play, i }) => {
     const classes = useStyles();
     return (
         <>
-            <ListItem className={classes.listItem}>
-                <ListItemIcon>
-                    <IconButton onClick={() => play(i)}>
-                        <PlayArrowIcon className={classes.play} />
-                    </IconButton>
-                </ListItemIcon>
+            <ListItem className={classes.listItem} onClick={() => play(i)}>
                 <ListItemAvatar>
                     {images[0]?.url ? (
                         <Avatar variant="square" src={images[0]?.url} />
@@ -86,19 +80,17 @@ const PlayListTrack = ({ track: { duration_ms, name, images = [], artists } = {}
                 <ListItemText
                     primary={
                         <>
-                            <Typography variant="h6" className={classes.primary} noWrap={true}>
+                            <Typography variant="h6" noWrap={true}>
                                 {name}
                             </Typography>
                         </>
                     }
                     secondary={artists?.map(artist => (
-                        <Typography key={artist.id} variant="caption" className={classes.secondary}>
+                        <Typography key={artist.id} variant="caption">
                             {artist.name}
                         </Typography>
                     ))}
                 />
-
-                <Typography className={classes.time}>{parseTime(duration_ms)}</Typography>
             </ListItem>
         </>
     );

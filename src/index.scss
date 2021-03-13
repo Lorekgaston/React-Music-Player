@@ -28,6 +28,27 @@ code {
     border-radius: 5px;
     padding: 0.4em;
 }
+.MuiTypography-root.MuiTypography-h6 {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #fcf6ff;
+}
+.MuiTypography-root.MuiTypography-body1 {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #fcf6ff;
+    padding: 1em auto;
+}
+.MuiTypography-root.MuiTypography-body2 {
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: #837f85;
+    padding: 2em auto;
+}
+.MuiTypography-root.MuiTypography-caption {
+    font-size: 0.7rem;
+    color: #837f85;
+}
 .MuiButtonBase-root.MuiButton-root.MuiButton-contained {
     color: #f5e8ff;
     width: 100%;

@@ -10,14 +10,14 @@ const PlaylistHeader = ({ data, playlistDuration, playList }) => (
             <img src={data?.images[0].url} alt={data?.name} />
         </div>
         <div className="PlaylistHeader">
-            <Typography variant="h4" className="" noWrap={true}>
+            <Typography variant="h3" className="PlaylistHeader__name">
                 {data?.name}
             </Typography>
-            <Typography variant="body1" className="">
-                {data?.type}
-            </Typography>
-            <Typography variant="body1" className="">
+            <Typography variant="body1" className="PlaylistHeader__description">
                 {data?.description}
+            </Typography>
+            <Typography variant="body2" className="PlaylistHeader__type">
+                {data?.type}
             </Typography>
         </div>
     </>
