@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import List from '@material-ui/core/List';
 import { Divider } from '@material-ui/core';
 import PlayListTrack from '../PlayListTrack/PlayListTrack';
 
@@ -21,7 +20,7 @@ const PlaylistTracklist = ({ classes, playTrack, trackList, loading }) => {
                                 isLoading={loading}
                                 play={playTrack}
                                 labelId={labelId}
-                                i={idx}
+                                index={idx}
                             />
                         );
                     })}

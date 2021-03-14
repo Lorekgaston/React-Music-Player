@@ -2,18 +2,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import AlbumIcon from '@material-ui/icons/Album';
-import Checkbox from '@material-ui/core/Checkbox';
-import IconButton from '@material-ui/core/IconButton';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import Favorite from '@material-ui/icons/Favorite';
-import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
-import { Divider, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import { grey } from '@material-ui/core/colors';
 
 const useStyles = makeStyles({
@@ -27,6 +20,7 @@ const useStyles = makeStyles({
         }
     },
     listItem: {
+        cursor: 'pointer',
         '&:hover': {
             backgroundColor: grey[800]
         }
@@ -63,36 +57,34 @@ const useStyles = makeStyles({
     }
 });
 
-const PlayListTrack = ({ track: { name, images = [], artists } = {}, play, i }) => {
+const PlayListTrack = ({ track: { name, images = [], artists } = {}, play, index }) => {
     const classes = useStyles();
     return (
-        <>
-            <ListItem className={classes.listItem} onClick={() => play(i)}>
-                <ListItemAvatar>
-                    {images[0]?.url ? (
-                        <Avatar variant="square" src={images[0]?.url} />
-                    ) : (
-                        <Avatar variant="square">
-                            <AlbumIcon />
-                        </Avatar>
-                    )}
-                </ListItemAvatar>
-                <ListItemText
-                    primary={
-                        <>
-                            <Typography variant="h6" noWrap={true}>
-                                {name}
-                            </Typography>
-                        </>
-                    }
-                    secondary={artists?.map(artist => (
-                        <Typography key={artist.id} variant="caption">
-                            {artist.name}
+        <ListItem className={classes.listItem} onClick={() => play(index)}>
+            <ListItemAvatar>
+                {images[0]?.url ? (
+                    <Avatar variant="square" src={images[0]?.url} />
+                ) : (
+                    <Avatar variant="square">
+                        <AlbumIcon />
+                    </Avatar>
+                )}
+            </ListItemAvatar>
+            <ListItemText
+                primary={
+                    <>
+                        <Typography variant="h6" noWrap={true}>
+                            {name}
                         </Typography>
-                    ))}
-                />
-            </ListItem>
-        </>
+                    </>
+                }
+                secondary={artists?.map(artist => (
+                    <Typography key={artist.id} variant="caption">
+                        {artist.name}
+                    </Typography>
+                ))}
+            />
+        </ListItem>
     );
 };
 
@@ -105,7 +97,7 @@ PlayListTrack.propTypes = {
     album: PropTypes.object,
     labelId: PropTypes.string,
     play: PropTypes.func,
-    idx: PropTypes.number
+    index: PropTypes.number
 };
 
 {

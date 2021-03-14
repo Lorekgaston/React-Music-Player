@@ -6,6 +6,11 @@
     display: block;
     overflow: hidden;
     // transition: width 0.5s ease-in-out;
+    &__navigation {
+        width: 100%;
+        display: flex;
+        align-items: center;
+    }
     &__routes {
         width: 100%;
         overflow-y: auto;
@@ -32,7 +37,14 @@
         transition: all 0.4s ease;
     }
 }
-
+.MuiButtonBase-root.MuiIconButton-root {
+    padding: 0;
+    font-size: 4rem;
+}
+.MuiSvgIcon-root.MuiSvgIcon-fontSizeLarge {
+    font-size: 2.7rem;
+    color: #fafaf9;
+}
 .menuOpen {
     left: 0;
     bottom: 4.2em;
@@ -82,7 +94,6 @@
             top: 0;
             bottom: auto;
             left: auto;
-            opacity: 0;
             will-change: right, opacity;
         }
         &__navigation {
@@ -95,17 +106,18 @@
         transition: width 0.6s ease-in-out;
         transition-delay: 250ms;
     }
-    // .menuClose {
-    //     transition: right 0.8s ease-in, opacity 1s ease-in;
-    //     transition-delay: 100ms;
-    //     overflow: hidden;
-    //     opacity: 0;
-    //     right: -100%;
-    // }
     .menuOpen {
         transition: right 0.8s ease-out, opacity 0.6s ease-out;
         overflow: hidden;
         opacity: 1;
         right: 2px;
+    }
+    .MuiButtonBase-root.MuiIconButton-root {
+        padding: 0;
+        font-size: 4rem;
+    }
+    .MuiSvgIcon-root.MuiSvgIcon-fontSizeLarge {
+        font-size: 3rem;
+        color: #fafaf9;
     }
 }

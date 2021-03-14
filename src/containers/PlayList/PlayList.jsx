@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTrackList } from '../../redux/actions/controller';
-import { useParams } from 'react-router-dom';
-import { Paper } from '@material-ui/core';
 import useFetch from '../../hooks/useFetch';
 import { useStyles } from './styles';
 import PlaylistHeader from '../../components/PlaylistHeader/PlaylistHeader';
