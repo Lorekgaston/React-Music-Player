@@ -1,13 +1,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import List from '@material-ui/core/List';
-import { Divider, ListItem, ListItemText, Typography } from '@material-ui/core';
+import { Divider } from '@material-ui/core';
 import PlayListTrack from '../PlayListTrack/PlayListTrack';
 
 const PlaylistTracklist = ({ classes, playTrack, trackList, loading }) => {
     return (
         <>
-            <List style={{ overflowY: 'auto' }}>
+            <div style={{ overflowY: 'auto' }}>
                 <Divider variant="fullWidth" className={classes.divider} />
                 {trackList?.length > 0 &&
                     trackList?.map((song, idx) => {
@@ -25,7 +25,7 @@ const PlaylistTracklist = ({ classes, playTrack, trackList, loading }) => {
                             />
                         );
                     })}
-            </List>
+            </div>
         </>
     );
 };

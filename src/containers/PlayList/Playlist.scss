@@ -1,4 +1,5 @@
 .Playlist {
+    position: relative;
     flex-grow: 1;
     width: 100%;
     background: #121212;
@@ -14,5 +15,12 @@
 @media (min-width: 600px) {
     .Playlist {
         background: #101010;
+        &__loader {
+            width: 100%;
+            height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     }
 }

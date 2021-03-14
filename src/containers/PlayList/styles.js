@@ -74,7 +74,7 @@ export const useStyles = makeStyles({
         paddingRight: 12
     },
     divider: {
-        backgroundColor: 'rgb(48 48 48 / 0.7)',
+        backgroundColor: '#311c41',
         marginBottom: 10
     }
 });

@@ -46,7 +46,7 @@ const Search = () => {
                                     key={playlist.id + idx}
                                     image={playlist?.images[0]?.url}
                                     name={playlist.name}
-                                    param={`/playlist/${playlist.id}`}
+                                    id={playlist.id}
                                 />
                             ))}
                     </div>

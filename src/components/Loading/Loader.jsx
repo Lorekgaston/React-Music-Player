@@ -6,8 +6,6 @@ import './Loader.scss';
 const Loader = () => {
     return (
         <div className="Loader">
-            <h3>Loading...</h3>
-            <br />
             <div className="Loader__SpinnerContainer">
                 <CircularProgress
                     className="Loader__UpperSpinner"
@@ -22,6 +20,8 @@ const Loader = () => {
                     thickness={5}
                 />
             </div>
+            <br />
+            <h3>Loading</h3>
         </div>
     );
 };

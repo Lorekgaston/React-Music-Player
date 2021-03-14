@@ -16,10 +16,6 @@ const Main = () => {
     return (
         <div className="Main">
             <div className={isPlaylistOpen ? 'Main__routes shrink' : 'Main__routes'}>
-                <div className="Main__navigation">
-                    <NavigateBeforeIcon fontSize="large" />
-                    <NavigateNextIcon fontSize="large" />
-                </div>
                 <Switch>
                     {routes.map((route, i) => (
                         <Route

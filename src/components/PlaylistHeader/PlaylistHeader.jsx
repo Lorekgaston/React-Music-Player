@@ -5,22 +5,16 @@ import { parseTime } from '../../utils/handleTime';
 import './PlaylistHeader.scss';
 
 const PlaylistHeader = ({ data, playlistDuration, playList }) => (
-    <>
-        <div className="ImageContainer">
+    <div className="PlaylistHeader">
+        <div className="PlaylistHeader__imageContainer">
             <img src={data?.images[0].url} alt={data?.name} />
         </div>
-        <div className="PlaylistHeader">
+        <div className="PlaylistHeader__title">
             <Typography variant="h3" className="PlaylistHeader__name">
                 {data?.name}
             </Typography>
-            <Typography variant="body1" className="PlaylistHeader__description">
-                {data?.description}
-            </Typography>
-            <Typography variant="body2" className="PlaylistHeader__type">
-                {data?.type}
-            </Typography>
         </div>
-    </>
+    </div>
 );
 
 export default PlaylistHeader;
@@ -33,17 +27,10 @@ PlaylistHeader.propTypes = {
 };
 
 {
-    /* <div className="">
-                <Typography variant="caption" className="">
-                    <span>Created by:</span>{' '}
-                    <strong style={{ cursor: 'pointer' }}>{data?.owner.display_name} </strong>
-                    {'  '}-
-                </Typography>
-                <Typography variant="caption" className="">
-                    {playList?.length} Songs -
-                </Typography>
-                <Typography variant="caption" className="">
-                    {parseTime(playlistDuration)}
-                </Typography>
-            </div> */
+    /* <Typography variant="body1" className="PlaylistHeader__description">
+                {data?.description}
+            </Typography>
+            <Typography variant="body2" className="PlaylistHeader__type">
+                {data?.type}
+            </Typography> */
 }

@@ -10,6 +10,7 @@ import PlaylistTracklist from '../../components/PlaylistTracklist/PlaylistTrackl
 import { filterPlayableTracks, handleTracklistData } from '../../utils/handletrackList';
 
 import './Playlist.scss';
+import Loader from '../../components/Loading/Loader';
 
 const PlayList = () => {
     const dispatch = useDispatch();
@@ -33,23 +34,24 @@ const PlayList = () => {
 
     return (
         <div className="Playlist">
-            {isLoading ? null : (
+            {isLoading ? (
+                <div className="Playlist__loader">
+                    <Loader />
+                </div>
+            ) : (
                 <>
-                    <div className="Playlist__Header">
-                        <PlaylistHeader
-                            data={data}
-                            playlistDuration={playlistDuration}
-                            playList={playList}
-                        />
-                    </div>
-                    <div className="Playlist__tracklist">
-                        <PlaylistTracklist
-                            classes={classes}
-                            playTrack={playTrack}
-                            trackList={trackList}
-                            loading={isLoading}
-                        />
-                    </div>
+                    <PlaylistHeader
+                        data={data}
+                        playlistDuration={playlistDuration}
+                        playList={playList}
+                    />
+
+                    <PlaylistTracklist
+                        classes={classes}
+                        playTrack={playTrack}
+                        trackList={trackList}
+                        loading={isLoading}
+                    />
                 </>
             )}
         </div>

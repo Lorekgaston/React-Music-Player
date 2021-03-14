@@ -47,7 +47,7 @@ const Home = () => {
                                             key={item.id + idx}
                                             image={images[0].url}
                                             name={name}
-                                            param={`/single/${id}`}
+                                            id={id}
                                         />
                                     );
                                 })}
@@ -68,7 +68,7 @@ const Home = () => {
                                             key={item.id + idx}
                                             image={images[0]?.url}
                                             name={name}
-                                            param={`/single/${id}`}
+                                            id={id}
                                         />
                                     );
                                 })}

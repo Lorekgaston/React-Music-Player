@@ -26,6 +26,7 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: flex-start;
+            will-change: flex-wrap;
         }
     }
 }
