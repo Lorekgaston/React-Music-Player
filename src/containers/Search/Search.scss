@@ -3,49 +3,29 @@
     height: 100%;
     position: relative;
     text-transform: capitalize;
-    &__title {
+    &__Title {
         padding: 0.5em 2.6em;
-    }
-    &__input {
-        text-align: center;
-        height: 1.5rem;
-        margin-bottom: 1em;
-        & input {
-            width: 85%;
-            height: 90%;
-            margin: 0 auto;
-            padding: 6px;
-            border: none;
-            border-radius: 10px;
-            &:focus {
-                outline: none !important;
-                box-shadow: 0 0 15px 5px #5b2a6f;
-            }
-        }
     }
     &__results {
         width: 95%;
         margin: 0 auto;
         display: flex;
         justify-content: center;
-        &_list {
+        &_flexbox {
             width: 79%;
             margin: 0 auto;
             display: flex;
             flex-wrap: wrap;
             justify-content: flex-start;
+            will-change: flex-wrap;
         }
     }
 }
 
 @media (min-width: 600px) {
     .Search {
-        &__input {
-            width: 30%;
-            margin: 1em auto;
-        }
         &__results {
-            &_list {
+            &_flexbox {
                 width: 100%;
                 margin: auto;
             }

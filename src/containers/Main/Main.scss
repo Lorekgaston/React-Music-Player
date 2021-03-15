@@ -7,8 +7,10 @@
     overflow: hidden;
     // transition: width 0.5s ease-in-out;
     &__navigation {
-        width: 100%;
+        width: 95%;
+        margin: 0 auto;
         display: flex;
+        justify-content: space-between;
         align-items: center;
     }
     &__routes {
@@ -34,12 +36,14 @@
         height: 0;
         opacity: 0;
         background: rgb(37, 36, 35);
-        transition: all 0.4s ease;
+        transition:  opacity 0.8s ease-in, height 0.4s ease-in, bottom 0.4s ease-in, left 0.4s ease-in;
+        transition-delay: opacity 200ms, left 300ms;
+        will-change: opacity, height, bottom, left;
     }
 }
 .MuiButtonBase-root.MuiIconButton-root {
     padding: 0;
-    font-size: 4rem;
+    font-size: 3rem;
 }
 .MuiSvgIcon-root.MuiSvgIcon-fontSizeLarge {
     font-size: 2.7rem;
@@ -47,10 +51,13 @@
 }
 .menuOpen {
     left: 0;
-    bottom: 4.2em;
-    height: 79.5vh;
-    z-index: 10;
+    bottom: 3.2em;
+    height: 92vh;
+    z-index: 100;
     opacity: 1;
+    transition: opacity 0.8s ease-out, height 0.4s ease-out, bottom 0.4s ease-out, left 0.4s ease-out;
+    transition-delay: opacity 300ms, left 300ms;
+    will-change: opacity, height, bottom, left;
 }
 
 @media (min-width: 600px) {
@@ -64,9 +71,8 @@
         overflow: hidden;
         &__routes {
             width: 100vw;
-            overflow-y: auto;
             transition: width 0.6s ease-in;
-
+            overflow-x: hidden;
             will-change: width;
             &::-webkit-scrollbar {
                 width: 5px;
@@ -108,9 +114,21 @@
     }
     .menuOpen {
         transition: right 0.8s ease-out, opacity 0.6s ease-out;
-        overflow: hidden;
+        overflow-y: auto;
         opacity: 1;
         right: 2px;
+        will-change: right, opacity;
+        &::-webkit-scrollbar {
+            width: 5px;
+        }
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        &::-webkit-scrollbar-thumb {
+            background: transparent;
+            background: rgba(49, 28, 65, 0.2);
+            border-radius: 10px;
+        }
     }
     .MuiButtonBase-root.MuiIconButton-root {
         padding: 0;

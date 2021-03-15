@@ -10,22 +10,27 @@ import './Main.scss';
 import PlayList from '../PlayList/PlayList';
 import Menu from '../../components/Menu/Menu';
 import { IconButton } from '@material-ui/core';
+import SearchInput from '../../components/SearchInput/SearchInput';
 
 const Main = () => {
     const { isPlaylistOpen } = useSelector(state => state.controller);
     const history = useHistory();
-    const { url, path } = useRouteMatch();
-    console.log(url);
     return (
         <div className="Main">
             <div className={isPlaylistOpen ? 'Main__routes shrink' : 'Main__routes'}>
                 <div className="Main__navigation">
-                    <IconButton disabled={history.location.pathname === '/home'}>
-                        <NavigateBeforeIcon fontSize="large" onClick={() => history.goBack()} />
-                    </IconButton>
-                    <IconButton>
-                        <NavigateNextIcon fontSize="large" onClick={() => history.goForward()} />
-                    </IconButton>
+                    <SearchInput />
+                    <div>
+                        <IconButton disabled={history.location.pathname === '/home'}>
+                            <NavigateBeforeIcon fontSize="large" onClick={() => history.goBack()} />
+                        </IconButton>
+                        <IconButton>
+                            <NavigateNextIcon
+                                fontSize="large"
+                                onClick={() => history.goForward()}
+                            />
+                        </IconButton>
+                    </div>
                 </div>
                 <Switch>
                     {routes.map((route, i) => (

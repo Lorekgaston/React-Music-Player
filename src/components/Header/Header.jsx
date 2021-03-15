@@ -36,11 +36,6 @@ const Header = ({ token }) => {
                                     Genres
                                 </Link>
                             </li>
-                            <li className="Navbar__menuItem" onClick={() => setIsClicked(false)}>
-                                <Link className="Navbar__link" to="/search">
-                                    Search
-                                </Link>
-                            </li>
                         </ul>
                         <div className="Navbar__button">
                             <Button variant="contained">Log Out</Button>
@@ -57,11 +52,6 @@ const Header = ({ token }) => {
                             <li className="Navbar__menuItem">
                                 <Link className="Navbar__link" to="/Genres">
                                     Genres
-                                </Link>
-                            </li>
-                            <li className="Navbar__menuItem">
-                                <Link className="Navbar__link" to="/search">
-                                    Search
                                 </Link>
                             </li>
                         </ul>
