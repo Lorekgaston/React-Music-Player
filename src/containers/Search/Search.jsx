@@ -25,6 +25,7 @@ const Search = () => {
                                     image={playlist?.images[0]?.url}
                                     name={playlist.name}
                                     id={playlist.id}
+                                    type={playlist.type}
                                 />
                             ))}
                     </div>

@@ -5,7 +5,7 @@ import { fetchCategories } from '../../redux/actions/categories';
 import { getAuthToken } from '../../Auth';
 import { Typography } from '@material-ui/core';
 
-import './Genres.scss';
+import './Categories.scss';
 const { access_token } = getAuthToken();
 
 const useThunkAction = action => {
@@ -15,7 +15,7 @@ const useThunkAction = action => {
     }, []);
 };
 
-const Genres = () => {
+const Categories = () => {
     const history = useHistory();
     const { url } = useRouteMatch();
     const { categories, isLoading, error, errorMessage } = useSelector(state => state.categories);
@@ -33,26 +33,26 @@ const Genres = () => {
     }, []);
     console.log(url);
     return (
-        <div className="GenresPage">
+        <div className="CategoriesPage">
             {error && <h1>{errorMessage}</h1>}
             {isLoading ? (
                 <h1>Loading....</h1>
             ) : (
                 <>
-                    <div className="GenresPage__Title">
-                        <Typography variant="h3">Genres</Typography>
+                    <div className="Categories__Title">
+                        <Typography variant="h3">Categories</Typography>
                     </div>
-                    <div className="Genres">
+                    <div className="Categories">
                         {genres?.length > 0 &&
                             aToz(genres).map((item, idx) => {
                                 return (
                                     <>
                                         <div
-                                            className="Genres__card"
+                                            className="Categories__card"
                                             key={idx}
                                             onClick={() => history.push(`${url}/${item?.id}`)}>
                                             <img src={item.icons[0].url} alt="" />
-                                            <div className="Genres__card_info">
+                                            <div className="Categories__card_info">
                                                 <h4>{item.name}</h4>
                                             </div>
                                         </div>
@@ -66,13 +66,4 @@ const Genres = () => {
     );
 };
 
-export default Genres;
-
-{
-    /* <CoverCard
-                                    key={item.id + idx}
-                                    image={item.icons[0].url}
-                                    name={item.name}
-                                    param={`/categorypage/${item?.id}`}
-                                /> */
-}
+export default Categories;

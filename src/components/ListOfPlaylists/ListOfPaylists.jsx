@@ -1,13 +1,11 @@
 import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Route, Switch, useParams, useRouteMatch } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Typography } from '@material-ui/core';
-import useFetch from '../../hooks/useFetch';
 import CoverCard from '../CoverCard/CoverCard';
 import './ListOfPlaylists.scss';
 import Loader from '../Loading/Loader';
 import { fetchListOfPlaylistData } from '../../redux/actions/listOfPlaylists';
-import PlayList from '../../containers/PlayList/PlayList';
 
 const useThunkAction = action => {
     const dispatch = useDispatch();
@@ -18,18 +16,17 @@ const useThunkAction = action => {
 
 const ListOfPlaylists = () => {
     const { id } = useParams();
-    const { url, path } = useRouteMatch();
     const { listOfPlaylist, isLoading, isError, errorMessage } = useSelector(
         state => state.listOfPlaylist
     );
     useThunkAction(fetchListOfPlaylistData(id));
-    console.log(url, path, `${url}/:id`);
     return (
         <div className="ListOfPlaylists">
+            {isError ? <Typography variant="h3">{errorMessage}</Typography> : null}
             {isLoading ? (
                 <Loader />
             ) : !listOfPlaylist ? (
-                <h1>THere Are no playlist</h1>
+                <h1>There Are no playlist</h1>
             ) : (
                 <>
                     <div className="ListOfPlaylists__Title">
@@ -46,6 +43,7 @@ const ListOfPlaylists = () => {
                                             image={playlist.images[0].url}
                                             name={playlist.name}
                                             id={playlist.id}
+                                            type={playlist.type}
                                         />
                                     </>
                                 ))}
@@ -58,21 +56,3 @@ const ListOfPlaylists = () => {
 };
 
 export default ListOfPlaylists;
-
-{
-    /* <Card
-                                    className={classes.card}
-                                    key={playlist.id + idx}
-                                    onClick={() => history.push(`/playlist/${playlist.id}`)}>
-                                    <CardMedia
-                                        className={classes.media}
-                                        component="img"
-                                        src={playlist.images[0].url}
-                                    />
-                                    <CardContent className={classes.cardContent}>
-                                        <Typography className={classes.text} variant="h6">
-                                            {playlist.name}
-                                        </Typography>
-                                    </CardContent>
-                                </Card> */
-}

@@ -56,9 +56,9 @@
 }
 .menuOpen {
     left: 0;
-    bottom: 3.2em;
-    height: 92vh;
-    z-index: 100;
+    bottom: 4em;
+    min-height: 90vh;
+    z-index: 90;
     opacity: 1;
     transition: opacity 0.8s ease-out, height 0.4s ease-out, bottom 0.4s ease-out, left 0.4s ease-out;
     transition-delay: opacity 300ms, left 300ms;
@@ -95,9 +95,9 @@
             background: #101010;
             width: 40%;
             position: absolute;
-            height: 83vh;
+            min-height: 83vh;
             padding: 0.5em 0;
-            transition: right 0.8s ease-in, opacity 1s ease-in;
+            transition: right 0.8s ease-in, opacity 0.3s ease-in;
             transition-delay: 100ms;
             overflow: hidden;
             opacity: 0;
@@ -108,7 +108,7 @@
             will-change: right, opacity;
         }
         &__navigation {
-            padding: 0.2em 0.2em;
+            padding: 0.2em 1.2em;
             margin: 0.1em 0.1em;
         }
     }

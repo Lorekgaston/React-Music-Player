@@ -1,7 +1,6 @@
-import Genres from '../containers/Genres/Genres';
+import Categories from '../containers/Categories/Categories';
 import ListOfPlaylists from '../components/ListOfPlaylists/ListOfPaylists';
 import Home from '../containers/Home/Home';
-import Single from '../containers/Single/Single';
 import Search from '../containers/Search/Search';
 
 const routes = [
@@ -10,16 +9,12 @@ const routes = [
         component: Home
     },
     {
-        path: '/Genres',
-        component: Genres
+        path: '/Categories',
+        component: Categories
     },
     {
-        path: '/Genres/:id',
+        path: '/Categories/:id',
         component: ListOfPlaylists
-    },
-    {
-        path: '/single/:id',
-        component: Single
     },
     {
         path: '/search',

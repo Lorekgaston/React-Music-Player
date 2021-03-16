@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { Avatar, Typography } from '@material-ui/core';
-import { parseTime } from '../../utils/handleTime';
+import { Typography } from '@material-ui/core';
+
 import './PlaylistHeader.scss';
 
 const PlaylistHeader = ({ data }) => (
@@ -11,7 +11,7 @@ const PlaylistHeader = ({ data }) => (
         </div>
         <div className="PlaylistHeader__title">
             <Typography variant="h3" className="PlaylistHeader__name">
-                {data?.name}
+                {data?.name?.length > 20 ? data?.name?.substring(0, 27) + '...' : data?.name}
             </Typography>
         </div>
     </div>
@@ -25,12 +25,3 @@ PlaylistHeader.propTypes = {
     playlistDuration: PropTypes.array,
     playList: PropTypes.array
 };
-
-{
-    /* <Typography variant="body1" className="PlaylistHeader__description">
-                {data?.description}
-            </Typography>
-            <Typography variant="body2" className="PlaylistHeader__type">
-                {data?.type}
-            </Typography> */
-}

@@ -4,7 +4,6 @@ import { fetchPlaylist } from '../../redux/actions/playList';
 import { setTrackList, setAudio } from '../../redux/actions/controller';
 import Loader from '../../components/Loading/Loader';
 import PlaylistHeader from '../../components/PlaylistHeader/PlaylistHeader';
-import PlaylistTracklist from '../../components/PlaylistTracklist/PlaylistTracklist';
 import PlayListTrack from '../../components/PlayListTrack/PlayListTrack';
 import { Divider } from '@material-ui/core';
 
@@ -29,6 +28,7 @@ const PlayList = () => {
     };
     return (
         <div className="Playlist">
+            {isError && <h1>{errorMessage}</h1>}
             {isLoading ? (
                 <div className="Playlist__loader">
                     <Loader />
@@ -37,7 +37,7 @@ const PlayList = () => {
                 <>
                     <PlaylistHeader data={data} />
                     <div className="TrackList">
-                        <Divider variant="fullWidth" />
+                        <hr className="Playlist__divider"></hr>
                         <div className="TrackList__tracks">
                             {dataType === 'playlist' &&
                                 data?.tracks?.length > 0 &&

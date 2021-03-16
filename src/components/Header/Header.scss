@@ -7,7 +7,7 @@
     background: linear-gradient(10deg, rgb(37, 36, 35) 16%, rgb(49, 28, 65) 83%);
 
     color: #fff;
-    z-index: 100;
+    z-index: 80;
     &__container {
         position: relative;
         width: 100%;
@@ -87,7 +87,7 @@
         }
         &__nav {
             position: relative;
-            width: 50%;
+            width: 40%;
             height: 100%;
             background: none;
             opacity: 1;
@@ -99,9 +99,10 @@
             width: 70%;
             height: 100%;
             flex-direction: row;
-            justify-content: space-evenly;
+            justify-content: flex-end;
             align-items: center;
             border-right: 1px solid;
+            padding-right: 1em;
         }
         &__menuItem {
             flex-direction: row;
@@ -124,7 +125,7 @@
             width: 50%;
             display: flex;
             align-items: center;
-            justify-content: space-evenly;
+            justify-content: space-around;
         }
         &__user {
             display: block;
@@ -133,7 +134,7 @@
             border-bottom: 1px solid rgb(49, 28, 65);
         }
         &__button {
-            width: 25%;
+            width: 35%;
             margin: 0;
             padding: 0 0.5em;
             justify-self: flex-end;

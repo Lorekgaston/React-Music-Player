@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { playSong, handleVolume, setProgress } from '../../redux/actions/controller';
 import VolumeController from '../../components/VolumeController/VolumeController';
-import Progress from '../../components/Progress/Progress';
 import ControlButtons from '../../components/ControlButtons/ControlButtons';
-import NowPlaying from '../../components/NowPlaying/NowPlaying';
 import './ControlBar.scss';
 import QueueMusicIcon from '@material-ui/icons/QueueMusic';
 import { IconButton } from '@material-ui/core';
@@ -77,24 +75,6 @@ const ControlBar = ({ audio }) => {
         return () => changeVolume();
     }, [volume, isMuted]);
 
-    // React.useEffect(() => {
-    //     const muteAudio = () => {
-    //         if (isMuted) {
-    //             audio.muted = true;
-    //         }
-    //         if (!isMuted) {
-    //             audio.muted = false;
-    //         }
-    //     };
-    //     muteAudio();
-    // }, [isMuted]);
-
-    // React.useEffect(() => {
-    //     prevVolumeRef.current = volume;
-    // });
-
-    // const prevVolume = prevVolumeRef.current;
-
     const autoPlay = timer => {
         dispatch(setProgress(0));
         dispatch(playSong(false));
@@ -122,8 +102,15 @@ const ControlBar = ({ audio }) => {
                 )}
             </div> */}
             <div className="Controlbar__progressbar">
-                {/* <Progress audio={audio} progress={progress} /> */}
-                {/* <div className="Controlbar__progressbar_bar"></div> */}
+                <div
+                    style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: `${progress}%`,
+                        height: '100%',
+                        background: '#311c41'
+                    }}></div>
             </div>
             <div className="Controlbar__bottomContainer">
                 <div>

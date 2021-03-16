@@ -1,4 +1,4 @@
-.GenresPage {
+.CategoriesPage {
     width: 100%;
     position: relative;
     &__Title {
@@ -6,7 +6,7 @@
     }
 }
 
-.Genres {
+.Categories {
     width: 95%;
     margin: 0 auto;
     display: grid;
@@ -31,14 +31,14 @@
 }
 
 @media (min-width: 600px) {
-    .GenresPage {
+    .CategoriesPage {
         &__Title {
             font-size: 2rem;
 
             padding: 0.5em 1.7em;
         }
     }
-    .Genres {
+    .Categories {
         // grid-template-columns: repeat(8, 1fr);
         display: flex;
         flex-wrap: wrap;

@@ -1,21 +1,16 @@
 .CardListSection {
-    width: 100%;
-    display: grid;
-    grid-gap: 10px;
-    grid-template-columns: repeat(10, calc(50% - 40px));
-    grid-template-rows: minmax(150px, 1fr);
-    overflow: scroll;
+    margin: 0 auto;
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 
 @media (min-width: 600px) {
     .CardListSection {
-        // grid-template-columns: repeat(10, 1fr);
-        // grid-template-rows: minmax(1px, 1fr);
         width: 95%;
         margin: 0 auto;
         overflow: hidden;
         display: flex;
         flex-wrap: wrap;
-        // margin: 0.7em 0.7em; 
     }
 }
