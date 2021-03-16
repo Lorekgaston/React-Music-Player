@@ -1,35 +1,32 @@
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setTrackList } from '../../redux/actions/controller';
-import useFetch from '../../hooks/useFetch';
-import { useStyles } from './styles';
+import { fetchPlaylist } from '../../redux/actions/playList';
+import { setTrackList, setAudio } from '../../redux/actions/controller';
+import Loader from '../../components/Loading/Loader';
 import PlaylistHeader from '../../components/PlaylistHeader/PlaylistHeader';
 import PlaylistTracklist from '../../components/PlaylistTracklist/PlaylistTracklist';
-import { filterPlayableTracks, handleTracklistData } from '../../utils/handletrackList';
+import PlayListTrack from '../../components/PlayListTrack/PlayListTrack';
+import { Divider } from '@material-ui/core';
 
 import './Playlist.scss';
-import Loader from '../../components/Loading/Loader';
 
 const PlayList = () => {
     const dispatch = useDispatch();
-    const { playlistId } = useSelector(state => state.controller);
-    // const { id } = useParams();
-    const classes = useStyles();
-    const { data, isLoading } = useFetch(
-        `https://api.spotify.com/v1/playlists/${playlistId}?fields=description,owner(display_name,external_urls),images,name,primary_color,type,tracks.items(track(album,duration_ms,id,name,preview_url))`,
-        playlistId
-    );
+    const { data, isLoading, isError, errorMessage } = useSelector(state => state.playList);
+    const { playlistId, dataType } = useSelector(state => state.controller);
 
-    // Spread data and asign default value to items, to prevent null or undefine error when destructuring api response.
-    const { tracks: { items } = {} } = { ...data };
-    // Used helper functions to filter data.
-    const playList = filterPlayableTracks(items);
-    const trackList = handleTracklistData(playList);
-    const playlistDuration = trackList?.map(item => item.duration_ms);
+    React.useEffect(() => {
+        dispatch(fetchPlaylist(playlistId, dataType));
+    }, [playlistId]);
+
     const playTrack = i => {
-        dispatch(setTrackList({ trackList, i }));
+        if (dataType === 'playlist') {
+            dispatch(setTrackList({ data, i }));
+        }
+        if (dataType === 'track') {
+            dispatch(setAudio(data));
+        }
     };
-
     return (
         <div className="Playlist">
             {isLoading ? (
@@ -38,18 +35,33 @@ const PlayList = () => {
                 </div>
             ) : (
                 <>
-                    <PlaylistHeader
-                        data={data}
-                        playlistDuration={playlistDuration}
-                        playList={playList}
-                    />
-
-                    <PlaylistTracklist
-                        classes={classes}
-                        playTrack={playTrack}
-                        trackList={trackList}
-                        loading={isLoading}
-                    />
+                    <PlaylistHeader data={data} />
+                    <div className="TrackList">
+                        <Divider variant="fullWidth" />
+                        <div className="TrackList__tracks">
+                            {dataType === 'playlist' &&
+                                data?.tracks?.length > 0 &&
+                                data?.tracks?.map((song, idx) => {
+                                    return (
+                                        <PlayListTrack
+                                            key={song + idx}
+                                            track={song}
+                                            isLoading={isLoading}
+                                            play={playTrack}
+                                            index={idx}
+                                        />
+                                    );
+                                })}
+                            {dataType === 'track' && (
+                                <PlayListTrack
+                                    track={data}
+                                    isLoading={isLoading}
+                                    play={playTrack}
+                                    index={data?.name}
+                                />
+                            )}
+                        </div>
+                    </div>
                 </>
             )}
         </div>

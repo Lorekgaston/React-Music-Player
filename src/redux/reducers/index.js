@@ -5,6 +5,7 @@ import search from './search';
 import categories from './categories';
 import homeData from './homeData';
 import listOfPlaylist from './listOfPlaylists';
+import playList from './playList';
 
 const rootReducer = combineReducers({
     controller,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     search,
     categories,
     homeData,
-    listOfPlaylist
+    listOfPlaylist,
+    playList
 });
 
 export default rootReducer;

@@ -20,17 +20,6 @@ const Main = () => {
             <div className={isPlaylistOpen ? 'Main__routes shrink' : 'Main__routes'}>
                 <div className="Main__navigation">
                     <SearchInput />
-                    <div>
-                        <IconButton disabled={history.location.pathname === '/home'}>
-                            <NavigateBeforeIcon fontSize="large" onClick={() => history.goBack()} />
-                        </IconButton>
-                        <IconButton>
-                            <NavigateNextIcon
-                                fontSize="large"
-                                onClick={() => history.goForward()}
-                            />
-                        </IconButton>
-                    </div>
                 </div>
                 <Switch>
                     {routes.map((route, i) => (

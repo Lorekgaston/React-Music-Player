@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { handlePLaylist } from '../../redux/actions/controller';
 import './CoverCard.scss';
 
-const CoverCard = ({ image, name, id }) => {
+const CoverCard = ({ image, name, id, type }) => {
     const [hover, setHover] = React.useState(false);
     const { isPlaylistOpen } = useSelector(state => state.controller);
     const dispatch = useDispatch();
@@ -12,8 +12,9 @@ const CoverCard = ({ image, name, id }) => {
         if (!isPlaylistOpen) {
             dispatch({ type: 'TOOGLE_PLAYLIST' });
         }
-        dispatch(handlePLaylist(id));
+        dispatch(handlePLaylist(id, type));
     };
+
     return (
         <div
             className="Card"
@@ -31,7 +32,8 @@ export default CoverCard;
 CoverCard.propTypes = {
     image: PropTypes.string,
     name: PropTypes.string,
-    id: PropTypes.string
+    id: PropTypes.string,
+    type: PropTypes.string
 };
 
 {

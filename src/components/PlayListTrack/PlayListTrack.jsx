@@ -57,13 +57,14 @@ const useStyles = makeStyles({
     }
 });
 
-const PlayListTrack = ({ track: { name, images = [], artists } = {}, play, index }) => {
+const PlayListTrack = ({ track, play, index }) => {
     const classes = useStyles();
+    console.log(track);
     return (
         <ListItem className={classes.listItem} onClick={() => play(index)}>
             <ListItemAvatar>
-                {images[0]?.url ? (
-                    <Avatar variant="square" src={images[0]?.url} />
+                {track?.images[0]?.url ? (
+                    <Avatar variant="square" src={track?.images[0]?.url} />
                 ) : (
                     <Avatar variant="square">
                         <AlbumIcon />
@@ -74,11 +75,11 @@ const PlayListTrack = ({ track: { name, images = [], artists } = {}, play, index
                 primary={
                     <>
                         <Typography variant="h6" noWrap={true}>
-                            {name}
+                            {track?.name}
                         </Typography>
                     </>
                 }
-                secondary={artists?.map(artist => (
+                secondary={track?.artists?.map(artist => (
                     <Typography key={artist.id} variant="caption">
                         {artist.name}
                     </Typography>
@@ -99,16 +100,3 @@ PlayListTrack.propTypes = {
     play: PropTypes.func,
     index: PropTypes.number
 };
-
-{
-    /* <FormControlLabel
-                    control={
-                        <Checkbox
-                            className={classes.favorite}
-                            icon={<FavoriteBorder />}
-                            checkedIcon={<Favorite />}
-                            name="checkedH"
-                        />
-                    }
-                /> */
-}

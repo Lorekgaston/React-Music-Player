@@ -4,7 +4,7 @@ import { Avatar, Typography } from '@material-ui/core';
 import { parseTime } from '../../utils/handleTime';
 import './PlaylistHeader.scss';
 
-const PlaylistHeader = ({ data, playlistDuration, playList }) => (
+const PlaylistHeader = ({ data }) => (
     <div className="PlaylistHeader">
         <div className="PlaylistHeader__imageContainer">
             <img src={data?.images[0].url} alt={data?.name} />

@@ -23,7 +23,7 @@ const ControlBar = ({ audio }) => {
         trackList,
         isSingle
     } = controller;
-
+    console.log(trackList);
     const firstRender = React.useRef(true);
     // const prevVolumeRef = React.useRef();
     const setSong = track => {

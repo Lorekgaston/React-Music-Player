@@ -17,7 +17,6 @@ const reducer = (state = initialState, action) => {
                 isLoading: action.loading
             };
         case actionType.FETCH_HOME_SUCCEDED:
-            console.log(action);
             return {
                 ...state,
                 recentlyPlayed: action.data.responseOne,

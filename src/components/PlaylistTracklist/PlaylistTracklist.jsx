@@ -7,7 +7,7 @@ import './PlaylistTracklist.scss';
 const PlaylistTracklist = ({ classes, playTrack, trackList, loading }) => {
     return (
         <div className="TrackList">
-            <Divider variant="fullWidth" className={classes.divider} />
+            <Divider variant="fullWidth" />
             <div className="TrackList__tracks">
                 {trackList?.length > 0 &&
                     trackList?.map((song, idx) => {

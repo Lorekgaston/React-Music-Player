@@ -25,7 +25,6 @@ const Home = () => {
         errorMessage
     } = useSelector(state => state.homeData);
     useThunkAction(fetchHomeData());
-    console.log(recentlyPlayed?.data.items);
     return (
         <div className="Home">
             {isLoading ? (
@@ -40,7 +39,8 @@ const Home = () => {
                                     const {
                                         name,
                                         album: { images },
-                                        id
+                                        id,
+                                        type
                                     } = item;
                                     return (
                                         <CoverCard
@@ -48,6 +48,7 @@ const Home = () => {
                                             image={images[0].url}
                                             name={name}
                                             id={id}
+                                            type={type}
                                         />
                                     );
                                 })}
@@ -61,7 +62,8 @@ const Home = () => {
                                     const {
                                         name,
                                         id,
-                                        album: { images }
+                                        album: { images },
+                                        type
                                     } = item;
                                     return (
                                         <CoverCard
@@ -69,6 +71,7 @@ const Home = () => {
                                             image={images[0]?.url}
                                             name={name}
                                             id={id}
+                                            type={type}
                                         />
                                     );
                                 })}
@@ -82,6 +85,7 @@ const Home = () => {
                                     image={playlist.images[0].url}
                                     name={playlist.name}
                                     id={playlist.id}
+                                    type={playlist.type}
                                 />
                             ))}
                     </CardListSection>

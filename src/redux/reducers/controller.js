@@ -13,7 +13,8 @@ const intialState = {
     trackList: [],
     isSingle: false,
     isPlaylistOpen: false,
-    playlistId: null
+    playlistId: null,
+    dataType: null
 };
 
 const reducer = (state = intialState, action) => {
@@ -34,7 +35,7 @@ const reducer = (state = intialState, action) => {
             console.log(action);
             return {
                 ...state,
-                trackList: action.tracks.trackList,
+                trackList: action.tracks.data.tracks,
                 index: action.tracks.i,
                 isSingle: false
             };
@@ -83,7 +84,8 @@ const reducer = (state = intialState, action) => {
         case actionType.HANDLE_PLAYLIST:
             return {
                 ...state,
-                playlistId: action.id
+                playlistId: action.id,
+                dataType: action.dataType
             };
         default:
             return state;
