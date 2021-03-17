@@ -4,7 +4,9 @@
     position: relative;
     text-transform: capitalize;
     &__Title {
-        padding: 0.5em 2.6em;
+        width: 95%;
+        margin: 0 auto;
+        padding: 0 1.6em;
     }
     &__results {
         width: 95%;

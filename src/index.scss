@@ -59,13 +59,14 @@ code {
 
 @media (min-width: 600px) {
     .MuiTypography-root.MuiTypography-h3 {
-        width: 95%;
-        font-size: 2rem;
+        width: 90%;
+        font-size: 1.7rem;
         font-weight: 600;
         color: #fcf6ff;
         padding: 0.2em 0.2em;
         margin: 0.1em 0.1em;
-        border-radius: 10px;
+        border-radius: 2px;
+        background: #161616;
     }
     .MuiButtonBase-root.MuiButton-root.MuiButton-contained {
         color: rgba(49, 28, 65, 0.9);

@@ -5,7 +5,7 @@ import { setTrackList, setAudio } from '../../redux/actions/controller';
 import Loader from '../../components/Loading/Loader';
 import PlaylistHeader from '../../components/PlaylistHeader/PlaylistHeader';
 import PlayListTrack from '../../components/PlayListTrack/PlayListTrack';
-import { Divider } from '@material-ui/core';
+import { Divider, Typography } from '@material-ui/core';
 
 import './Playlist.scss';
 
@@ -29,7 +29,11 @@ const PlayList = () => {
     return (
         <div className="Playlist">
             {isError && <h1>{errorMessage}</h1>}
-            {isLoading ? (
+            {!data ? (
+                <div className="Playlist__empty">
+                    <Typography variant="h3">Choose a playlist or song to play</Typography>
+                </div>
+            ) : isLoading ? (
                 <div className="Playlist__loader">
                     <Loader />
                 </div>
@@ -37,7 +41,6 @@ const PlayList = () => {
                 <>
                     <PlaylistHeader data={data} />
                     <div className="TrackList">
-                        <hr className="Playlist__divider"></hr>
                         <div className="TrackList__tracks">
                             {dataType === 'playlist' &&
                                 data?.tracks?.length > 0 &&

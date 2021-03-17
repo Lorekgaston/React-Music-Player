@@ -40,7 +40,6 @@
         bottom: 0;
         height: 0;
         opacity: 0;
-        background: rgb(37, 36, 35);
         transition:  opacity 0.8s ease-in, height 0.4s ease-in, bottom 0.4s ease-in, left 0.4s ease-in;
         transition-delay: opacity 200ms, left 300ms;
         will-change: opacity, height, bottom, left;
@@ -95,10 +94,9 @@
             background: #101010;
             width: 40%;
             position: absolute;
-            min-height: 83vh;
-            padding: 0.5em 0;
+            min-height: 85vh;
+            padding: 0;
             transition: right 0.8s ease-in, opacity 0.3s ease-in;
-            transition-delay: 100ms;
             overflow: hidden;
             opacity: 0;
             right: -100%;

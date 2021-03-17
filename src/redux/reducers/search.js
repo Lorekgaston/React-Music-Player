@@ -1,7 +1,9 @@
 import * as actionType from '../actionTypes';
 
 const intialState = {
-    playilist: [],
+    playlist: [],
+    tracks: null,
+    value: '',
     loading: false,
     error: ''
 };
@@ -12,7 +14,9 @@ const reducer = (state = intialState, action) => {
             console.log(action);
             return {
                 ...state,
-                playlist: action.playlist,
+                playlist: action.playlist.items,
+                tracks: action.playlist.tracks?.items,
+                value: action.playlist.string,
                 loading: false
             };
         case actionType.SET_LOADING:

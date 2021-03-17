@@ -31,7 +31,10 @@ const Home = () => {
                 <Loader />
             ) : (
                 <>
-                    <CardListSection title={'Recently Played'}>
+                    <div className="Home__Title">
+                        <Typography variant="h3">Last played songs</Typography>
+                    </div>
+                    <CardListSection>
                         <div className="Home__section">
                             {recentlyPlayed?.data.items.length > 0 &&
                                 recentlyPlayed?.data.items
@@ -55,8 +58,10 @@ const Home = () => {
                                     })}
                         </div>
                     </CardListSection>
-
-                    <CardListSection title={'Recommendations'}>
+                    <div className="Home__Title">
+                        <Typography variant="h3">Your Daily Recommendations</Typography>
+                    </div>
+                    <CardListSection>
                         <div className="Home__section">
                             {recommendations?.data.tracks.length > 0 &&
                                 recommendations?.data.tracks
@@ -80,8 +85,10 @@ const Home = () => {
                                     })}
                         </div>
                     </CardListSection>
-
-                    <CardListSection title={'Featured Playlists'}>
+                    <div className="Home__Title">
+                        <Typography variant="h3">Top Playlists for you</Typography>
+                    </div>
+                    <CardListSection>
                         <div className="Home__section">
                             {featuredPlaylists?.data.playlists.items.length > 0 &&
                                 featuredPlaylists?.data.playlists.items.map((playlist, idx) => (

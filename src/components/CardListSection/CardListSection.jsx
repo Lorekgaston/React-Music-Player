@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import { Typography } from '@material-ui/core';
 import './CardListSection.scss';
 
-const CardListSection = ({ children, title }) => (
+const CardListSection = ({ children }) => (
     <>
-        <Typography variant="h3">{title}</Typography>
         <div className="CardListSection">{children}</div>
     </>
 );
@@ -13,6 +12,5 @@ const CardListSection = ({ children, title }) => (
 export default CardListSection;
 
 CardListSection.propTypes = {
-    title: PropTypes.string,
     children: PropTypes.any
 };

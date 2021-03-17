@@ -31,7 +31,7 @@ const SearchInput = () => {
                 autoComplete="off"
                 name="searchInput"
                 id="searchInput"
-                placeholder="Search..."
+                placeholder="Search for spotify playlists and songs..."
                 value={value}
                 onChange={e => handleChage(e)}
             />
