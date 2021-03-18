@@ -23,7 +23,7 @@ code {
 .MuiTypography-root.MuiTypography-h3 {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #fcf6ff;
+    color: hsla(273, 100%, 96%, 0.9);
     // color: rgb(248, 240, 252);
     border-radius: 5px;
     padding: 0.4em;
@@ -31,12 +31,12 @@ code {
 .MuiTypography-root.MuiTypography-h6 {
     font-size: 0.8rem;
     font-weight: 600;
-    color: #fcf6ff;
+    color: hsla(273, 100%, 96%, 0.9);
 }
 .MuiTypography-root.MuiTypography-body1 {
     font-size: 0.8rem;
     font-weight: 500;
-    color: #fcf6ff;
+    color: hsla(273, 100%, 96%, 0.9);
     padding: 1em auto;
 }
 .MuiTypography-root.MuiTypography-body2 {
@@ -56,13 +56,12 @@ code {
     background: rgba(49, 28, 65, 0.9);
 }
 
-
 @media (min-width: 600px) {
     .MuiTypography-root.MuiTypography-h3 {
         width: 90%;
         font-size: 1.7rem;
         font-weight: 600;
-        color: #fcf6ff;
+        color: hsla(273, 100%, 96%, 0.9);
         padding: 0.2em 0.2em;
         margin: 0.1em 0.1em;
         border-radius: 2px;

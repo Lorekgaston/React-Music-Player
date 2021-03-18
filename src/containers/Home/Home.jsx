@@ -24,6 +24,7 @@ const Home = () => {
         error,
         errorMessage
     } = useSelector(state => state.homeData);
+    const { isPlaylistOpen } = useSelector(state => state.controller);
     useThunkAction(fetchHomeData());
     return (
         <div className="Home">
@@ -31,11 +32,14 @@ const Home = () => {
                 <Loader />
             ) : (
                 <>
-                    <div className="Home__Title">
+                    <div className={isPlaylistOpen ? 'Home__Title TitleShrink' : 'Home__Title'}>
                         <Typography variant="h3">Last played songs</Typography>
                     </div>
-                    <CardListSection>
-                        <div className="Home__section">
+                    <CardListSection isPlaylistOpen={isPlaylistOpen}>
+                        <div
+                            className={
+                                isPlaylistOpen ? 'Home__section sectionShrink' : 'Home__section'
+                            }>
                             {recentlyPlayed?.data.items.length > 0 &&
                                 recentlyPlayed?.data.items
                                     .filter(item => item.preview_url != null)
@@ -58,11 +62,14 @@ const Home = () => {
                                     })}
                         </div>
                     </CardListSection>
-                    <div className="Home__Title">
+                    <div className={isPlaylistOpen ? 'Home__Title TitleShrink' : 'Home__Title'}>
                         <Typography variant="h3">Your Daily Recommendations</Typography>
                     </div>
-                    <CardListSection>
-                        <div className="Home__section">
+                    <CardListSection isPlaylistOpen={isPlaylistOpen}>
+                        <div
+                            className={
+                                isPlaylistOpen ? 'Home__section sectionShrink' : 'Home__section'
+                            }>
                             {recommendations?.data.tracks.length > 0 &&
                                 recommendations?.data.tracks
                                     .filter(item => item.preview_url != null)
@@ -85,11 +92,14 @@ const Home = () => {
                                     })}
                         </div>
                     </CardListSection>
-                    <div className="Home__Title">
+                    <div className={isPlaylistOpen ? 'Home__Title TitleShrink' : 'Home__Title'}>
                         <Typography variant="h3">Top Playlists for you</Typography>
                     </div>
-                    <CardListSection>
-                        <div className="Home__section">
+                    <CardListSection isPlaylistOpen={isPlaylistOpen}>
+                        <div
+                            className={
+                                isPlaylistOpen ? 'Home__section sectionShrink' : 'Home__section'
+                            }>
                             {featuredPlaylists?.data.playlists.items.length > 0 &&
                                 featuredPlaylists?.data.playlists.items.map((playlist, idx) => (
                                     <CoverCard

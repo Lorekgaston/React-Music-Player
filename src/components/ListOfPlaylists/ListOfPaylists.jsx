@@ -6,6 +6,7 @@ import CoverCard from '../CoverCard/CoverCard';
 import './ListOfPlaylists.scss';
 import Loader from '../Loading/Loader';
 import { fetchListOfPlaylistData } from '../../redux/actions/listOfPlaylists';
+import CardListSection from '../CardListSection/CardListSection';
 
 const useThunkAction = action => {
     const dispatch = useDispatch();
@@ -19,6 +20,7 @@ const ListOfPlaylists = () => {
     const { listOfPlaylist, isLoading, isError, errorMessage } = useSelector(
         state => state.listOfPlaylist
     );
+    const { isPlaylistOpen } = useSelector(state => state.controller);
     useThunkAction(fetchListOfPlaylistData(id));
     return (
         <div className="ListOfPlaylists">
@@ -29,12 +31,22 @@ const ListOfPlaylists = () => {
                 <h1>There Are no playlist</h1>
             ) : (
                 <>
-                    <div className="ListOfPlaylists__Title">
+                    <div
+                        className={
+                            isPlaylistOpen
+                                ? 'ListOfPlaylists__Title TitleShrink'
+                                : 'ListOfPlaylists__Title'
+                        }>
                         <Typography variant="h3">{id}</Typography>
                     </div>
 
-                    <div className="ListOfPlaylists__List">
-                        <div className="ListOfPlaylists__List_flexbox">
+                    <CardListSection isPlaylistOpen={isPlaylistOpen}>
+                        <div
+                            className={
+                                isPlaylistOpen
+                                    ? 'ListOfPlaylists__flexbox sectionShrink'
+                                    : 'ListOfPlaylists__flexbox'
+                            }>
                             {listOfPlaylist.data?.playlists.items.length > 0 &&
                                 listOfPlaylist.data?.playlists.items.map((playlist, idx) => (
                                     <>
@@ -48,7 +60,7 @@ const ListOfPlaylists = () => {
                                     </>
                                 ))}
                         </div>
-                    </div>
+                    </CardListSection>
                 </>
             )}
         </div>

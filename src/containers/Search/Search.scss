@@ -8,32 +8,33 @@
         margin: 0 auto;
         padding: 0 1.6em;
     }
-    &__results {
-        width: 95%;
+
+    &__flexbox {
+        width: 79%;
         margin: 0 auto;
         display: flex;
-        justify-content: center;
-        &_flexbox {
-            width: 79%;
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-start;
-            will-change: flex-wrap;
-        }
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        will-change: flex-wrap;
     }
 }
 
 @media (min-width: 600px) {
     .Search {
-        &__results {
-            &_flexbox {
-                width: 100%;
-                margin: auto;
-            }
+        &__flexbox {
+            width: 100%;
+            margin: auto;
         }
+
         &::-webkit-scrollbar {
             display: none;
         }
+    }
+    .TitleShrink {
+        width: 95.5%;
+        padding: 0 4.5em;
+    }
+    .sectionShrink {
+        padding: 0 0.3em;
     }
 }

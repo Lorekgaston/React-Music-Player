@@ -3,23 +3,28 @@ import { useSelector } from 'react-redux';
 import CoverCard from '../../components/CoverCard/CoverCard';
 import { Typography } from '@material-ui/core';
 import Loader from '../../components/Loading/Loader';
+import CardListSection from '../../components/CardListSection/CardListSection';
 
 import './Search.scss';
 
 const Search = () => {
     const { playlist, tracks, loading } = useSelector(state => state.search);
-    console.log(tracks);
+    const { isPlaylistOpen } = useSelector(state => state.controller);
+
     return (
         <div className="Search">
             {loading ? (
                 <Loader />
             ) : (
                 <>
-                    <div className="Search__Title">
+                    <div className={isPlaylistOpen ? 'Search__Title TitleShrink' : 'Search__Title'}>
                         <Typography variant="h3">Playlists</Typography>
                     </div>
-                    <div className="Search__results">
-                        <div className="Search__results_flexbox">
+                    <CardListSection isPlaylistOpen={isPlaylistOpen}>
+                        <div
+                            className={
+                                isPlaylistOpen ? 'Search__flexbox sectionShrink' : 'Search__flexbox'
+                            }>
                             {playlist?.length > 0 &&
                                 playlist?.map((playlist, idx) => (
                                     <CoverCard
@@ -31,12 +36,15 @@ const Search = () => {
                                     />
                                 ))}
                         </div>
-                    </div>
-                    <div className="Search__Title">
+                    </CardListSection>
+                    <div className={isPlaylistOpen ? 'Search__Title TitleShrink' : 'Search__Title'}>
                         <Typography variant="h3">Tracks</Typography>
                     </div>
-                    <div className="Search__results">
-                        <div className="Search__results_flexbox">
+                    <CardListSection isPlaylistOpen={isPlaylistOpen}>
+                        <div
+                            className={
+                                isPlaylistOpen ? 'Search__flexbox sectionShrink' : 'Search__flexbox'
+                            }>
                             {tracks?.length > 0 &&
                                 tracks?.map((track, idx) => {
                                     const {
@@ -56,7 +64,7 @@ const Search = () => {
                                     );
                                 })}
                         </div>
-                    </div>
+                    </CardListSection>
                 </>
             )}
         </div>

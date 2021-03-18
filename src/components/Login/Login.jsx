@@ -16,7 +16,7 @@ const useStyles = makeStyles({
             rgba(0, 0, 0, 0.8),
             rgba(0, 0, 0, 0.4)
           ),
-          url(https://res.cloudinary.com/dxk8kglks/image/upload/v1612903113/Home/zac-bromell-QwrTnOlWAmI-unsplash_pc4ti6.jpg)`,
+          url(../../assets/img/zac-bromell-QwrTnOlWAmI-unsplash.jpg)`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         height: '100vh',

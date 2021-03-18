@@ -5,7 +5,7 @@ import { setTrackList, setAudio } from '../../redux/actions/controller';
 import Loader from '../../components/Loading/Loader';
 import PlaylistHeader from '../../components/PlaylistHeader/PlaylistHeader';
 import PlayListTrack from '../../components/PlayListTrack/PlayListTrack';
-import { Divider, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 
 import './Playlist.scss';
 
