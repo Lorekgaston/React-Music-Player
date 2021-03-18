@@ -11,7 +11,7 @@ const PlaylistHeader = ({ data }) => (
         </div>
         <div className="PlaylistHeader__title">
             <Typography variant="h3" className="PlaylistHeader__name">
-                {data?.name?.length > 20 ? data?.name?.substring(0, 27) + '...' : data?.name}
+                {data?.name}
             </Typography>
         </div>
     </div>

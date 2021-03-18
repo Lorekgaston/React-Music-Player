@@ -7,7 +7,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: #070505;
+    background: #181818;
     &__progressbar {
         position: relative;
         width: 100%;
@@ -28,6 +28,5 @@
 
 @media (min-width: 600px) {
     .Controlbar {
-        
     }
 }

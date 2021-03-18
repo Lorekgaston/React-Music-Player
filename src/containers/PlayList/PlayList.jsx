@@ -28,8 +28,7 @@ const PlayList = () => {
     };
     return (
         <div className="Playlist">
-            {isError && <h1>{errorMessage}</h1>}
-            {!data ? (
+            {!isError && !data ? (
                 <div className="Playlist__empty">
                     <Typography variant="h3">Choose a playlist or song to play</Typography>
                 </div>
@@ -41,7 +40,7 @@ const PlayList = () => {
                 <>
                     <PlaylistHeader data={data} />
                     <div className="TrackList">
-                        <div className="TrackList__tracks">
+                        <ul className="TrackList__tracks">
                             {dataType === 'playlist' &&
                                 data?.tracks?.length > 0 &&
                                 data?.tracks?.map((song, idx) => {
@@ -63,7 +62,7 @@ const PlayList = () => {
                                     index={data?.name}
                                 />
                             )}
-                        </div>
+                        </ul>
                     </div>
                 </>
             )}

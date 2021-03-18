@@ -47,6 +47,7 @@
         transition: height 0.6s ease-in, opacity 0.3s ease-in, bottom 0.6s ease-in,
             left 0.6s ease-in;
         will-change: height, opacity, bottom, left;
+        border-left: 3px solid #161616;
     }
 }
 .MuiButtonBase-root.MuiIconButton-root {
@@ -63,7 +64,7 @@
     will-change: height, opacity, bottom, left;
     left: 0;
     bottom: 4em;
-    height: 90vh;
+    height: 84vh;
     z-index: 90;
     opacity: 1;
 }
