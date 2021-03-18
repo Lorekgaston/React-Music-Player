@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPlaylist } from '../../redux/actions/playList';
-import { setTrackList, setAudio } from '../../redux/actions/controller';
+import { setTrackList, setAudio, setActiveIndex } from '../../redux/actions/controller';
 import Loader from '../../components/Loading/Loader';
 import PlaylistHeader from '../../components/PlaylistHeader/PlaylistHeader';
 import PlayListTrack from '../../components/PlayListTrack/PlayListTrack';
@@ -25,6 +25,7 @@ const PlayList = () => {
         if (dataType === 'track') {
             dispatch(setAudio(data));
         }
+        dispatch(setActiveIndex(i));
     };
     return (
         <div className="Playlist">

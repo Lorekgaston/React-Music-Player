@@ -4,10 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { playSong, handleVolume, setProgress } from '../../redux/actions/controller';
 import VolumeController from '../../components/VolumeController/VolumeController';
 import ControlButtons from '../../components/ControlButtons/ControlButtons';
-import './ControlBar.scss';
 import QueueMusicIcon from '@material-ui/icons/QueueMusic';
 import { IconButton } from '@material-ui/core';
+import NowPlaying from '../../components/NowPlaying/NowPlaying';
 
+import './ControlBar.scss';
 const ControlBar = ({ audio }) => {
     const dispatch = useDispatch();
     const controller = useSelector(state => state.controller);
@@ -21,7 +22,7 @@ const ControlBar = ({ audio }) => {
         trackList,
         isSingle
     } = controller;
-    console.log(trackList);
+    const { isPlaylistOpen } = useSelector(state => state.controller);
     const firstRender = React.useRef(true);
     // const prevVolumeRef = React.useRef();
     const setSong = track => {
@@ -93,14 +94,7 @@ const ControlBar = ({ audio }) => {
         dispatch(setProgress(Math.floor((audio.currentTime / audio.duration) * 100)));
 
     return (
-        <div className="Controlbar">
-            {/* <div className="Controlbar__nowPlaying">
-                {isSingle ? (
-                    <NowPlaying track={currentTrack} />
-                ) : (
-                    <NowPlaying track={trackList[index]} />
-                )}
-            </div> */}
+        <div className={isPlaylistOpen ? 'Controlbar ControlbarShrinked' : 'Controlbar'}>
             <div className="Controlbar__progressbar">
                 <div
                     style={{
@@ -113,6 +107,13 @@ const ControlBar = ({ audio }) => {
                     }}></div>
             </div>
             <div className="Controlbar__bottomContainer">
+                {/* <div className="Controlbar__nowPlaying">
+                    {isSingle ? (
+                        <NowPlaying track={currentTrack} />
+                    ) : (
+                        <NowPlaying track={trackList[index]} />
+                    )}
+                </div> */}
                 <div>
                     <IconButton>
                         <QueueMusicIcon

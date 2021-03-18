@@ -6,6 +6,7 @@ const intialState = {
     isMuted: false,
     volume: 50,
     index: 0,
+    activeIndex: 0,
     progress: 0,
     token: null,
     user: '',
@@ -86,6 +87,11 @@ const reducer = (state = intialState, action) => {
                 ...state,
                 playlistId: action.id,
                 dataType: action.dataType
+            };
+        case actionType.HANDLE_ACTIVE_INDEX:
+            return {
+                ...state,
+                activeIndex: action.activeIndex
             };
         default:
             return state;

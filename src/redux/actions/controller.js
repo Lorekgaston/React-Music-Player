@@ -57,3 +57,9 @@ export const handlePLaylist = (id, dataType) => {
         dataType
     };
 };
+export const setActiveIndex = i => {
+    return {
+        type: actionType.HANDLE_ACTIVE_INDEX,
+        activeIndex: i
+    };
+};

@@ -5,21 +5,27 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import AlbumIcon from '@material-ui/icons/Album';
 import { Typography } from '@material-ui/core';
+import { useSelector } from 'react-redux';
 
 import './PlayListTrack.scss';
 
 const PlayListTrack = ({ track, play, index }) => {
+    const { songPlaying, isSingle, activeIndex } = useSelector(state => state.controller);
+    console.log(track);
     return (
         <li className="ListItem" onClick={() => play(index)}>
-            <ListItemAvatar>
+            <span
+                className={
+                    activeIndex === index && songPlaying ? 'avatar' : 'avatar animationPaused'
+                }>
                 {track?.images[0]?.url ? (
-                    <Avatar variant="square" src={track?.images[0]?.url} />
+                    <Avatar variant="circle" src={track?.images[0]?.url} />
                 ) : (
-                    <Avatar variant="square">
+                    <Avatar variant="circle">
                         <AlbumIcon />
                     </Avatar>
                 )}
-            </ListItemAvatar>
+            </span>
             <ListItemText
                 primary={
                     <>

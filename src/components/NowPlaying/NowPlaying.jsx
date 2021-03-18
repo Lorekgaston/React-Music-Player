@@ -8,6 +8,9 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import { grey } from '@material-ui/core/colors';
+import { useSelector } from 'react-redux';
+
+import './NowPLaying.scss';
 
 const useStyles = makeStyles({
     root: {
@@ -29,18 +32,24 @@ const useStyles = makeStyles({
         '&:hover': {
             textDecoration: 'underline'
         }
-    }
+    },
+    avatar: {}
 });
 
 const NowPlaying = ({ track }) => {
     const classes = useStyles();
+    const { songPlaying } = useSelector(state => state.controller);
     return (
         <>
             {!track ? null : (
                 <List className={classes.root}>
                     <ListItem>
                         <ListItemAvatar>
-                            <Avatar variant="square" src={track.images[2].url} />
+                            <img
+                                variant="circle"
+                                src={track.images[2].url}
+                                className={songPlaying ? 'avatar' : 'avatar animationPaused'}
+                            />
                         </ListItemAvatar>
                         <ListItemText
                             primary={
