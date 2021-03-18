@@ -24,7 +24,6 @@ const ControlBar = ({ audio }) => {
     } = controller;
     const { isPlaylistOpen } = useSelector(state => state.controller);
     const firstRender = React.useRef(true);
-    // const prevVolumeRef = React.useRef();
     const setSong = track => {
         audio.src = track;
         audio.play();

@@ -1,20 +1,16 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import { Route, Switch } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { Route, Switch, useHistory, useRouteMatch } from 'react-router-dom';
-import routes from '../../routes/index';
-import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
-import './Main.scss';
+import routes from '../../routes/index';
 import PlayList from '../PlayList/PlayList';
 import Menu from '../../components/Menu/Menu';
-import { IconButton } from '@material-ui/core';
 import SearchInput from '../../components/SearchInput/SearchInput';
+
+import './Main.scss';
 
 const Main = () => {
     const { isPlaylistOpen } = useSelector(state => state.controller);
-    const history = useHistory();
     return (
         <div className="Main">
             <div className={isPlaylistOpen ? 'Main__routes shrink' : 'Main__routes'}>
@@ -41,9 +37,3 @@ const Main = () => {
 };
 
 export default Main;
-
-Main.propTypes = {
-    // user: PropTypes.string,
-    logOut: PropTypes.func,
-    token: PropTypes.string
-};

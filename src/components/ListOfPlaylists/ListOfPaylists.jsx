@@ -1,12 +1,15 @@
 import * as React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { Typography } from '@material-ui/core';
-import CoverCard from '../CoverCard/CoverCard';
-import './ListOfPlaylists.scss';
-import Loader from '../Loading/Loader';
+import { useSelector, useDispatch } from 'react-redux';
 import { fetchListOfPlaylistData } from '../../redux/actions/listOfPlaylists';
+
+import Loader from '../Loading/Loader';
+import CoverCard from '../CoverCard/CoverCard';
 import CardListSection from '../CardListSection/CardListSection';
+
+import { Typography } from '@material-ui/core';
+
+import './ListOfPlaylists.scss';
 
 const useThunkAction = action => {
     const dispatch = useDispatch();

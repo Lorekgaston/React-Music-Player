@@ -34,7 +34,6 @@
     .CategoriesPage {
     }
     .Categories {
-        // grid-template-columns: repeat(8, 1fr);
         display: flex;
         flex-wrap: wrap;
         will-change: flex-wrap;
@@ -42,12 +41,10 @@
             width: 100%;
             margin: 0 auto;
             padding: 0 1.2em;
-
             padding: 0.5em 1.7em;
         }
         &__card {
             width: 13em;
-            // gap: 0.6em 0.6em;
             padding: 0.2em;
             & img {
                 cursor: pointer;

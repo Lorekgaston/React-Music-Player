@@ -37,7 +37,6 @@ export const fetchCategories = token => {
         );
         try {
             const response = await axios.all(requests);
-            // const { data: { categories: { items } = {} } = {} } = response || {};
             dispatch(fetchCategoriesSuccess(response));
         } catch (err) {
             const message = await err.message;

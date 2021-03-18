@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+
 import Slider from '@material-ui/core/Slider';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { green, grey } from '@material-ui/core/colors';
@@ -68,7 +69,7 @@ const VolumeController = ({ value, handleVolume, handleMuted, muted }) => {
                     <VolumeOffIcon className={classes.icons} />
                 )}
             </IconButton>
-            {/* <VolumeSlider value={value} onChange={handleVolume} className={classes.slider} /> */}
+            <VolumeSlider value={value} onChange={handleVolume} className={classes.slider} />
         </>
     );
 };

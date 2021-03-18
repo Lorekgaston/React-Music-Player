@@ -1,8 +1,10 @@
 import * as React from 'react';
-import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { fetchPlaylist } from '../../redux/actions/search';
+
 import { getAuthToken } from '../../Auth';
+
 import './SearchInput.scss';
 
 const { access_token } = getAuthToken();

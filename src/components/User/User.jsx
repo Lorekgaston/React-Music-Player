@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUser } from '../../redux/actions/user';
+
 import Typography from '@material-ui/core/Typography';
 
 const useFetchUser = action => {

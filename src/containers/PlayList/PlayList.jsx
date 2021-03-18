@@ -2,16 +2,18 @@ import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPlaylist } from '../../redux/actions/playList';
 import { setTrackList, setAudio, setActiveIndex } from '../../redux/actions/controller';
+
 import Loader from '../../components/Loading/Loader';
-import PlaylistHeader from '../../components/PlaylistHeader/PlaylistHeader';
 import PlayListTrack from '../../components/PlayListTrack/PlayListTrack';
+import PlaylistHeader from '../../components/PlaylistHeader/PlaylistHeader';
+
 import { Typography } from '@material-ui/core';
 
 import './Playlist.scss';
 
 const PlayList = () => {
     const dispatch = useDispatch();
-    const { data, isLoading, isError, errorMessage } = useSelector(state => state.playList);
+    const { data, isLoading, isError } = useSelector(state => state.playList);
     const { playlistId, dataType } = useSelector(state => state.controller);
 
     React.useEffect(() => {

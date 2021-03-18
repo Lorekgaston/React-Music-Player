@@ -1,13 +1,16 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import useResize from '../../hooks/useResize';
+
+import Menu from '../Menu/Menu';
 import User from '../../components/User/User';
+
+import logo from '../../assets/img/Logo Music.jpg';
+import Button from '@material-ui/core/Button';
 import MenuIcon from '@material-ui/icons/Menu';
 import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
-import Button from '@material-ui/core/Button';
-import useResize from '../../hooks/useResize';
-import logo from '../../assets/img/Logo Music.jpg';
-import Menu from '../Menu/Menu';
+
 import './Header.scss';
 
 const Header = ({ token }) => {

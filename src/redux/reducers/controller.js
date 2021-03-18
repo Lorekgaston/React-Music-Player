@@ -4,12 +4,10 @@ import * as actionType from '../actionTypes';
 const intialState = {
     songPlaying: false,
     isMuted: false,
-    volume: 50,
+    volume: 40,
     index: 0,
     activeIndex: 0,
     progress: 0,
-    token: null,
-    user: '',
     currentTrack: null,
     trackList: [],
     isSingle: false,

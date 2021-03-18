@@ -1,11 +1,14 @@
 import * as React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useRouteMatch } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { fetchCategories } from '../../redux/actions/categories';
+
 import { getAuthToken } from '../../Auth';
+
 import { Typography } from '@material-ui/core';
 
 import './Categories.scss';
+
 const { access_token } = getAuthToken();
 
 const useThunkAction = action => {

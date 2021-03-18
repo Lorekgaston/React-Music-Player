@@ -1,14 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
+
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
+import { grey } from '@material-ui/core/colors';
 import ListItem from '@material-ui/core/ListItem';
+import Typography from '@material-ui/core/Typography';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar';
-import Typography from '@material-ui/core/Typography';
-import { grey } from '@material-ui/core/colors';
-import { useSelector } from 'react-redux';
 
 import './NowPLaying.scss';
 

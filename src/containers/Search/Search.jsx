@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { useSelector } from 'react-redux';
-import CoverCard from '../../components/CoverCard/CoverCard';
-import { Typography } from '@material-ui/core';
+
 import Loader from '../../components/Loading/Loader';
+import CoverCard from '../../components/CoverCard/CoverCard';
 import CardListSection from '../../components/CardListSection/CardListSection';
+
+import { Typography } from '@material-ui/core';
 
 import './Search.scss';
 

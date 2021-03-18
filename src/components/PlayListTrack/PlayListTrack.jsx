@@ -1,16 +1,16 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar';
-import AlbumIcon from '@material-ui/icons/Album';
-import { Typography } from '@material-ui/core';
 import { useSelector } from 'react-redux';
+
+import Avatar from '@material-ui/core/Avatar';
+import { Typography } from '@material-ui/core';
+import AlbumIcon from '@material-ui/icons/Album';
+import ListItemText from '@material-ui/core/ListItemText';
 
 import './PlayListTrack.scss';
 
 const PlayListTrack = ({ track, play, index }) => {
-    const { songPlaying, isSingle, activeIndex } = useSelector(state => state.controller);
+    const { songPlaying, activeIndex } = useSelector(state => state.controller);
     console.log(track);
     return (
         <li className="ListItem" onClick={() => play(index)}>

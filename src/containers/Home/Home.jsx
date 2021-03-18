@@ -1,12 +1,14 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { Typography } from '@material-ui/core';
 import { fetchHomeData } from '../../redux/actions/homeData';
-import './Home.scss';
-import CardListSection from '../../components/CardListSection/CardListSection';
-import CoverCard from '../../components/CoverCard/CoverCard';
+
 import Loader from '../../components/Loading/Loader';
+import CoverCard from '../../components/CoverCard/CoverCard';
+import CardListSection from '../../components/CardListSection/CardListSection';
+
+import { Typography } from '@material-ui/core';
+
+import './Home.scss';
 
 const useThunkAction = action => {
     const dispatch = useDispatch();
@@ -120,7 +122,3 @@ const Home = () => {
 };
 
 export default Home;
-
-Home.propTypes = {
-    token: PropTypes.string
-};
