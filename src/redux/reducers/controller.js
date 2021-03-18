@@ -42,23 +42,27 @@ const reducer = (state = intialState, action) => {
             if (state.index === state.trackList.length - 1) {
                 return {
                     ...state,
-                    index: 0
+                    index: 0,
+                    activeIndex: 0
                 };
             }
             return {
                 ...state,
-                index: state.index + 1
+                index: state.index + 1,
+                activeIndex: state.index + 1
             };
         case actionType.PREVIOUS_SONG:
             if (state.index === 0) {
                 return {
                     ...state,
-                    index: state.trackList.length - 1
+                    index: state.trackList.length - 1,
+                    activeIndex: state.trackList.length - 1
                 };
             }
             return {
                 ...state,
-                index: state.index - 1
+                index: state.index - 1,
+                activeIndex: state.index - 1
             };
         case actionType.HANDLE_VOLUME:
             return {
