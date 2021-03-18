@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Menu = ({ children, isClicked, classes, open, close }) => {
-    return (
-        <div className={isClicked ? `${classes} ${open}` : `${classes} ${close}`}>{children}</div>
-    );
+const Menu = ({ children, isClicked, classes, open }) => {
+    return <div className={isClicked ? `${classes} ${open}` : `${classes}`}>{children}</div>;
 };
 
 export default Menu;

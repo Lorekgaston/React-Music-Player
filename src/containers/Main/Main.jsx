@@ -33,11 +33,7 @@ const Main = () => {
                 </Switch>
             </div>
 
-            <Menu
-                isClicked={isPlaylistOpen}
-                classes={'Main__menu'}
-                open={'menuOpen'}
-                close={'menuClose'}>
+            <Menu isClicked={isPlaylistOpen} classes={'Main__menu'} open={'menuOpen'}>
                 <PlayList />
             </Menu>
         </div>
