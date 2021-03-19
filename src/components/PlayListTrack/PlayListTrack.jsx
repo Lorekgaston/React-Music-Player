@@ -3,12 +3,6 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 
 import Avatar from '@material-ui/core/Avatar';
-<<<<<<< HEAD
-import AlbumIcon from '@material-ui/icons/Album';
-import IconButton from '@material-ui/core/IconButton';
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-=======
->>>>>>> musicPlayer2.0
 import { Typography } from '@material-ui/core';
 import AlbumIcon from '@material-ui/icons/Album';
 import ListItemText from '@material-ui/core/ListItemText';

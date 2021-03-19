@@ -5,11 +5,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
-<<<<<<< HEAD
-=======
 import InstagramIcon from '@material-ui/icons/Instagram';
 import background from '../../assets/img/zac-bromell-QwrTnOlWAmI-unsplash.jpg';
->>>>>>> musicPlayer2.0
 import { redirect_url } from '../../Auth';
 
 const useStyles = makeStyles({
@@ -19,11 +16,7 @@ const useStyles = makeStyles({
             rgba(0, 0, 0, 0.8),
             rgba(0, 0, 0, 0.4)
           ),
-<<<<<<< HEAD
-          url(https://res.cloudinary.com/dxk8kglks/image/upload/v1612903113/Home/zac-bromell-QwrTnOlWAmI-unsplash_pc4ti6.jpg)`,
-=======
           url(${background})`,
->>>>>>> musicPlayer2.0
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         height: '100vh',
@@ -70,8 +63,6 @@ const useStyles = makeStyles({
             color: 'rgba(77, 52, 97, 0.9)'
         }
     },
-<<<<<<< HEAD
-=======
     code: {
         fontSize: '1rem',
         color: 'hsla(273, 100%, 96%, 0.9)',
@@ -82,16 +73,11 @@ const useStyles = makeStyles({
             color: 'rgba(77, 52, 97, 0.9)'
         }
     },
->>>>>>> musicPlayer2.0
     credit: {
         position: 'absolute',
         left: 0,
         bottom: '10px',
-<<<<<<< HEAD
-        fontSize: 10,
-=======
         fontSize: '7px',
->>>>>>> musicPlayer2.0
         color: 'inherit'
     }
 });
@@ -120,40 +106,9 @@ const Login = () => {
                     </Link>
                 </Typography>
                 <div className={classes.contact}>
-<<<<<<< HEAD
-                    <Link
-                        className={classes.icon}
-                        color="inherit"
-                        href="https://www.linkedin.com/in/gaston-lorek-3587121b9/">
-                        <LinkedInIcon fontSize="large" />
-                    </Link>
-                    <Link
-                        className={classes.icon}
-                        color="inherit"
-                        href="https://github.com/Lorekgaston?tab=repositories">
-                        <GitHubIcon className={classes.icon} fontSize="large" />
-                    </Link>
-                </div>
-                <div className={classes.credit}>
-                    <span>
-                        Photo by{' '}
-                        <Link
-                            color="secondary"
-                            href="https://unsplash.com/@z5a1nt?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">
-                            Zac Bromell
-                        </Link>{' '}
-                        on{' '}
-                        <Link
-                            color="secondary"
-                            href="https://unsplash.com/s/photos/dj?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">
-                            Unsplash
-                        </Link>
-                    </span>
-=======
                     <LinkedInIcon className={classes.icon} fontSize="default" />
                     <InstagramIcon className={classes.icon} fontSize="default" />
                     <GitHubIcon className={classes.icon} fontSize="default" />
->>>>>>> musicPlayer2.0
                 </div>
             </div>
             <div className={classes.credit}>
