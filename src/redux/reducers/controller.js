@@ -4,14 +4,16 @@ import * as actionType from '../actionTypes';
 const intialState = {
     songPlaying: false,
     isMuted: false,
-    volume: 50,
+    volume: 40,
     index: 0,
+    activeIndex: 0,
     progress: 0,
-    token: null,
-    user: '',
     currentTrack: null,
     trackList: [],
-    isSingle: false
+    isSingle: false,
+    isPlaylistOpen: false,
+    playlistId: null,
+    dataType: null
 };
 
 const reducer = (state = intialState, action) => {
@@ -32,7 +34,7 @@ const reducer = (state = intialState, action) => {
             console.log(action);
             return {
                 ...state,
-                trackList: action.tracks.trackList,
+                trackList: action.tracks.data.tracks,
                 index: action.tracks.i,
                 isSingle: false
             };
@@ -40,23 +42,27 @@ const reducer = (state = intialState, action) => {
             if (state.index === state.trackList.length - 1) {
                 return {
                     ...state,
-                    index: 0
+                    index: 0,
+                    activeIndex: 0
                 };
             }
             return {
                 ...state,
-                index: state.index + 1
+                index: state.index + 1,
+                activeIndex: state.index + 1
             };
         case actionType.PREVIOUS_SONG:
             if (state.index === 0) {
                 return {
                     ...state,
-                    index: state.trackList.length - 1
+                    index: state.trackList.length - 1,
+                    activeIndex: state.trackList.length - 1
                 };
             }
             return {
                 ...state,
-                index: state.index - 1
+                index: state.index - 1,
+                activeIndex: state.index - 1
             };
         case actionType.HANDLE_VOLUME:
             return {
@@ -72,6 +78,22 @@ const reducer = (state = intialState, action) => {
             return {
                 ...state,
                 isMuted: !state.isMuted
+            };
+        case actionType.TOOGLE_PLAYLIST:
+            return {
+                ...state,
+                isPlaylistOpen: !state.isPlaylistOpen
+            };
+        case actionType.HANDLE_PLAYLIST:
+            return {
+                ...state,
+                playlistId: action.id,
+                dataType: action.dataType
+            };
+        case actionType.HANDLE_ACTIVE_INDEX:
+            return {
+                ...state,
+                activeIndex: action.activeIndex
             };
         default:
             return state;

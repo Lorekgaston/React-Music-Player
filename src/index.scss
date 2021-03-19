@@ -1,0 +1,99 @@
+:root {
+    --volor-main: #311c41;
+    --volor-main-transparent: rgba(49, 28, 65, 0.803);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Montserrat', sans-serif, 'Segoe UI', 'Roboto',
+        'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue';
+    // font-family: 'Montserrat';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+.MuiTypography-root.MuiTypography-h2 {
+    font-size: 3rem;
+    font-weight: 600;
+    color: hsla(273, 100%, 96%, 0.9);
+}
+.MuiTypography-root.MuiTypography-h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: hsla(273, 100%, 96%, 0.9);
+    // color: rgb(248, 240, 252);
+    border-radius: 5px;
+    padding: 0.4em;
+}
+.MuiTypography-root.MuiTypography-h6 {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: hsla(273, 100%, 96%, 0.9);
+}
+.MuiTypography-root.MuiTypography-body1 {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: hsla(273, 100%, 96%, 0.9);
+    padding: 1em auto;
+}
+.MuiTypography-root.MuiTypography-body2 {
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: #837f85;
+    padding: 2em auto;
+}
+.MuiTypography-root.MuiTypography-caption {
+    font-size: 0.7rem;
+    color: #837f85;
+}
+.MuiTypography-root.MuiTypography-subtitle1 {
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: hsla(273, 100%, 96%, 0.7);
+    padding: 0.5em;
+    text-align: center;
+}
+.MuiButtonBase-root.MuiButton-root.MuiButton-contained {
+    color: #f5e8ff;
+    width: 100%;
+    font-weight: 600;
+    background: rgba(49, 28, 65, 0.9);
+}
+
+@media (min-width: 600px) {
+    .MuiTypography-root.MuiTypography-h2 {
+        font-size: 4rem;
+    }
+    .MuiTypography-root.MuiTypography-h3 {
+        width: 90%;
+        font-size: 1.7rem;
+        font-weight: 600;
+        color: hsla(273, 100%, 96%, 0.9);
+        padding: 0.2em 0.2em;
+        margin: 0.1em 0.1em;
+        border-radius: 2px;
+        background: #161616;
+    }
+    .MuiTypography-root.MuiTypography-subtitle1 {
+        font-size: 0.9rem;
+    }
+    .MuiButtonBase-root.MuiButton-root.MuiButton-contained {
+        color: rgba(49, 28, 65, 0.9);
+        width: 100%;
+        height: 2em;
+        font-weight: 600;
+        background: #f5e8ff;
+    }
+    .MuiButtonBase-root.MuiIconButton-root {
+        font-size: 4rem;
+    }
+}

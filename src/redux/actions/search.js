@@ -24,15 +24,16 @@ export const fetchPlaylist = (string, token) => {
         dispatch(setLoading);
         try {
             const response = await axios.get(
-                `https://api.spotify.com/v1/search?q=${string}&type=playlist&limit=30`,
+                `https://api.spotify.com/v1/search?q=${string}&type=playlist,track&limit=30`,
                 {
                     headers: {
                         Authorization: 'Bearer ' + token
                     }
                 }
             );
-            const { data: { playlists: { items } = {} } = {} } = response;
-            dispatch(searchPlaylist(items));
+            console.log(response);
+            const { data: { playlists: { items } = {}, tracks } = {} } = response;
+            dispatch(searchPlaylist({ items, tracks, string }));
         } catch (err) {
             const message = await err.message;
             dispatch(setError(message));

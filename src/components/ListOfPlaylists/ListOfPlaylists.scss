@@ -1,0 +1,46 @@
+.ListOfPlaylists {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    text-transform: capitalize;
+    &__picture {
+        width: 274px;
+        height: 274px;
+        & img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+    }
+    &__Title {
+        padding: 0.5em 2.6em;
+    }
+    &__flexbox {
+        width: 79%;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        will-change: flex-wrap;
+    }
+}
+
+@media (min-width: 600px) {
+    .ListOfPlaylists {
+        &__flexbox {
+            width: 100%;
+            margin: auto;
+        }
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+    .TitleShrink {
+        width: 95.5%;
+        padding: 0 4.5em;
+    }
+    .sectionShrink {
+        padding: 0 0.3em;
+    }
+}

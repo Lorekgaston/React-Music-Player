@@ -1,53 +1,42 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
-import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import { makeStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
+import { useDispatch, useSelector } from 'react-redux';
+import { handlePLaylist } from '../../redux/actions/controller';
+import './CoverCard.scss';
 
-const useStyles = makeStyles({
-    card: {
-        position: 'relative',
-        backgroundColor: '#202020',
-        color: '#ffff',
-        borderRadius: 5,
-        width: '100%',
-        maxWidth: 154,
-        minHeight: 260,
-        margin: 10,
-        padding: '0.9rem',
-        cursor: 'pointer',
-        '&:hover': {
-            backgroundColor: '#282828'
+const CoverCard = ({ image, id, name, type }) => {
+    const [hover, setHover] = React.useState(false);
+    const { isPlaylistOpen } = useSelector(state => state.controller);
+    const dispatch = useDispatch();
+    const handlePlaylist = (id, type) => {
+        if (!isPlaylistOpen) {
+            dispatch({ type: 'TOOGLE_PLAYLIST' });
         }
-    },
-    media: {
-        height: 170
-    },
-    cardContent: {
-        padding: '10px 0'
-    },
-    text: {
-        textOverflow: 'ellipsis'
-    }
-});
+        dispatch(handlePLaylist(id, type));
+    };
 
-const CoverCard = ({ image, name, param }) => {
-    const history = useHistory();
-    const classes = useStyles();
     return (
-        <>
-            <Card className={classes.card} onClick={() => history.push(param)}>
-                <CardMedia className={classes.media} component="img" src={image} alt={name} />
-                <CardContent className={classes.cardContent}>
-                    <Typography noWrap={true} variant="h6">
-                        {name}
-                    </Typography>
-                </CardContent>
-            </Card>
-        </>
+        <div
+            className="Card"
+            onClick={() => handlePlaylist(id, type)}
+            onMouseEnter={() => setHover(prevState => !prevState)}
+            onMouseLeave={() => setHover(prevState => !prevState)}>
+            <img
+                className={type === 'track' ? 'Card__images track' : 'Card__images'}
+                src={image}
+                alt={name}
+            />
+            {type === 'track' && (
+                <div className="Card__info">
+                    <h4>
+                        {name.length > 14 && name.length != name.length - 1
+                            ? name.substring(0, 14) + '...'
+                            : name}
+                    </h4>
+                </div>
+            )}
+            {hover && <div className="Card__overlay"></div>}
+        </div>
     );
 };
 
@@ -55,6 +44,7 @@ export default CoverCard;
 
 CoverCard.propTypes = {
     image: PropTypes.string,
-    name: PropTypes.string,
-    param: PropTypes.string
+    id: PropTypes.string,
+    type: PropTypes.string,
+    name: PropTypes.string
 };

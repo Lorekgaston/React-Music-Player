@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUser } from '../../redux/actions/user';
+
 import Typography from '@material-ui/core/Typography';
 
 const useFetchUser = action => {
@@ -11,14 +12,12 @@ const useFetchUser = action => {
     }, []);
 };
 
-const User = ({ classes, token }) => {
+const User = ({ token }) => {
     const { user: { display_name } = {} } = useSelector(state => state.user);
     useFetchUser(fetchUser(token));
     return (
         <>
-            <Typography variant="body2" className={classes.user}>
-                {display_name}
-            </Typography>
+            <Typography variant="h6">{display_name}</Typography>
         </>
     );
 };
@@ -26,6 +25,5 @@ const User = ({ classes, token }) => {
 export default User;
 
 User.propTypes = {
-    classes: PropTypes.object,
     token: PropTypes.string
 };

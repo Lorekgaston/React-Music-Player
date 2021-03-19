@@ -1,0 +1,27 @@
+.nowPlayingImg {
+    width: 2em;
+    height: 2em;
+    border-radius: 100px;
+    animation: rotate 3s infinite linear;
+}
+.imgAnimationPaused {
+    width: 2em;
+    height: 2em;
+    border-radius: 100px;
+    animation-play-state: paused;
+}
+.nowPlayingArtist {
+    font-size: 0.5rem;
+    color: rgba(243, 227, 255, 0.7);
+    padding: 0.5em;
+    font-weight: 700;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

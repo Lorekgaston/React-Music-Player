@@ -1,0 +1,44 @@
+.Card {
+    width: 7em;
+    padding: 0.2em 0.4em;
+    max-height: 160px;
+    &__images {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        border-radius: 2px;
+    }
+    &__info {
+        width: 100%;
+        height: 12%;
+        text-align: center;
+        & h4 {
+            font-size: 0.8rem;
+            color: hsla(274, 100%, 95%, 0.9);
+        }
+    }
+}
+.track {
+    height: 88%;
+    object-fit: fill;
+}
+@media (min-width: 600px) {
+    .Card {
+        position: relative;
+        width: 10em;
+        padding: 0.2em;
+        cursor: pointer;
+        &:hover {
+            transform: translateY(-1px);
+        }
+        &__overlay {
+            position: absolute;
+            left: 2px;
+            top: 2px;
+            width: 97%;
+            height: 97.5%;
+            border-radius: 2px;
+            background: rgba(245, 241, 248, 0.2);
+        }
+    }
+}

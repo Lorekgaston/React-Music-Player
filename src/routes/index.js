@@ -1,9 +1,7 @@
-import Categories from '../components/Categories/Categories';
-import CategoryPage from '../components/CategoryPage/CategoryPage';
-import Playlist from '../containers/PlayList/PlayList';
-import Home from '../components/Home/Home';
-import Single from '../containers/Single/Single';
-import SearchResults from '../components/SearchResults';
+import Categories from '../containers/Categories/Categories';
+import ListOfPlaylists from '../components/ListOfPlaylists/ListOfPaylists';
+import Home from '../containers/Home/Home';
+import Search from '../containers/Search/Search';
 
 const routes = [
     {
@@ -11,24 +9,16 @@ const routes = [
         component: Home
     },
     {
-        path: '/categories',
+        path: '/Categories',
         component: Categories
     },
     {
-        path: '/categoryPage/:id',
-        component: CategoryPage
-    },
-    {
-        path: '/playlist/:id',
-        component: Playlist
-    },
-    {
-        path: '/single/:id',
-        component: Single
+        path: '/Categories/:id',
+        component: ListOfPlaylists
     },
     {
         path: '/search',
-        component: SearchResults
+        component: Search
     }
 ];
 

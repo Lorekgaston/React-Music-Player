@@ -1,0 +1,86 @@
+.Controlbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    min-height: 4em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #242424;
+    &__progressbar {
+        position: relative;
+        width: 100%;
+        height: 2.5px;
+        background: #9e9e9e;
+        &_bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: var(--progress);
+            height: 100%;
+            background: #311c41;
+        }
+    }
+    &__bottomContainer {
+        width: 100%;
+        height: 59px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    &__controlButtons {
+        width: 40%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    &__menuIcon {
+        width: 20%;
+        display: flex;
+        justify-content: center;
+    }
+    &__icons {
+        color: #fff;
+    }
+    &__controlVolume {
+        display: flex;
+        align-items: center;
+        width: 2em;
+        height: 2em;
+    }
+    &__nowPlaying {
+        width: 20%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+    }
+}
+
+@media (min-width: 600px) {
+    .Controlbar {
+        transition: width 0.4s ease-in;
+        will-change: width;
+        &__bottomContainer {
+            flex-direction: row;
+            justify-content: space-evenly;
+        }
+        &__controlButtons {
+            width: 20%;
+        }
+        &__controlVolume {
+            width: 5%;
+        }
+        &__menuIcon {
+            width: 5%;
+        }
+    }
+    .ControlbarShrinked {
+        width: 60%;
+        transition: width 0.7s ease-out;
+        transition-delay: 250ms;
+        will-change: width;
+    }
+}

@@ -1,41 +1,21 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { Avatar, Typography } from '@material-ui/core';
-import { parseTime } from '../../utils/handleTime';
 
-const PlaylistHeader = ({ classes, data, playlistDuration, playList }) => (
-    <>
-        <Avatar
-            className={classes.avatar}
-            src={data?.images[0].url}
-            alt={data?.name}
-            variant="square"
-        />
-        <div className={classes.headerText}>
-            <Typography variant="body1" className={classes.headerType}>
-                {data?.type}
-            </Typography>
-            <Typography variant="h2" className={classes.headerName}>
+import { Typography } from '@material-ui/core';
+
+import './PlaylistHeader.scss';
+
+const PlaylistHeader = ({ data }) => (
+    <div className="PlaylistHeader">
+        <div className="PlaylistHeader__imageContainer">
+            <img src={data?.images[0].url} alt={data?.name} />
+        </div>
+        <div className="PlaylistHeader__title">
+            <Typography variant="h3" className="PlaylistHeader__name">
                 {data?.name}
             </Typography>
-            <Typography variant="body1" className={classes.headerDescription}>
-                {data?.description}
-            </Typography>
-            <div className={classes.headerBottom}>
-                <Typography variant="caption" className={classes.headerBottomItem}>
-                    <span>Created by:</span>{' '}
-                    <strong style={{ cursor: 'pointer' }}>{data?.owner.display_name} </strong>
-                    {'  '}-
-                </Typography>
-                <Typography variant="caption" className={classes.headerBottomItem}>
-                    {playList?.length} Songs -
-                </Typography>
-                <Typography variant="caption" className={classes.headerBottomItem}>
-                    {parseTime(playlistDuration)}
-                </Typography>
-            </div>
         </div>
-    </>
+    </div>
 );
 
 export default PlaylistHeader;

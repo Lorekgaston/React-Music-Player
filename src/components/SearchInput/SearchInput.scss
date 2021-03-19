@@ -1,0 +1,33 @@
+.SearchInput {
+    text-align: center;
+    margin: 0.5em 0;
+    & input {
+        width: 85%;
+        height: 90%;
+        margin: 0 auto;
+        padding: 6px;
+        border: none;
+        border-bottom: 1px solid hsla(275, 91%, 56%, 0.3);
+        // border-radius: 10px;
+        color: #fcf6ff;
+        background: #161616;
+        transition: box-shadow 0.4s ease, border 0.4s ease-in;
+        will-change: box-shadow, border;
+        &:focus {
+            transition: box-shadow 0.4s ease, border 0.4s ease-out;
+            will-change: box-shadow, border;
+            outline: none !important;
+            box-shadow: 0px 1px 2px 0px hsla(275, 91%, 56%, 0.5);
+            border: none;
+        }
+    }
+}
+
+@media (min-width: 600px) {
+    .SearchInput {
+        width: 30em;
+        & input {
+            font-size: 1rem;
+        }
+    }
+}

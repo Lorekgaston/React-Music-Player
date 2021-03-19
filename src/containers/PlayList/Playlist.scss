@@ -1,0 +1,26 @@
+.Playlist {
+    position: relative;
+    flex-grow: 1;
+    width: 100%;
+    background: #121212;
+    &__header {
+        padding: '24px 32px 0';
+    }
+    &__loader,
+    &__empty {
+        width: 100%;
+        height: 80vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media (min-width: 600px) {
+    .Playlist {
+        background: #101010;
+    }
+    .TrackList {
+        background: rgba(49, 28, 65, 0.2);
+    }
+}

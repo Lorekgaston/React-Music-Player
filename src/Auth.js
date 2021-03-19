@@ -14,15 +14,17 @@ const scopes = [
 ];
 export const redirect_url = `https://accounts.spotify.com/authorize?client_id=${client_id}&redirect_uri=${URI}&scope=${scopes.join(
     '%20'
-)}&response_type=token&show_dialog=true`;
+)}&response_type=token`;
 
 export const getAuthToken = () => {
     return window.location.hash
         .substring(1)
         .split('&')
         .reduce((intial, item) => {
-            let parts = item.split('=');
-            intial[parts[0]] = decodeURIComponent(parts[1]);
+            let redirectUrl = item.split('=');
+            intial[redirectUrl[0]] = decodeURIComponent(redirectUrl[1]);
             return intial;
         }, {});
 };
+
+// &show_dialog=true

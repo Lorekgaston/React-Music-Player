@@ -1,58 +1,77 @@
 import * as React from 'react';
-import { useDispatch } from 'react-redux';
-import { setTrackList } from '../../redux/actions/controller';
-import { useParams } from 'react-router-dom';
-import { Paper } from '@material-ui/core';
-import useFetch from '../../hooks/useFetch';
-import { useStyles } from './styles';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchPlaylist } from '../../redux/actions/playList';
+import { setTrackList, setAudio, setActiveIndex } from '../../redux/actions/controller';
+
+import Loader from '../../components/Loading/Loader';
+import PlayListTrack from '../../components/PlayListTrack/PlayListTrack';
 import PlaylistHeader from '../../components/PlaylistHeader/PlaylistHeader';
-import PlaylistTracklist from '../../components/PlaylistTracklist/PlaylistTracklist';
-import { filterPlayableTracks, handleTracklistData } from '../../utils/handletrackList';
+
+import { Typography } from '@material-ui/core';
+
+import './Playlist.scss';
 
 const PlayList = () => {
     const dispatch = useDispatch();
-    const { id } = useParams();
-    const classes = useStyles();
+    const { data, isLoading, isError } = useSelector(state => state.playList);
+    const { playlistId, dataType } = useSelector(state => state.controller);
 
-    const { data, isLoading } = useFetch(
-        `https://api.spotify.com/v1/playlists/${id}?fields=description,owner(display_name,external_urls),images,name,primary_color,type,tracks.items(track(album,duration_ms,id,name,preview_url))`
-    );
+    React.useEffect(() => {
+        dispatch(fetchPlaylist(playlistId, dataType));
+    }, [playlistId]);
 
-    // Spread data and asign default value to items, to prevent null or undefine error when destructuring api response.
-    const { tracks: { items } = {} } = { ...data };
-    // Used helper functions to filter data.
-    const playList = filterPlayableTracks(items);
-    const trackList = handleTracklistData(playList);
-    const playlistDuration = trackList?.map(item => item.duration_ms);
     const playTrack = i => {
-        dispatch(setTrackList({ trackList, i }));
+        if (dataType === 'playlist') {
+            dispatch(setTrackList({ data, i }));
+        }
+        if (dataType === 'track') {
+            dispatch(setAudio(data));
+        }
+        dispatch(setActiveIndex(i));
     };
 
     return (
-        <Paper className={classes.root}>
-            {isLoading ? (
-                <h1>Loaging...</h1>
+        <div className="Playlist">
+            {!isError && !data ? (
+                <div className="Playlist__empty">
+                    <Typography variant="h3">Choose a playlist or song to play</Typography>
+                </div>
+            ) : isLoading ? (
+                <div className="Playlist__loader">
+                    <Loader />
+                </div>
             ) : (
                 <>
-                    <div className={classes.header}>
-                        <PlaylistHeader
-                            classes={classes}
-                            data={data}
-                            playlistDuration={playlistDuration}
-                            playList={playList}
-                        />
-                    </div>
-                    <div style={{ padding: '24px 32px 0' }}>
-                        <PlaylistTracklist
-                            classes={classes}
-                            playTrack={playTrack}
-                            trackList={trackList}
-                            loading={isLoading}
-                        />
+                    <PlaylistHeader data={data} />
+                    <div className="TrackList">
+                        <ul className="TrackList__tracks">
+                            {dataType === 'playlist' &&
+                                data?.tracks?.length > 0 &&
+                                data?.tracks?.map((song, idx) => {
+                                    return (
+                                        <PlayListTrack
+                                            key={song + idx}
+                                            track={song}
+                                            isLoading={isLoading}
+                                            play={playTrack}
+                                            index={idx}
+                                        />
+                                    );
+                                })}
+                            {dataType === 'track' && (
+                                <PlayListTrack
+                                    track={data}
+                                    isLoading={isLoading}
+                                    play={playTrack}
+                                    index={data?.name}
+                                    id={data?.id}
+                                />
+                            )}
+                        </ul>
                     </div>
                 </>
             )}
-        </Paper>
+        </div>
     );
 };
 

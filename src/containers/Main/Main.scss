@@ -1,0 +1,152 @@
+.Main {
+    background: #101010;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    min-height: 70vh;
+    padding: 80px 0;
+    display: block;
+    overflow: hidden;
+    // transition: width 0.5s ease-in-out;
+    &__navigation {
+        width: 95%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        &_buttons {
+            width: 30%;
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+    &__routes {
+        width: 100%;
+        overflow-y: auto;
+        &::-webkit-scrollbar {
+            width: 5px;
+        }
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        &::-webkit-scrollbar-thumb {
+            background: rgba(49, 28, 65, 0.2);
+            border-radius: 10px;
+        }
+    }
+    &__menu {
+        width: 100%;
+        position: fixed;
+        overflow: auto;
+        background: #101010;
+        left: -100%;
+        bottom: -100%;
+        height: 0;
+        opacity: 0;
+        transition: height 0.6s ease-in, opacity 0.3s ease-in, bottom 0.6s ease-in,
+            left 0.6s ease-in;
+        will-change: height, opacity, bottom, left;
+        border-left: 3px solid #161616;
+    }
+}
+.MuiButtonBase-root.MuiIconButton-root {
+    padding: 0;
+    font-size: 3rem;
+}
+.MuiSvgIcon-root {
+    font-size: 2.7rem;
+    color: #fafaf9;
+}
+.menuOpen {
+    transition: height 0.6s ease-out, opacity 0.7s ease-out, bottom 0.6s ease-out,
+        left 0.6s ease-out;
+    will-change: height, opacity, bottom, left;
+    left: 0;
+    bottom: 4em;
+    height: 90vh;
+    z-index: 90;
+    opacity: 1;
+}
+
+@media (min-width: 600px) {
+    .Main {
+        position: relative;
+        min-height: 80vh;
+        height: calc(100vh - 160px);
+        padding: 0;
+        padding-bottom: 80px;
+        display: flex;
+        overflow: hidden;
+        &__routes {
+            width: 100vw;
+            transition: width 0.6s ease-in;
+            overflow-x: hidden;
+            will-change: width;
+            &::-webkit-scrollbar {
+                width: 5px;
+            }
+            &::-webkit-scrollbar-track {
+                background: transparent;
+            }
+            &::-webkit-scrollbar-thumb {
+                background: transparent;
+                // background: rgba(49, 28, 65, 0.2);
+                border-radius: 10px;
+            }
+        }
+        &__menu {
+            background: #101010;
+            width: 40%;
+            position: absolute;
+            height: 100%;
+            padding: 0;
+            transition: right 0.8s ease-in, opacity 0.3s ease-in;
+            overflow: hidden;
+            opacity: 0;
+            right: -100%;
+            top: 0;
+            bottom: auto;
+            left: auto;
+            will-change: right, opacity;
+        }
+        &__navigation {
+            // padding: 0.2em 1.2em;
+            // margin: 0.1em 0.1em;
+            width: 95%;
+            margin: 0 auto;
+            padding: 0 1.6em;
+        }
+    }
+    .shrink {
+        width: 60%;
+        transition: width 0.6s ease-in-out;
+        transition-delay: 250ms;
+    }
+    .menuOpen {
+        transition: right 0.8s ease-out, opacity 0.6s ease-out;
+        overflow-y: auto;
+        opacity: 1;
+        right: 2px;
+        will-change: right, opacity;
+        &::-webkit-scrollbar {
+            width: 5px;
+        }
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        &::-webkit-scrollbar-thumb {
+            background: transparent;
+            background: rgba(49, 28, 65, 0.2);
+            border-radius: 10px;
+        }
+    }
+    .MuiButtonBase-root.MuiIconButton-root {
+        padding: 0;
+        font-size: 4rem;
+    }
+    .MuiSvgIcon-root.MuiSvgIcon-fontSizeLarge {
+        font-size: 3rem;
+        color: #fafaf9;
+    }
+}
