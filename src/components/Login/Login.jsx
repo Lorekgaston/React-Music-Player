@@ -7,6 +7,7 @@ import Link from '@material-ui/core/Link';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import InstagramIcon from '@material-ui/icons/Instagram';
+import background from '../../assets/img/zac-bromell-QwrTnOlWAmI-unsplash.jpg';
 import { redirect_url } from '../../Auth';
 
 const useStyles = makeStyles({
@@ -16,7 +17,7 @@ const useStyles = makeStyles({
             rgba(0, 0, 0, 0.8),
             rgba(0, 0, 0, 0.4)
           ),
-          url(../../assets/img/zac-bromell-QwrTnOlWAmI-unsplash.jpg)`,
+          url(${background})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         height: '100vh',
@@ -29,15 +30,18 @@ const useStyles = makeStyles({
     header: {
         height: '40vh',
         display: 'flex',
+        color: '#f5e8ff',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'space-around'
     },
     button: {
-        backgroundColor: green[700],
+        backgroundColor: 'rgba(49, 28, 65, 0.9)',
         width: 100,
+        fontWeight: '700',
+        color: '#f5e8ff',
         '&:hover': {
-            backgroundColor: green[600]
+            backgroundColor: 'rgba(77, 52, 97, 0.9)'
         }
     },
     contactContainer: {
@@ -53,16 +57,28 @@ const useStyles = makeStyles({
     icon: {
         marginRight: 10,
         marginLeft: 10,
+        fontSize: '2rem',
+        cursor: 'pointer',
+        color: 'hsla(273, 100%, 96%, 0.9)',
+        '&:hover': {
+            color: 'rgba(77, 52, 97, 0.9)'
+        }
+    },
+    code: {
+        fontSize: '1rem',
+        color: 'hsla(273, 100%, 96%, 0.9)',
+        marginRight: 10,
+        marginLeft: 10,
         cursor: 'pointer',
         '&:hover': {
-            color: green[600]
+            color: 'rgba(77, 52, 97, 0.9)'
         }
     },
     credit: {
         position: 'absolute',
         left: 0,
         bottom: '10px',
-        fontSize: 10,
+        fontSize: '7px',
         color: 'inherit'
     }
 });
@@ -73,7 +89,7 @@ const Login = () => {
         <div className={classes.root}>
             <div className={classes.header}>
                 <Typography variant="h2">Music Player</Typography>
-                <Typography variant="caption" component="p">
+                <Typography variant="subtitle1" component="p">
                     This Web App is only for demo purposes, has no commercial use. To view this demo
                     you must sign in with your spotify account
                 </Typography>
@@ -84,16 +100,16 @@ const Login = () => {
             <div className={classes.contactContainer}>
                 <Typography variant="h6">
                     <Link
+                        className={classes.code}
                         href="https://github.com/Lorekgaston/React-Music-Player/"
-                        color="inherit"
-                        className={classes.icon}>
+                        color="inherit">
                         Project code
                     </Link>
                 </Typography>
                 <div className={classes.contact}>
-                    <LinkedInIcon className={classes.icon} fontSize="large" />
-                    <InstagramIcon className={classes.icon} fontSize="large" />
-                    <GitHubIcon className={classes.icon} fontSize="large" />
+                    <LinkedInIcon className={classes.icon} fontSize="default" />
+                    <InstagramIcon className={classes.icon} fontSize="default" />
+                    <GitHubIcon className={classes.icon} fontSize="default" />
                 </div>
             </div>
             <div className={classes.credit}>
