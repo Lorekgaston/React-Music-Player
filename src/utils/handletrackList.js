@@ -1,11 +1,12 @@
 export const handleTrackData = data => {
-    const { preview_url, name, duration_ms, album: { artists, images } = {} } = { ...data };
+    const { id, preview_url, name, duration_ms, album: { artists, images } = {} } = { ...data };
     return {
         preview_url,
         name,
         duration_ms,
         artists,
-        images
+        images,
+        id
     };
 };
 

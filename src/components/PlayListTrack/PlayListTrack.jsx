@@ -11,7 +11,6 @@ import './PlayListTrack.scss';
 
 const PlayListTrack = ({ track, play, index }) => {
     const { songPlaying, activeIndex } = useSelector(state => state.controller);
-    console.log(track);
     return (
         <li className="ListItem" onClick={() => play(index)}>
             <span

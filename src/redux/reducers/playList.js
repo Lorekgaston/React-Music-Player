@@ -19,7 +19,6 @@ const reducer = (state = initialState, action) => {
                 isLoading: action.loading
             };
         case FETCH_PLAYLIST_SUCCEDED:
-            console.log(action);
             return {
                 ...state,
                 data: action.tracks,

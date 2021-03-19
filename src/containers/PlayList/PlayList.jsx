@@ -29,6 +29,7 @@ const PlayList = () => {
         }
         dispatch(setActiveIndex(i));
     };
+
     return (
         <div className="Playlist">
             {!isError && !data ? (
@@ -63,6 +64,7 @@ const PlayList = () => {
                                     isLoading={isLoading}
                                     play={playTrack}
                                     index={data?.name}
+                                    id={data?.id}
                                 />
                             )}
                         </ul>

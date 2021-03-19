@@ -38,7 +38,7 @@ export const fetchPlaylist = (id, type) => {
         let url;
         try {
             if (type === 'playlist') {
-                url = `https://api.spotify.com/v1/playlists/${id}?fields=description,owner(display_name,external_urls),images,name,primary_color,type,tracks.items(track(album,duration_ms,id,name,preview_url))`;
+                url = `https://api.spotify.com/v1/playlists/${id}?fields=id,description,owner(display_name,external_urls),images,name,primary_color,type,tracks.items(track(album,duration_ms,id,name,preview_url))`;
                 const response = await axios.get(url, {
                     headers: {
                         Authorization: 'Bearer ' + access_token
