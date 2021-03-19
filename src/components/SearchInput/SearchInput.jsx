@@ -23,7 +23,12 @@ const SearchInput = () => {
     };
 
     React.useEffect(() => {
-        return () => dispatch(fetchPlaylist(value, access_token));
+        const handler = setTimeout(() => {
+            dispatch(fetchPlaylist(value, access_token));
+        }, 300);
+        return () => {
+            clearTimeout(handler);
+        };
     }, [value]);
     console.log(value);
     return (

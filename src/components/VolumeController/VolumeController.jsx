@@ -29,7 +29,14 @@ const VolumeController = ({ value, handleVolume, handleMuted, muted }) => {
                 )}
             </IconButton>
 
-            <input type="range" className="VolumeSlider" value={value} onChange={handleVolume} />
+            <input
+                type="range"
+                min="0"
+                max="100"
+                className="VolumeSlider"
+                value={value}
+                onChange={handleVolume}
+            />
         </>
     );
 };
