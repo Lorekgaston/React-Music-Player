@@ -8,6 +8,7 @@ import { getAuthToken } from '../../Auth';
 import { Typography } from '@material-ui/core';
 
 import './Categories.scss';
+import Loader from '../../components/Loading/Loader';
 
 const { access_token } = getAuthToken();
 
@@ -21,7 +22,7 @@ const useThunkAction = action => {
 const Categories = () => {
     const history = useHistory();
     const { url } = useRouteMatch();
-    const { categories, isLoading, error, errorMessage } = useSelector(state => state.categories);
+    const { categories, isLoading } = useSelector(state => state.categories);
     useThunkAction(fetchCategories(access_token));
     const aToz = cat =>
         cat?.sort((a, b) => {
@@ -37,9 +38,8 @@ const Categories = () => {
     console.log(url);
     return (
         <div className="CategoriesPage">
-            {error && <h1>{errorMessage}</h1>}
             {isLoading ? (
-                <h1>Loading....</h1>
+                <Loader />
             ) : (
                 <>
                     <div className="Categories__Title">
