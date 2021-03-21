@@ -4,7 +4,8 @@ import * as actionType from '../actionTypes';
 const intialState = {
     user: {},
     loading: false,
-    error: ''
+    isError: false,
+    errorMessage: ''
 };
 
 const reducer = (state = intialState, action) => {
@@ -14,7 +15,8 @@ const reducer = (state = intialState, action) => {
             console.log(action);
             return {
                 ...state,
-                user
+                user,
+                isError: false
             };
         case actionType.GET_USER:
             return {
@@ -24,7 +26,8 @@ const reducer = (state = intialState, action) => {
         case actionType.SET_ERROR:
             return {
                 ...state,
-                error: action.payload
+                isError: true,
+                errorMessage: action.payload
             };
         default:
             return state;

@@ -5,7 +5,7 @@ const initialState = {
     featuredPlaylists: null,
     recommendations: null,
     isLoading: false,
-    error: false,
+    isError: false,
     errorMessage: ''
 };
 
@@ -22,12 +22,13 @@ const reducer = (state = initialState, action) => {
                 recentlyPlayed: action.data.responseOne,
                 featuredPlaylists: action.data.responseTwo,
                 recommendations: action.data.responseThree,
-                isLoading: false
+                isLoading: false,
+                isError: false
             };
         case actionType.FETCH_HOME_FAILED:
             return {
                 ...state,
-                error: true,
+                isError: true,
                 errorMessage: action.message,
                 isLoading: false
             };

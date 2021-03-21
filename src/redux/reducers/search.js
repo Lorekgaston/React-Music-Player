@@ -5,7 +5,8 @@ const intialState = {
     tracks: null,
     value: '',
     loading: false,
-    error: ''
+    isError: false,
+    errorMessage: ''
 };
 
 const reducer = (state = intialState, action) => {
@@ -17,7 +18,8 @@ const reducer = (state = intialState, action) => {
                 playlist: action.playlist.items,
                 tracks: action.playlist.tracks?.items,
                 value: action.playlist.string,
-                loading: false
+                loading: false,
+                isError: false
             };
         case actionType.SET_LOADING:
             return {
@@ -27,8 +29,9 @@ const reducer = (state = intialState, action) => {
         case actionType.SET_ERROR:
             return {
                 ...state,
+                isError: true,
                 loading: false,
-                error: action.payload
+                errorMessage: action.payload
             };
         default:
             return state;

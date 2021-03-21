@@ -5,9 +5,11 @@ const scopes = [
     'user-read-private',
     'user-read-email',
     'user-library-read',
+    'user-read-recently-played',
     'user-library-modify',
     'user-follow-read',
     'user-follow-modify',
+    'user-top-read',
     'playlist-read-private',
     'playlist-modify-public',
     'playlist-modify-private'
@@ -26,5 +28,3 @@ export const getAuthToken = () => {
             return intial;
         }, {});
 };
-
-// &show_dialog=true

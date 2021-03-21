@@ -23,7 +23,8 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 listOfPlaylist: action.listOfPlaylist,
-                isLoading: action.loading
+                isLoading: action.loading,
+                isError: false
             };
         case FETCH_LISTOFPLAYLIST_FAILED:
             return {

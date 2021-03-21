@@ -22,7 +22,8 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 data: action.tracks,
-                isLoading: false
+                isLoading: false,
+                isError: false
             };
         case FETCH_PLAYLIST_FAILED:
             return {

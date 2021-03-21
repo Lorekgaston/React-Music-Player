@@ -3,7 +3,7 @@ import * as actionType from '../actionTypes';
 const intialState = {
     categories: [],
     isLoading: false,
-    error: false,
+    isError: false,
     errorMessage: ''
 };
 
@@ -19,7 +19,8 @@ const reducer = (state = intialState, action) => {
             return {
                 ...state,
                 categories: action.category,
-                isLoading: false
+                isLoading: false,
+                isError: false
             };
         case actionType.FETCH_CATEGORIES_FAILED:
             return {
